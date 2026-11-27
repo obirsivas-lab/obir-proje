@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /sonuc.html
+Disallow: /iletisim.php
+Sitemap: https://obirkurs.com.tr/sitemap.xml

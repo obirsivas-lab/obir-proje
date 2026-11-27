@@ -2,9 +2,17 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo-obir.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Obir Kurs Merkezi – Sivas LGS Hazırlık ve 5-6-7. Sınıf Kursu</title>
+<link rel="canonical" href="https://obirkurs.com.tr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://obirkurs.com.tr/">
+<meta property="og:title" content="Obir Kurs Merkezi · Sivas LGS Hazırlık ve 5-6-7. Sınıf">
+<meta property="og:description" content="8-10 kişilik butik sınıflarda, Maarif Modeli uyumlu LGS hazırlık ve 5, 6, 7. sınıf eğitimi. Sivas.">
+<meta property="og:image" content="https://obirkurs.com.tr/assets/logo-obir.png">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Obir Kurs Merkezi","url":"https://obirkurs.com.tr/","logo":"https://obirkurs.com.tr/assets/logo-obir.png","telephone":"+905332298058","address":{"@type":"PostalAddress","streetAddress":"Kardeşler Mahallesi, Bağdat Caddesi, 51-48 Sokak No: 8A","addressLocality":"Sivas","addressCountry":"TR"},"sameAs":["https://www.instagram.com/obir_kurs_merkezi/"]}</script>
 <meta name="description" content="Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi. Maarif Modeli'ne uyumlu öğretim, düzenli deneme sınavları ve online sonuç takibi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -341,7 +349,8 @@ h2.bb{font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900;letter-s
 .burs-tarih .siniflar i.one{background:var(--sari);border-color:var(--sari);color:var(--ink)}
 
 /* ---------- KADRO ---------- */
-.kadro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kadro-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.kadro-grid>.ogr-kart{flex:0 0 calc((100% - 48px)/4)}
 .ogr-kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:24px;overflow:hidden;transition:transform .3s}
 .ogr-kart:hover{transform:translateY(-6px)}
 .ogr-foto{aspect-ratio:4/5;background:linear-gradient(160deg,#2f2f35,#1d1d20);position:relative;display:grid;place-items:center;overflow:hidden}
@@ -384,6 +393,8 @@ h2.bb{font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900;letter-s
 .kvkk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--soluk);font-weight:600;margin:6px 0 18px}
 .kvkk input{margin-top:3px;accent-color:var(--ink);width:17px;height:17px;flex:none}
 .kvkk a{text-decoration:underline}
+.form-hata{color:#c0392b;font-weight:800;font-size:14px;margin:-6px 0 12px;min-height:0}
+.form-hata:empty{display:none}
 .form-kart .btn{width:100%}
 .gonderildi{display:none;text-align:center;padding:40px 10px}
 .gonderildi .tikb{width:72px;height:72px;border-radius:50%;background:var(--sari);display:grid;place-items:center;margin:0 auto 18px;animation:buyu .6s cubic-bezier(.2,1.4,.4,1)}
@@ -435,7 +446,7 @@ footer a:hover{color:var(--sari)}
   .ust-ic{gap:12px}
   .ust-btnlar{margin-left:auto}
   .prog-grid{grid-template-columns:1fr 1fr}
-  .kadro-grid{grid-template-columns:repeat(2,1fr)}
+  .kadro-grid>.ogr-kart{flex-basis:calc((100% - 16px)/2)}
   .yon-grid{grid-template-columns:1fr}
 }
 @media (max-width:900px){
@@ -487,6 +498,7 @@ footer a:hover{color:var(--sari)}
   .f-satir{grid-template-columns:1fr}
   .form-kart{padding:24px 20px}
   .kadro-grid{gap:10px}
+  .kadro-grid>.ogr-kart{flex-basis:calc((100% - 10px)/2)}
   .ogr-bilgi{padding:12px}
   .ogr-bilgi b{font-size:15px}
   .ogr-bilgi span{font-size:13px}
@@ -505,7 +517,6 @@ footer a:hover{color:var(--sari)}
 </style>
 </head>
 <body>
-<div class="taslak-bant">TASLAK · Fotoğraflar, adres ve telefon gerçek bilgilerle değiştirilecek · Diğer sayfalar: <a href="sonuc-ekrani-taslak.html" style="text-decoration:underline">Veli sonuç portalı</a> · <a href="bursluluk.html" style="text-decoration:underline">Bursluluk başvurusu</a> · <a href="bursluluk-belge-taslak.html" style="text-decoration:underline">Giriş belgesi ve WhatsApp mesajı</a></div>
 
 <!-- ============ ÜST MENÜ ============ -->
 <header class="ust" id="ust">
@@ -513,7 +524,7 @@ footer a:hover{color:var(--sari)}
     <a href="#hakkimizda" class="logo"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></a>
     <ul class="menu">
       <li><a href="#hakkimizda">Hakkımızda</a>
-        <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a></div></li>
+        <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a></div></li>
       <li><a href="#programlar">Eğitim Paketlerimiz</a></li>
       <li><a href="#maarif">Maarif Modeli</a></li>
       <li><a href="#surec">Sınavlar</a>
@@ -521,20 +532,20 @@ footer a:hover{color:var(--sari)}
       <li><a href="#iletisim">İletişim</a></li>
     </ul>
     <div class="ust-btnlar">
-      <a href="sonuc-ekrani-taslak.html" class="veli-btn">
+      <a href="sonuc.html" class="veli-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
         <span class="yazi">Veli Girişi</span></a>
-      <a href="bursluluk.html" class="burs-btn">Bursluluk <span class="uzun">Başvurusu</span></a>
+      <a href="bursluluk.html" class="burs-btn">Bursluluk <span class="uzun">Sınavı 2027</span></a>
       <button class="hamburger" id="hamburger" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
     </div>
   </div>
   <nav class="mobil-menu" id="mobilMenu">
-    <a href="#hakkimizda">Hakkımızda</a><a class="alt" href="#kadro">Kadromuz</a><a class="alt" href="#">Galeri</a>
+    <a href="#hakkimizda">Hakkımızda</a><a class="alt" href="#kadro">Kadromuz</a>
     <a href="#programlar">Eğitim Paketlerimiz</a>
     <a href="#maarif">Maarif Modeli</a>
     <a href="#surec">Sınavlar</a><a class="alt" href="#denemeler">Denemeler ve Kaynaklar</a><a class="alt" href="bursluluk.html">Bursluluk Başvurusu</a><a class="alt" href="#bursluluk">Bursluluk Sonuçları</a>
     <a href="#iletisim">İletişim</a>
-    <a href="sonuc-ekrani-taslak.html" class="btn btn-hayalet">Veli Girişi · Deneme Sonuçları</a>
+    <a href="sonuc.html" class="btn btn-hayalet">Veli Girişi · Deneme Sonuçları</a>
     <a href="#iletisim" class="btn btn-sari">Bilgi Al</a>
   </nav>
 </header>
@@ -608,7 +619,7 @@ footer a:hover{color:var(--sari)}
         <div class="eski"><b>Eski alışkanlık</b>Konu anlat, test çöz, ezberle</div>
         <div class="yeni"><b>Yeni model</b>Anla, yorumla, beceriyi kullan</div>
       </div>
-      <a href="#" class="btn btn-sari">Maarif Modeli'ni İncele <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      <a href="#programlar" class="btn btn-sari">Eğitim Paketlerimizi İnceleyin <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
     </div>
     <div class="maarif-kartlar">
       <div class="m-kart gor"><div class="m-no">1</div><div><h3>Okuduğunu anlama her dersin temeli</h3><p>Yeni nesil sorular uzun metin, tablo ve görsellerle geliyor. Matematik ve fen sorusu bile önce doğru okumayı istiyor.</p><div class="biz">→ Her derste metin okuma ve yorumlama çalışması yapıyoruz.</div></div></div>
@@ -727,7 +738,7 @@ footer a:hover{color:var(--sari)}
         <div class="kg"><div class="kg-bas"><b>5 · 6 · 7. sınıf</b><em>10-15 Türkiye geneli deneme</em></div><ul><li><b>Fenomen A</b><span>Türkçe · Matematik · Sosyal Bilgiler · Fen Bilimleri</span></li><li><b>Combo Team Soru Bankası</b><span>İngilizce</span></li></ul></div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:24px" class="gor"><a href="sonuc-ekrani-taslak.html" class="btn btn-sari">Deneme sonuç ekranını görün</a></div>
+    <div style="text-align:center;margin-top:24px" class="gor"><a href="sonuc.html" class="btn btn-sari">Deneme sonuç ekranını görün</a></div>
   </div>
 </section>
 
@@ -774,7 +785,7 @@ footer a:hover{color:var(--sari)}
         <div class="ozellik"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Sonuç açıklandığı gün</b><span>Karneyi beklemeden, istediğiniz an görün.</span></div></div>
         <div class="ozellik"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Güvenli giriş</b><span>Yalnızca öğrencinin TC'si ve doğum tarihiyle.</span></div></div>
       </div>
-      <a href="sonuc-ekrani-taslak.html" class="btn btn-sari">Sonuç Ekranını Gör <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      <a href="sonuc.html" class="btn btn-sari">Sonuç Ekranını Gör <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -784,11 +795,11 @@ footer a:hover{color:var(--sari)}
   <div class="kap">
     <div class="burs gor">
       <div style="position:relative;z-index:1">
-        <h2>2027 Bursluluk Sınavı başvuruları başladı.</h2>
+        <h2>2027 Bursluluk Sınavı başvuruları çok yakında.</h2>
         <p>4, 5, 6 ve 7. sınıf öğrencileri seviyesini ücretsiz görsün, başarısına göre gelecek yıl için burs kazansın. Sonuçlar sitemizden açıklanır.</p>
-        <a href="bursluluk.html" class="btn btn-koyu">Hemen Başvur <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a href="bursluluk.html" class="btn btn-koyu">Detayları Gör <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
       </div>
-      <div class="burs-tarih"><small>Sınav tarihi</small><b>7 Şubat</b><span>2027 · Pazar</span><div class="siniflar"><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+      <div class="burs-tarih"><small>Sınav dönemi</small><b>Şubat</b><span>2027 · tarih yakında</span><div class="siniflar"><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
     </div>
   </div>
 </section>
@@ -813,6 +824,7 @@ footer a:hover{color:var(--sari)}
       <div class="ogr-kart gor g3"><div class="ogr-foto"><img src="assets/kadro/ceyda-tuna.jpg" alt="Ceyda TUNA" loading="lazy"></div><div class="ogr-bilgi"><b>Ceyda TUNA</b><span>Matematik</span></div></div>
       <div class="ogr-kart gor g4"><div class="ogr-foto"><img src="assets/kadro/esma-cansu.jpg" alt="Esma CANSU" loading="lazy"></div><div class="ogr-bilgi"><b>Esma CANSU</b><span>Matematik</span></div></div>
       <div class="ogr-kart gor"><div class="ogr-foto"><img src="assets/kadro/ufuk-tunc.jpg" alt="Ufuk TUNÇ" loading="lazy"></div><div class="ogr-bilgi"><b>Ufuk TUNÇ</b><span>Matematik</span></div></div>
+      <div class="ogr-kart gor g2"><div class="ogr-foto"><img src="assets/kadro/gamze-ates.jpg" alt="Gamze ATEŞ" loading="lazy"></div><div class="ogr-bilgi"><b>Gamze ATEŞ</b><span>Fen Bilimleri</span></div></div>
       <div class="ogr-kart gor g2"><div class="ogr-foto"><img src="assets/kadro/ebrar-sen.jpg" alt="Ebrar ŞEN" loading="lazy"></div><div class="ogr-bilgi"><b>Ebrar ŞEN</b><span>Sosyal Bilgiler</span></div></div>
       <div class="ogr-kart gor g3"><div class="ogr-foto"><img src="assets/kadro/zeynep-altunbas.jpg" alt="Zeynep ALTUNBAŞ" loading="lazy"></div><div class="ogr-bilgi"><b>Zeynep ALTUNBAŞ</b><span>İngilizce</span></div></div>
       <div class="ogr-kart gor g4"><div class="ogr-foto"><img src="assets/kadro/mine-temel.jpg" alt="Mine TEMEL" loading="lazy"></div><div class="ogr-bilgi"><b>Mine TEMEL</b><span>Rehberlik</span></div></div>
@@ -827,10 +839,12 @@ footer a:hover{color:var(--sari)}
       <div id="formIcerik">
         <h3>Bilgi alın, sizi arayalım</h3>
         <p>Paket içerikleri ve ders programı için formu doldurun, en kısa sürede sizi arayalım.</p>
-        <form id="bilgiForm">
+        <form id="bilgiForm" action="iletisim.php" method="post">
+          <input type="text" name="web_sitesi" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <input type="hidden" name="t" id="formT">
           <div class="f-satir">
-            <div class="f-alan"><label for="vAd">Veli adı soyadı</label><input id="vAd" required autocomplete="name"></div>
-            <div class="f-alan"><label for="vTel">Telefon</label><input id="vTel" required inputmode="tel" autocomplete="tel" placeholder="05__ ___ __ __"></div>
+            <div class="f-alan"><label for="vAd">Veli adı soyadı</label><input id="vAd" name="ad" required minlength="3" maxlength="80" autocomplete="name"></div>
+            <div class="f-alan"><label for="vTel">Telefon</label><input id="vTel" name="tel" type="tel" required maxlength="20" inputmode="tel" autocomplete="tel" placeholder="05__ ___ __ __"></div>
           </div>
           <div class="f-alan"><label>İlgilendiğiniz program</label>
             <div class="sinif-sec">
@@ -848,14 +862,15 @@ footer a:hover{color:var(--sari)}
               <label><input type="radio" name="sinif" value="7"><span>7. sınıf</span></label>
               <label><input type="radio" name="sinif" value="8" checked><span>8. sınıf</span></label>
             </div></div>
-          <div class="f-alan"><label for="mesaj">Mesajınız (isteğe bağlı)</label><textarea id="mesaj" placeholder="Örn. hafta sonu grubu var mı?"></textarea></div>
-          <label class="kvkk"><input type="checkbox" required><span><a href="#">KVKK Aydınlatma Metni</a>'ni okudum, benimle iletişime geçilmesini kabul ediyorum.</span></label>
-          <button class="btn btn-sari" type="submit">Gönder</button>
+          <div class="f-alan"><label for="mesaj">Mesajınız (isteğe bağlı)</label><textarea id="mesaj" name="mesaj" maxlength="1000" placeholder="Örn. hafta sonu grubu var mı?"></textarea></div>
+          <label class="kvkk"><input type="checkbox" name="kvkk" value="1" required><span><a href="kvkk.html" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, benimle iletişime geçilmesini kabul ediyorum.</span></label>
+          <p class="form-hata" id="formHata" role="alert"></p>
+          <button class="btn btn-sari" type="submit" id="formBtn">Gönder</button>
         </form>
       </div>
       <div class="gonderildi" id="gonderildi">
         <div class="tikb"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
-        <h3>Teşekkürler!</h3><p style="color:var(--soluk);font-weight:600;margin-top:6px">Taslak: gerçek sitede bilgiler size e-posta veya tablo olarak ulaşacak.</p>
+        <h3>Teşekkürler!</h3><p style="color:var(--soluk);font-weight:600;margin-top:6px">Bilgileriniz bize ulaştı. En kısa sürede sizi arayacağız.</p>
       </div>
     </div>
     <div class="bilgi-kartlar">
@@ -878,11 +893,11 @@ footer a:hover{color:var(--sari)}
   <div class="kap">
     <div class="f-grid">
       <div><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"><p style="font-weight:600;font-size:14.5px;max-width:300px">Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi.</p></div>
-      <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a><a href="#maarif">Maarif Modeli</a></div>
-      <div><h4>Eğitim</h4><a href="#programlar">Eğitim Paketlerimiz</a><a href="#surec">Sınavlar</a><a href="bursluluk.html">Bursluluk</a><a href="sonuc-ekrani-taslak.html">Deneme Sonuçları</a></div>
+      <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#maarif">Maarif Modeli</a></div>
+      <div><h4>Eğitim</h4><a href="#programlar">Eğitim Paketlerimiz</a><a href="#surec">Sınavlar</a><a href="bursluluk.html">Bursluluk</a><a href="sonuc.html">Deneme Sonuçları</a></div>
       <div><h4>Bize ulaşın</h4><a href="#iletisim">İletişim Formu</a><a href="https://wa.me/905332298058?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/obir_kurs_merkezi/" target="_blank" rel="noopener">Instagram</a><a href="tel:+905332298058">0533 229 80 58</a></div>
     </div>
-    <div class="f-alt"><span>© 2026 Obir Kurs Merkezi</span><span><a href="#" style="display:inline">KVKK Aydınlatma Metni</a></span></div>
+    <div class="f-alt"><span>© 2026 Obir Kurs Merkezi</span><span><a href="kvkk.html" style="display:inline">KVKK Aydınlatma Metni</a></span></div>
   </div>
 </footer>
 
@@ -1083,11 +1098,25 @@ $('#pkBtn').addEventListener('click', () => {
   const s = document.querySelector(`input[name=sinif][value="${b.dataset.sinif}"]`); if(s) s.checked = true;
 });
 
-/* form (taslak) */
-$('#bilgiForm').addEventListener('submit', e => {
+/* bilgi formu → iletisim.php (e-posta) */
+$('#formT').value = Date.now();
+$('#bilgiForm').addEventListener('submit', async e => {
   e.preventDefault();
-  $('#formIcerik').style.display = 'none';
-  $('#gonderildi').style.display = 'block';
+  const f = e.target, btn = $('#formBtn'), hata = $('#formHata');
+  hata.textContent = '';
+  btn.disabled = true; btn.textContent = 'Gönderiliyor…';
+  const veri = new FormData(f); veri.append('kaynak', 'ana sayfa');
+  try {
+    const r = await fetch(f.action, { method: 'POST', body: veri });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.mesaj);
+    $('#formIcerik').style.display = 'none';
+    $('#gonderildi').style.display = 'block';
+  } catch (err) {
+    hata.textContent = (err && err.message && !/fetch|JSON|token/i.test(err.message)) ? err.message : 'Bağlantı sorunu oldu. Lütfen tekrar deneyin ya da 0533 229 80 58'i arayın.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Gönder';
+  }
 });
 </script>
 </body>
