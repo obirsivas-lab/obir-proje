@@ -1113,7 +1113,7 @@ $('#bilgiForm').addEventListener('submit', async e => {
     $('#formIcerik').style.display = 'none';
     $('#gonderildi').style.display = 'block';
   } catch (err) {
-    hata.textContent = (err && err.message && !/fetch|JSON|token/i.test(err.message)) ? err.message : 'Bağlantı sorunu oldu. Lütfen tekrar deneyin ya da 0533 229 80 58'i arayın.';
+    hata.textContent = (err && err.message && !/fetch|JSON|token/i.test(err.message)) ? err.message : "Bağlantı sorunu oldu. Lütfen tekrar deneyin ya da 0533 229 80 58'i arayın.";
   } finally {
     btn.disabled = false; btn.textContent = 'Gönder';
   }
