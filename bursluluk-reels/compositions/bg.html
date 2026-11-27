@@ -1,0 +1,21 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; background:radial-gradient(ellipse at 70% 22%, #3A3A41 0%, #2E2E33 30%, #1D1D20 75%); }
+#root svg.deco { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+#bg-logo { position:absolute; left:400px; top:150px; width:280px; height:auto; }
+</style>
+<div id="root" data-composition-id="bg" data-width="1080" data-height="1920" data-duration="17.5" data-layout-ignore>
+<svg class="deco" viewBox="0 0 1080 1920">
+  <path id="bg-k1" d="M-40 250 C 120 120, 260 40, 420 -40" stroke="#F6D70C" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <path d="M-40 330 C 140 190, 320 90, 520 -40" stroke="#F6D70C" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path id="bg-k2" d="M640 1980 C 820 1870, 980 1780, 1140 1660" stroke="#F6D70C" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <path d="M560 1980 C 760 1840, 940 1740, 1140 1600" stroke="#F6D70C" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.5"/>
+</svg>
+<img id="bg-logo" src="assets/logo-obir.png" alt="Obir Kurs Merkezi"/>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.to("#bg-logo", { scale: 1.04, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 13.2);
+window.__timelines["bg"] = tl;
+</script>
+</template>

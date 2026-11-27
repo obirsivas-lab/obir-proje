@@ -1,0 +1,21 @@
+<template>
+<style>
+#root { position:absolute; inset:0; background:#FBF6E9; }
+#root svg.paper { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+#bg-badge { position:absolute; left:405px; top:196px; width:270px; height:108px; border-radius:26px; background:#1E2B4A;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 6px 0 rgba(30,43,74,0.18); }
+#bg-badge img { width:226px; height:auto; display:block; }
+</style>
+<div id="root" data-composition-id="bg" data-width="1080" data-height="1920" data-duration="47.5" data-layout-ignore>
+<svg class="paper" viewBox="0 0 1080 1920"><line x1="0" y1="360" x2="1080" y2="360" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="436" x2="1080" y2="436" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="512" x2="1080" y2="512" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="588" x2="1080" y2="588" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="664" x2="1080" y2="664" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="740" x2="1080" y2="740" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="816" x2="1080" y2="816" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="892" x2="1080" y2="892" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="968" x2="1080" y2="968" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1044" x2="1080" y2="1044" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1120" x2="1080" y2="1120" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1196" x2="1080" y2="1196" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1272" x2="1080" y2="1272" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1348" x2="1080" y2="1348" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1424" x2="1080" y2="1424" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1500" x2="1080" y2="1500" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1576" x2="1080" y2="1576" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1652" x2="1080" y2="1652" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1728" x2="1080" y2="1728" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1804" x2="1080" y2="1804" stroke="#D9E4F1" stroke-width="2"/><line x1="0" y1="1880" x2="1080" y2="1880" stroke="#D9E4F1" stroke-width="2"/>
+<line x1="44" y1="0" x2="44" y2="1920" stroke="#F0B8B2" stroke-width="3"/>
+<line x1="1036" y1="0" x2="1036" y2="1920" stroke="#F0B8B2" stroke-width="3"/>
+</svg>
+<div id="bg-badge"><img id="bg-logo" src="assets/logo-obir.png" alt="Obir Kurs Merkezi"/></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.to("#bg-badge",{opacity:0,y:-20,duration:0.3,ease:"power2.in"},40.8);
+window.__timelines["bg"] = tl;
+</script>
+</template>

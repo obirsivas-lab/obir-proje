@@ -1,0 +1,40 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#F7F5EE; }
+#root .c { position:absolute; left:0; width:1080px; text-align:center; }
+#s2-h1 { top:330px; font-weight:900; font-size:80px; line-height:1.05; }
+#s2-h2 { top:420px; font-weight:900; font-size:104px; line-height:1.05; color:#F6D70C; letter-spacing:-2px; }
+#s2-card { position:absolute; left:150px; top:590px; width:780px; height:600px; background:#FBF8EF; border-radius:34px; padding:40px 56px; box-shadow:0 30px 60px -24px rgba(0,0,0,.6); }
+#s2-card .bas { display:flex; justify-content:space-between; color:#1D1D20; font-weight:900; font-size:28px; letter-spacing:2px; margin-bottom:22px; }
+#s2-card .bas span:last-child { color:#8a877d; }
+#root .sat { display:flex; align-items:center; gap:30px; margin-bottom:24px; }
+#root .no { width:44px; font-weight:900; font-size:32px; color:#1D1D20; text-align:right; }
+#root .b { width:76px; height:76px; border-radius:50%; border:4px solid #C9C5B8; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:26px; color:#9a978c; position:relative; }
+#root .b i { position:absolute; inset:5px; border-radius:50%; background:#1D1D20; transform:scale(0); }
+#s2-q { position:absolute; left:800px; top:1040px; width:190px; height:190px; border-radius:50%; background:#F6D70C; color:#1D1D20; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:130px; box-shadow:0 20px 40px -14px rgba(0,0,0,.6); }
+</style>
+<div id="root" data-composition-id="s2" data-width="1080" data-height="1920" data-duration="3.5">
+  <div id="s2-h1" class="c">Yeni nesil sorularda</div>
+  <div id="s2-h2" class="c">gerçekte nerede?</div>
+  <div id="s2-card">
+    <div class="bas"><span>CEVAP KÂĞIDI</span><span>TÜRKÇE</span></div>
+    <div class="sat"><span class="no">1</span><span class="b">A<i id="s2-f1"></i></span><span class="b">B</span><span class="b">C</span><span class="b">D</span></div>
+    <div class="sat"><span class="no">2</span><span class="b">A</span><span class="b">B</span><span class="b">C<i id="s2-f2"></i></span><span class="b">D</span></div>
+    <div class="sat"><span class="no">3</span><span class="b">A</span><span class="b">B<i id="s2-f3"></i></span><span class="b">C</span><span class="b">D</span></div>
+    <div class="sat"><span class="no">4</span><span class="b">A</span><span class="b">B</span><span class="b">C</span><span class="b">D<i id="s2-f4"></i></span></div>
+    <div class="sat"><span class="no">5</span><span class="b">A</span><span class="b">B</span><span class="b">C</span><span class="b">D</span></div>
+  </div>
+  <div id="s2-q">?</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.from("#s2-h1", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 0);
+tl.from("#s2-h2", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 0.08);
+tl.from("#s2-card", { y: 120, opacity: 0, rotation: -3, duration: 0.45, ease: "back.out(1.4)" }, 0.12);
+["#s2-f1", "#s2-f2", "#s2-f3", "#s2-f4"].forEach((s, i) => tl.to(s, { scale: 1, duration: 0.14, ease: "back.out(2.5)" }, 0.7 + i * 0.3));
+tl.from("#s2-q", { scale: 0, rotation: -40, duration: 0.4, ease: "back.out(2.2)" }, 2.7);
+tl.to("#s2-q", { rotation: 10, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.0);
+tl.to(["#s2-h1", "#s2-h2", "#s2-card", "#s2-q"], { y: -60, opacity: 0, duration: 0.25, stagger: 0.02, ease: "power2.in" }, 3.22);
+window.__timelines["s2"] = tl;
+</script>
+</template>

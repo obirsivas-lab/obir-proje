@@ -1,0 +1,34 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#F7F5EE; }
+#root .c { position:absolute; left:0; width:1080px; text-align:center; }
+#s4-date { position:absolute; left:150px; top:330px; width:780px; height:370px; border-radius:40px; background:#F6D70C; color:#1D1D20; text-align:center; padding-top:34px; }
+#s4-date small { display:block; font-weight:900; font-size:32px; letter-spacing:5px; opacity:.75; }
+#s4-date b { display:block; font-weight:900; font-size:180px; line-height:1; letter-spacing:-5px; margin-top:6px; }
+#s4-date span { display:block; font-weight:900; font-size:44px; margin-top:6px; }
+#s4-row { top:740px; display:flex; justify-content:center; align-items:center; gap:14px; }
+#root .g { width:100px; height:100px; border:5px solid #F6D70C; border-radius:20px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:56px; color:#F6D70C; }
+#root .free { height:100px; padding:0 24px; border-radius:20px; background:#F7F5EE; color:#1D1D20; display:flex; align-items:center; font-weight:900; font-size:36px; margin-left:12px; }
+#s4-btn { position:absolute; left:110px; top:900px; width:860px; height:170px; border-radius:40px; background:#F7F5EE; color:#1D1D20; display:flex; align-items:center; justify-content:space-between; padding:0 30px 0 50px; box-shadow:0 26px 50px -20px rgba(0,0,0,.6); }
+#s4-btn b { font-weight:900; font-size:70px; letter-spacing:-1px; }
+#s4-btn .ok { width:104px; height:104px; border-radius:50%; background:#F6D70C; display:flex; align-items:center; justify-content:center; }
+#s4-alt { top:1100px; font-weight:800; font-size:38px; color:#cfccc1; }
+#s4-alt b { color:#F6D70C; }
+</style>
+<div id="root" data-composition-id="s4" data-width="1080" data-height="1920" data-duration="4.4">
+  <div id="s4-date"><small>SINAV TARİHİ</small><b>7 Şubat</b><span>Pazar · 2027</span></div>
+  <div id="s4-row" class="c"><div class="g">4</div><div class="g">5</div><div class="g">6</div><div class="g">7</div><div class="free">ÜCRETSİZ</div></div>
+  <div id="s4-btn"><b>Hemen başvur</b><span class="ok"><svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
+  <div id="s4-alt" class="c">Başvuru 1 dakika · <b>obirkurs.com.tr</b></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.from("#s4-date", { scale: 0.7, opacity: 0, rotation: -4, duration: 0.45, ease: "back.out(1.8)" }, 0.05);
+tl.from("#s4-row", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 0.45);
+tl.from("#s4-btn", { y: 80, opacity: 0, duration: 0.4, ease: "back.out(1.6)" }, 1.55);
+tl.from("#s4-alt", { opacity: 0, duration: 0.3 }, 1.8);
+tl.to("#s4-btn", { scale: 1.06, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.0);
+tl.to("#s4-btn .ok", { x: 10, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.4);
+window.__timelines["s4"] = tl;
+</script>
+</template>

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sınav Giriş Belgesi – Obir Kurs Merkezi</title>
+<!-- WhatsApp link önizlemesi: öğrenci adı bilerek yazılmaz (link başkasına iletilirse bilgi sızmasın) -->
+<meta property="og:title" content="2027 Bursluluk Sınavı · Giriş Belgesi">
+<meta property="og:description" content="Belgenizi görüntüleyin, telefonunuza indirin. Obir Kurs Merkezi">
+<meta property="og:image" content="https://obirkurs.com/assets/og-giris-belgesi.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--ink:#1D1D20;--ink2:#2E2E33;--sari:#F6D70C;--sari-soft:#fff8cc;--krem:#F7F5EE;--bg:#f4f2ec;--kart:#fff;--metin:#1f1f24;--soluk:#696971;--cizgi:#e7e4db;--yesil:#1f9d6a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--metin);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.taslak-bant{background:var(--sari);color:var(--ink);text-align:center;font-weight:800;font-size:13px;padding:6px 16px}
+
+/* ---------- önizleme seçici ---------- */
+.onizleme{display:flex;justify-content:center;gap:6px;padding:14px 16px;background:#e9e6dd;position:sticky;top:0;z-index:30}
+.onizleme button{font-weight:900;font-size:14px;padding:10px 16px;border-radius:12px;color:#55555d;transition:all .25s}
+.onizleme button.aktif{background:var(--ink);color:var(--sari)}
+
+/* ---------- WHATSAPP ÖNİZLEME ---------- */
+#wa{display:none;padding:28px 16px 60px;min-height:80vh}
+#wa.acik{display:block}
+.wa-tel{max-width:380px;margin:0 auto;border-radius:34px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.5);background:#efe7dd}
+.wa-bas{background:#075E54;color:#fff;display:flex;align-items:center;gap:12px;padding:14px 16px}
+.wa-bas .av{width:40px;height:40px;border-radius:50%;background:var(--ink);display:grid;place-items:center;overflow:hidden}
+.wa-bas .av img{width:34px}
+.wa-bas b{display:flex;align-items:center;gap:5px;font-size:16px}
+.wa-bas small{display:block;font-size:12.5px;opacity:.85}
+.wa-sohbet{padding:18px 12px 26px;min-height:520px;background:#efe7dd radial-gradient(#e2d9cc 1px,transparent 1px) 0 0/16px 16px}
+.wa-tarih{text-align:center;margin-bottom:14px}
+.wa-tarih span{background:#e1f2fb;color:#4a5a63;font-size:12px;font-weight:800;padding:5px 10px;border-radius:8px}
+.wa-balon{background:#fff;border-radius:4px 14px 14px 14px;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.12);overflow:hidden;opacity:0;transform:translateY(10px) scale(.98);animation:balon .5s .4s cubic-bezier(.2,.8,.2,1) forwards}
+.wa-uyari{background:#fff8d6;color:#6b5d1a;font-size:12.5px;font-weight:700;text-align:center;border-radius:8px;padding:7px 10px;margin:0 auto 14px;max-width:290px}
+.wa-uyari b{color:#0b8fd0}
+.wa-onizleme{display:block;width:calc(100% - 8px);margin:4px;text-align:left;background:#f0f0f0;border-radius:10px;overflow:hidden;color:inherit}
+.wa-og{background:linear-gradient(160deg,var(--ink2),var(--ink));aspect-ratio:1.91/1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--krem);position:relative;overflow:hidden}
+.wa-og::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;right:-130px;top:40px;opacity:.6;transform:rotate(-20deg)}
+.wa-og::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;border:3px solid var(--sari);border-color:transparent transparent var(--sari) transparent;left:-120px;bottom:20px;opacity:.45}
+.wa-og img{height:34px;margin-bottom:10px}
+.wa-og b{font-size:19px;font-weight:900;color:var(--sari)}
+.wa-og small{font-size:12px;font-weight:800;color:#b8b5aa;letter-spacing:1px;text-transform:uppercase}
+.wa-og-yazi{padding:8px 10px 9px}
+.wa-og-yazi b{display:block;font-size:13.5px;font-weight:800;color:#111;line-height:1.3}
+.wa-og-yazi span{display:block;font-size:12.5px;color:#555;font-weight:600;line-height:1.3;margin-top:2px}
+.wa-og-yazi small{display:block;font-size:11.5px;color:#888;margin-top:3px}
+.wa-link{color:#0b8fd0;text-decoration:underline;word-break:break-all}
+.wa-gorsel{background:linear-gradient(160deg,var(--ink2),var(--ink));padding:18px;color:var(--krem);position:relative;overflow:hidden}
+.wa-gorsel::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;right:-110px;top:30px;opacity:.6;transform:rotate(-20deg)}
+.wa-gorsel img{height:28px;margin-bottom:14px}
+.wa-gorsel b{display:block;font-size:20px;font-weight:900;line-height:1.15}
+.wa-gorsel b span{color:var(--sari)}
+.wa-gorsel small{display:block;color:#b8b5aa;font-weight:700;font-size:12.5px;margin-top:6px}
+.wa-metin{padding:10px 12px 4px;font-size:14.5px;color:#111;font-weight:600}
+.wa-metin p+p{margin-top:8px}
+.wa-saat{text-align:right;font-size:11px;color:#8a8a8a;padding:0 10px 6px}
+.wa-buton{display:flex;align-items:center;justify-content:center;gap:8px;border-top:1px solid #eee;padding:11px;color:#0b8fd0;font-weight:800;font-size:15px;width:100%}
+.wa-buton:hover{background:#f7f7f7}
+.wa-not{max-width:380px;margin:18px auto 0;font-size:13.5px;color:var(--soluk);font-weight:600;text-align:center}
+
+/* ---------- BELGE SAYFASI ---------- */
+#belge{display:none}
+#belge.acik{display:block;animation:belir .5s ease}
+.ust{background:var(--ink);padding:14px 16px;display:flex;justify-content:center}
+.ust img{height:34px}
+.hero{background:linear-gradient(170deg,var(--ink2),var(--ink));color:var(--krem);padding:26px 16px 110px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;left:-220px;top:-120px;transform:rotate(-30deg);opacity:.5}
+.hero .rozet{display:inline-flex;align-items:center;gap:8px;background:rgba(31,157,106,.18);color:#5fe0a8;font-weight:900;font-size:13px;padding:6px 12px;border-radius:999px}
+.hero .rozet i{width:8px;height:8px;border-radius:50%;background:#5fe0a8}
+.hero h1{font-size:clamp(26px,6vw,36px);font-weight:900;letter-spacing:-.6px;line-height:1.12;margin:14px auto 6px;max-width:520px}
+.hero h1 span{color:var(--sari)}
+.hero p{color:#b8b5aa;font-weight:700}
+.sayac{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.sayac div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;min-width:68px;padding:10px 6px}
+.sayac b{display:block;font-size:28px;font-weight:900;color:#fff;line-height:1}
+.sayac small{font-size:11.5px;font-weight:800;color:#9e9b90;text-transform:uppercase;letter-spacing:1px}
+
+.kap{max-width:560px;margin:0 auto;padding:0 16px}
+
+/* bilet */
+.bilet{margin-top:-84px;position:relative;filter:drop-shadow(0 26px 40px rgba(0,0,0,.22));animation:yuksel .8s .1s cubic-bezier(.2,.8,.2,1) both}
+.bilet-ust,.bilet-alt{background:var(--kart)}
+.bilet-ust{border-radius:24px 24px 0 0;overflow:hidden}
+.bilet-alt{border-radius:0 0 24px 24px;padding:18px 20px 22px}
+.bilet-bant{background:var(--sari);color:var(--ink);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.bilet-bant b{font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2}
+.bilet-bant span{font-size:12.5px;font-weight:900;background:var(--ink);color:var(--sari);padding:5px 9px;border-radius:8px;white-space:nowrap}
+.ogr{padding:18px 20px 6px}
+.ogr small{display:block;font-size:12px;font-weight:800;color:var(--soluk);text-transform:uppercase;letter-spacing:1px}
+.ogr b{font-size:26px;font-weight:900;letter-spacing:-.5px;line-height:1.15}
+.ogr .alt{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ogr .alt span{font-size:13px;font-weight:800;background:#f1eee6;padding:5px 10px;border-radius:8px}
+.bilgi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 20px 20px}
+.bilgi{background:#faf8f3;border:1px solid var(--cizgi);border-radius:16px;padding:12px 14px}
+.bilgi small{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;color:var(--soluk);text-transform:uppercase;letter-spacing:.8px}
+.bilgi b{display:block;font-size:17px;font-weight:900;margin-top:3px;line-height:1.25}
+.bilgi.gen{grid-column:1/-1}
+.delik{height:28px;background:var(--kart);position:relative;
+  -webkit-mask:radial-gradient(circle 14px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 14px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 14px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 14px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.delik::after{content:"";position:absolute;left:22px;right:22px;top:50%;border-top:2.5px dashed #ddd9cd}
+.qr-alan{display:flex;gap:18px;align-items:center}
+.qr{width:150px;height:150px;flex:none;border-radius:16px;border:2px solid var(--ink);padding:9px;background:#fff;position:relative;display:grid;place-items:center}
+.qr img,.qr canvas{width:100%!important;height:100%!important;image-rendering:pixelated}
+.qr .tara{position:absolute;left:8px;right:8px;height:3px;border-radius:3px;background:var(--sari);box-shadow:0 0 12px 2px rgba(246,215,12,.8);animation:tara 2.6s ease-in-out 2 forwards, gizle .3s 5.2s forwards;top:10px}
+@keyframes gizle{to{opacity:0}}
+.qr-yazi b{display:block;font-size:17px;font-weight:900;line-height:1.25}
+.qr-yazi span{display:block;font-size:13.5px;color:var(--soluk);font-weight:700;margin-top:4px}
+.qr-yazi .no{display:inline-block;margin-top:10px;font-family:ui-monospace,Consolas,monospace;font-weight:800;font-size:15px;background:#f1eee6;padding:5px 9px;border-radius:8px;letter-spacing:1px}
+.aksiyonlar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.aks{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:13px 6px;font-weight:900;font-size:13px;transition:transform .2s,border-color .2s}
+.aks:hover{transform:translateY(-2px);border-color:var(--ink)}
+.aks.ana{background:var(--ink);color:var(--sari);border-color:var(--ink)}
+
+section.b{margin-top:34px}
+h2.bb{font-size:23px;font-weight:900;letter-spacing:-.4px;line-height:1.2;margin-bottom:12px}
+.kurallar{background:var(--kart);border:1px solid var(--cizgi);border-radius:20px;padding:6px 18px}
+.kural{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px dashed var(--cizgi);font-weight:700;font-size:15px}
+.kural:first-child{border-top:0}
+.kural i{font-style:normal;font-size:20px;line-height:1.2;flex:none;width:26px;text-align:center}
+
+.veli-sunum{background:var(--ink);color:var(--krem);border-radius:24px;padding:22px;position:relative;overflow:hidden}
+.veli-sunum::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;border:3px solid var(--sari);border-color:transparent var(--sari) transparent transparent;right:-140px;bottom:-120px;opacity:.5;transform:rotate(20deg)}
+.veli-sunum .etk{display:inline-block;font-size:12px;font-weight:900;color:var(--sari);background:rgba(246,215,12,.12);padding:5px 10px;border-radius:8px;letter-spacing:1px;text-transform:uppercase}
+.veli-sunum h3{font-size:21px;font-weight:900;margin:10px 0 6px;line-height:1.2}
+.veli-sunum p{color:#b8b5aa;font-weight:600;font-size:15px}
+.zaman{display:grid;gap:10px;margin-top:16px;position:relative;z-index:1}
+.zaman div{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:center;font-weight:800;font-size:14.5px}
+.zaman b{background:#2c2c32;border-radius:10px;padding:6px 0;text-align:center;color:var(--sari);font-size:14px}
+
+.gelecek-bas{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.gelecek-bas .ok{width:44px;height:44px;border-radius:14px;background:var(--sari);display:grid;place-items:center;font-weight:900;font-size:18px;flex:none}
+.gelecek-p{color:var(--soluk);font-weight:600;margin-bottom:14px}
+.prog-kartlar{display:grid;gap:12px}
+.pkart{background:var(--kart);border:1px solid var(--cizgi);border-radius:20px;padding:18px;position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .6s, transform .6s cubic-bezier(.2,.8,.2,1)}
+.pkart.gorundu{opacity:1;transform:none}
+.pkart h4{font-size:19px;font-weight:900}
+.pkart p{color:var(--soluk);font-weight:600;font-size:14.5px;margin:4px 0 12px}
+.gunler{display:flex;gap:5px;flex-wrap:wrap}
+.gunler span{font-size:12.5px;font-weight:900;padding:6px 9px;border-radius:9px;background:#efece4;color:#a29f94}
+.gunler span.on{background:var(--ink);color:var(--sari)}
+.pkart .toplam{position:absolute;top:16px;right:16px;font-size:12.5px;font-weight:900;background:var(--sari-soft);color:#6d6000;padding:5px 9px;border-radius:8px}
+.pkart.oneri{border:2px solid var(--ink)}
+.farklar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.fark{background:var(--sari-soft);border-radius:16px;padding:14px;font-weight:800;font-size:14px;line-height:1.35}
+.fark b{display:block;font-size:22px;font-weight:900;color:var(--ink)}
+.cta{display:grid;gap:10px;margin-top:16px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:900;font-size:16px;padding:15px;border-radius:14px;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-sari{background:var(--sari);color:var(--ink);box-shadow:0 14px 30px -14px rgba(246,215,12,.8)}
+.btn-wa{background:#25D366;color:#06351a}
+.sonuc-not{display:flex;gap:14px;align-items:center;background:var(--kart);border:1.5px dashed #d8d4c8;border-radius:20px;padding:18px}
+.sonuc-not .ik{width:46px;height:46px;border-radius:14px;background:var(--ink);display:grid;place-items:center;flex:none}
+.sonuc-not b{display:block;font-weight:900;font-size:16px}
+.sonuc-not span{color:var(--soluk);font-weight:600;font-size:14px}
+footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;padding:34px 16px 40px}
+
+@keyframes belir{from{opacity:0}to{opacity:1}}
+@keyframes yuksel{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes balon{to{opacity:1;transform:none}}
+@keyframes tara{0%,100%{top:10px}50%{top:calc(100% - 13px)}}
+@media (max-width:400px){
+  .qr{width:124px;height:124px}
+  .qr-alan{gap:14px}
+  .bilgi b{font-size:15.5px}
+  .sayac div{min-width:60px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pkart{opacity:1;transform:none}.wa-balon{opacity:1;transform:none}}
+
+/* yazdır / PDF: yalnızca bilet */
+@media print{
+  body{background:#fff}
+  .taslak-bant,.onizleme,#wa,.hero,.aksiyonlar,section.b,footer,.ust{display:none!important}
+  #belge{display:block!important}
+  .bilet{margin:0;filter:none;animation:none}
+  .bilet-ust,.bilet-alt,.delik{border:1px solid #ccc}
+  .qr .tara{display:none}
+  .kap{max-width:none}
+}
+</style>
+</head>
+<body>
+<div class="taslak-bant">TASLAK · Örnek öğrenci ve örnek sınav bilgileriyle hazırlanmıştır</div>
+
+<div class="onizleme" role="tablist">
+  <button class="aktif" data-g="wa">1 · WhatsApp mesajı</button>
+  <button data-g="belge">2 · Belge sayfası</button>
+</div>
+
+<!-- ============ WHATSAPP ÖNİZLEME ============ -->
+<section id="wa" class="acik">
+  <div class="wa-tel">
+    <div class="wa-bas">
+      <div class="av"><img src="assets/logo-obir.png" alt=""></div>
+      <div><b>+90 5XX XXX XX XX</b><small>~Obir Kurs Merkezi · İşletme hesabı</small></div>
+    </div>
+    <div class="wa-sohbet">
+      <div class="wa-tarih"><span>4 Şubat 2027</span></div>
+      <div class="wa-uyari">Bu işletme kişilerinizde kayıtlı değil. <b>Kişilere ekle</b></div>
+      <div class="wa-balon">
+        <button class="wa-onizleme" id="waAc">
+          <div class="wa-og">
+            <img src="assets/logo-obir.png" alt="">
+            <b>Sınav Giriş Belgesi</b>
+            <small>2027 Bursluluk Sınavı</small>
+          </div>
+          <div class="wa-og-yazi">
+            <b>2027 Bursluluk Sınavı · Giriş Belgesi</b>
+            <span>Belgenizi görüntüleyin, telefonunuza indirin. Obir Kurs Merkezi</span>
+            <small>obirkurs.com</small>
+          </div>
+        </button>
+        <div class="wa-metin">
+          <p>Merhaba Ayşe Hanım,</p>
+          <p><b>Deniz Arslan</b>'ın 2027 Bursluluk Sınavı giriş belgesi hazırlandı. 📄</p>
+          <p>📅 7 Şubat 2027 Pazar, 10:00<br>📍 Obir Kurs Merkezi, Sivas</p>
+          <p>Belgenizi aşağıdaki linkten görüntüleyip telefonunuza indirebilirsiniz. Sınav günü kapıda belgedeki kare kodu göstermeniz yeterlidir.</p>
+          <p><a class="wa-link" href="#" onclick="document.getElementById('waAc').click();return false">https://obirkurs.com/b/7QK2X9</a></p>
+          <p>İyi günler dileriz,<br>Obir Kurs Merkezi</p>
+        </div>
+        <div class="wa-saat">10:02</div>
+      </div>
+    </div>
+  </div>
+  <p class="wa-not">Bu mesaj sizin WhatsApp Business numaranızdan elle gönderilir. Üstteki logolu kart, link paylaşılınca WhatsApp tarafından kendiliğinden oluşturulur. Karta veya linke dokununca belge sayfası açılır.</p>
+</section>
+
+<!-- ============ BELGE SAYFASI ============ -->
+<section id="belge">
+  <div class="ust"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></div>
+  <div class="hero">
+    <span class="rozet"><i></i>Başvurunuz onaylandı</span>
+    <h1>Deniz'in giriş belgesi <span>hazır</span></h1>
+    <p>Sınava kalan süre</p>
+    <div class="sayac" id="sayac">
+      <div><b id="sGun">0</b><small>gün</small></div>
+      <div><b id="sSaat">0</b><small>saat</small></div>
+      <div><b id="sDk">0</b><small>dakika</small></div>
+    </div>
+  </div>
+
+  <div class="kap">
+    <div class="bilet" id="bilet">
+      <div class="bilet-ust">
+        <div class="bilet-bant"><b>2027 Bursluluk Sınavı<br>Giriş Belgesi</b><span>4. SINIF</span></div>
+        <div class="ogr">
+          <small>Öğrenci</small>
+          <b>Deniz Arslan</b>
+          <div class="alt"><span>Atatürk İlkokulu</span><span>Başvuru: 12 Ocak 2027</span></div>
+        </div>
+        <div class="bilgi-grid">
+          <div class="bilgi"><small>📅 Tarih</small><b>7 Şubat 2027<br>Pazar</b></div>
+          <div class="bilgi"><small>⏰ Saat</small><b>10:00<br><span style="font-size:13px;color:var(--soluk)">Kapı 09:30'da açılır</span></b></div>
+          <div class="bilgi"><small>🚪 Salon</small><b>B Salonu</b></div>
+          <div class="bilgi"><small>🪑 Sıra</small><b>12</b></div>
+          <div class="bilgi gen"><small>📍 Yer</small><b>Obir Kurs Merkezi · Merkez, Sivas</b></div>
+        </div>
+      </div>
+      <div class="delik"></div>
+      <div class="bilet-alt">
+        <div class="qr-alan">
+          <div class="qr"><div id="qrKod"></div><div class="tara"></div></div>
+          <div class="qr-yazi">
+            <b>Kapıda bu kodu gösterin</b>
+            <span>Görevlimiz telefonunuzdan okutur, girişiniz saniyeler içinde yapılır.</span>
+            <div class="no">BS27-0148</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aksiyonlar">
+      <button class="aks ana" id="pdfBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>PDF indir</button>
+      <button class="aks" id="takvimBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M12 14v4M10 16h4"/></svg>Takvime ekle</button>
+      <a class="aks" href="#" onclick="alert('Taslak: gerçek sitede Google Haritalar yol tarifi açılır.');return false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>Yol tarifi</a>
+    </div>
+
+    <section class="b">
+      <h2 class="bb">Sınav günü yanınızda olsun</h2>
+      <div class="kurallar">
+        <div class="kural"><i>📱</i><span>Bu belge (telefonda veya çıktı olarak)</span></div>
+        <div class="kural"><i>✏️</i><span>Kurşun kalem, silgi ve kalemtıraş</span></div>
+        <div class="kural"><i>💧</i><span>Su ve küçük bir atıştırmalık</span></div>
+        <div class="kural"><i>📵</i><span>Öğrenci telefonu sınav süresince veliye teslim edilir</span></div>
+        <div class="kural"><i>⏳</i><span>Sınav süresi 90 dakikadır, 10:15'ten sonra salona giriş yapılamaz</span></div>
+      </div>
+    </section>
+
+    <section class="b">
+      <div class="veli-sunum">
+        <span class="etk">Siz beklerken</span>
+        <h3>Veli bilgilendirme buluşması</h3>
+        <p>Deniz sınavdayken sizi çay eşliğinde kısa bir sunuma ve sınıflarımızı gezmeye davet ediyoruz.</p>
+        <div class="zaman">
+          <div><b>10:10</b><span>Maarif Modeli ile ortaokula geçiş</span></div>
+          <div><b>10:40</b><span>8-10 kişilik sınıflarımızı gezelim</span></div>
+          <div><b>11:00</b><span>Sorularınız ve tanışma</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="b">
+      <div class="gelecek-bas"><span class="ok">5.</span><h2 class="bb" style="margin:0">Seneye 5. sınıfta Deniz'i neler bekliyor?</h2></div>
+      <p class="gelecek-p">Ortaokula geçiş, Maarif Modeli ile birlikte yeni soru tipleri ve yeni bir çalışma düzeni demek. Programlarımız bu geçişi kolaylaştırmak için tasarlandı.</p>
+      <div class="prog-kartlar">
+        <div class="pkart oneri">
+          <span class="toplam">Haftada 13 ders</span>
+          <h4>Genel Program</h4>
+          <p>Tüm ana dersler tek programda; LGS'ye erken ve sağlam bir temel.</p>
+          <div class="gunler"><span>Pzt</span><span>Sal</span><span class="on">Çar · 3</span><span>Per</span><span>Cum</span><span class="on">Cmt · 5</span><span class="on">Paz · 5</span></div>
+        </div>
+        <div class="pkart">
+          <span class="toplam">Haftada 6 ders</span>
+          <h4>Matematik Kulübü</h4>
+          <p>Çok yormadan, sadece hafta sonu: matematik, okuduğunu anlama ve İngilizce.</p>
+          <div class="gunler"><span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span class="on">Cmt · 3</span><span class="on">Paz · 3</span></div>
+        </div>
+        <div class="pkart">
+          <span class="toplam">Her gün 2+ saat</span>
+          <h4>Ödev Yardımı</h4>
+          <p>Okul çıkışı ödev, etüt ve kitap okuma; eve yükü hafiflemiş gelir.</p>
+          <div class="gunler"><span class="on">Pzt</span><span class="on">Sal</span><span class="on">Çar</span><span class="on">Per</span><span class="on">Cum</span><span>Cmt</span><span>Paz</span></div>
+        </div>
+      </div>
+      <div class="farklar">
+        <div class="fark"><b>8–10</b>kişilik butik sınıflar</div>
+        <div class="fark"><b>10</b>kurum denemesi ve online sonuç takibi</div>
+      </div>
+      <div class="cta">
+        <a href="index.html#programlar" class="btn btn-sari">Programları detaylı incele</a>
+        <a href="#" class="btn btn-wa" onclick="return false"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg>Sorunuz mu var? WhatsApp'tan yazın</a>
+      </div>
+    </section>
+
+    <section class="b">
+      <div class="sonuc-not">
+        <span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+        <div><b>Sonuçlar bu sayfada açıklanacak</b><span>14 Şubat 2027'de bu linke tekrar girerek Deniz'in sonucunu ve burs durumunu görebilirsiniz.</span></div>
+      </div>
+    </section>
+  </div>
+  <footer>© 2027 Obir Kurs Merkezi · Bu belge kişiye özeldir, lütfen paylaşmayın.</footer>
+</section>
+
+<script>
+const $ = s => document.querySelector(s);
+const SINAV = new Date(2027, 1, 7, 10, 0, 0);
+
+/* önizleme geçişi */
+function goster(g){
+  document.querySelectorAll('.onizleme button').forEach(b => b.classList.toggle('aktif', b.dataset.g===g));
+  $('#wa').classList.toggle('acik', g==='wa');
+  $('#belge').classList.toggle('acik', g==='belge');
+  scrollTo(0,0);
+  if(g==='belge') belgeKur();
+}
+document.querySelectorAll('.onizleme button').forEach(b => b.addEventListener('click', () => goster(b.dataset.g)));
+$('#waAc').addEventListener('click', () => goster('belge'));
+
+let kuruldu = false;
+function belgeKur(){
+  if(kuruldu) return; kuruldu = true;
+  // QR kod (taslak: örnek doğrulama adresi)
+  const veri = 'https://obirkurs.com/b/BS27-0148-7QK2';
+  if(window.QRCode){
+    new QRCode($('#qrKod'), {text:veri, width:256, height:256, colorDark:'#1D1D20', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.M});
+  } else {
+    $('#qrKod').innerHTML = '<span style="font-size:12px;font-weight:800;color:#888;text-align:center;display:block">QR kod<br>(bağlantı yok)</span>';
+  }
+  sayacGuncelle(); setInterval(sayacGuncelle, 30000);
+  // program kartları belirsin
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('gorundu'); io.unobserve(e.target); } }), {threshold:.2});
+  document.querySelectorAll('.pkart').forEach((k,i) => { k.style.transitionDelay = i*0.12+'s'; io.observe(k); });
+}
+function sayacGuncelle(){
+  let fark = Math.max(0, SINAV - new Date());
+  const g = Math.floor(fark/864e5), s = Math.floor(fark%864e5/36e5), d = Math.floor(fark%36e5/6e4);
+  $('#sGun').textContent = g; $('#sSaat').textContent = s; $('#sDk').textContent = d;
+}
+
+/* PDF: tarayıcının "PDF olarak kaydet" özelliği, yalnızca bilet basılır */
+$('#pdfBtn').addEventListener('click', () => print());
+
+/* takvime ekle (.ics) */
+$('#takvimBtn').addEventListener('click', () => {
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Obir Kurs Merkezi//TR','BEGIN:VEVENT',
+    'UID:BS27-0148@obirkurs','DTSTAMP:20270204T070000Z','DTSTART:20270207T070000Z','DTEND:20270207T083000Z',
+    'SUMMARY:2027 Bursluluk Sınavı – Deniz Arslan','LOCATION:Obir Kurs Merkezi\\, Sivas',
+    'DESCRIPTION:Kapı 09:30\'da açılır. Giriş belgesini telefonunuzda hazır bulundurun.',
+    'BEGIN:VALARM','TRIGGER:-PT12H','ACTION:DISPLAY','DESCRIPTION:Yarın bursluluk sınavı','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics], {type:'text/calendar'}));
+  a.download = 'bursluluk-sinavi.ics'; a.click();
+});
+</script>
+</body>
+</html>

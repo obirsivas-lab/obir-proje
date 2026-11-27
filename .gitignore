@@ -1,0 +1,24 @@
+# ---- KİŞİSEL VERİLER: asla GitHub'a gönderilmez (KVKK) ----
+Öğrenci_Listesi*.xlsx
+*Öğrenci*Listesi*
+BURSLULUK SINAVI*
+bursluluk-2026-veri/
+deneme sonuçları/
+*.csv
+*.csv.zip
+*.xlsx
+*.xls
+
+# ---- geçici ve üretilmiş dosyalar ----
+**/.hyperframes/
+**/node_modules/
+kampanya-2027/_logo-hepsi.png
+*.log
+Thumbs.db
+desktop.ini
+
+# ---- kaynak logo dosyaları (işlenmiş halleri web-sitesi/assets/yayinlar içinde) ----
+liderler karması logo.png
+madalyon logo.jpg
+maximal loo.jpg
+sınav logo.png

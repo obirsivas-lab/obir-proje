@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fotoğraf Adayları</title>
+<style>
+body{font-family:system-ui,"Segoe UI",sans-serif;background:#f4f2ec;color:#1D1D20;margin:0;padding:24px 16px 60px}
+h1{font-size:24px;margin:0 0 4px}p.a{color:#666;margin:0 0 18px;font-weight:600}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.k{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e2d9}
+.k img{width:100%;height:220px;object-fit:cover;display:block;background:#ddd}
+.k div{padding:10px 12px;font-size:13.5px;font-weight:600;line-height:1.35}
+.k b{display:inline-block;background:#1D1D20;color:#F6D70C;border-radius:7px;padding:2px 8px;margin-right:6px;font-size:13px}
+.not{margin-top:18px;font-size:13px;color:#666;font-weight:600}
+</style></head><body>
+<h1>Reklam için fotoğraf adayları</h1>
+<p class="a">Pexels · ticari kullanım serbest, kaynak gösterme zorunlu değil · 9-13 yaş görünümlü çocuklar</p>
+<div class="g" id="g"></div>
+<p class="not">Numarayı yazmanız yeterli (ör. "3 ve 7"). Seçtiklerinizi yüksek çözünürlükte indirip afişe yerleştiririm.</p>
+<script>
+const A=[
+[31155018,'Sınıfta sınava giren bir grup çocuk'],
+[8617945,'Masalarda yazılı çalışmaya odaklanmış çocuklar'],
+[1822387,'Yazmaya ve öğrenmeye odaklanan çocuklar'],
+[8618071,'Aydınlık, modern sınıfta derse odaklanan çocuklar'],
+[6936008,'Sınıfta yazma çalışması yapan çocuklar'],
+[5905449,'Öğretmen anlatırken çalışma kâğıdına odaklanan öğrenciler'],
+[8617995,'Masalarda derse odaklanan genç öğrenciler'],
+[5427651,'Canlı bir sınıfta yazı çalışan çocuklar'],
+[11445244,'İlkokul / ortaokul yaşında çocuklar sınıfta çalışıyor'],
+[6935989,'Derse odaklanan çocuklar'],
+[6936022,'Sınıfta ders çalışan öğrenciler'],
+[19520603,'Sınıfta özenle sınav yazan bir öğrenci (dikey)'],
+[31875851,'Doğal ışıklı sınıfta sınava yoğunlaşmış öğrenci'],
+[35745592,'Öğretmen ve öğrenci masada gülümsüyor'],
+[8423416,'Okul sınıfı'],
+];
+document.getElementById('g').innerHTML=A.map(([id,t],i)=>`<a class="k" href="https://www.pexels.com/tr-tr/photo/${id}/" target="_blank" style="text-decoration:none;color:inherit"><img loading="lazy" src="https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600" alt=""><div><b>${i+1}</b>${t}</div></a>`).join('');
+</script>
+</body></html>

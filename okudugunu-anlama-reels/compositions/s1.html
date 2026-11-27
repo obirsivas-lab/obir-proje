@@ -1,0 +1,59 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#1E2B4A; }
+#root .h { position:absolute; left:70px; width:940px; text-align:center; font-weight:900; line-height:1.08; }
+#root .hl { position:relative; display:inline-block; }
+#root .hl-bg { position:absolute; left:-10px; right:-10px; top:18%; bottom:6%; background:#F6D70C; border-radius:10px; }
+#root .hl-tx { position:relative; }
+#s1-card { position:absolute; left:110px; top:650px; width:860px; height:560px; background:#FFFFFF; border-radius:22px;
+  box-shadow:0 14px 0 rgba(30,43,74,0.10), 0 2px 0 rgba(30,43,74,0.12); }
+#root .ck { position:absolute; left:48px; font-size:42px; font-weight:800; color:#1E2B4A; }
+#root svg.ov { position:absolute; left:0; top:0; width:860px; height:560px; overflow:visible; }
+</style>
+<div id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-duration="4.2">
+<div id="s1-h" class="h" style="top:340px;font-size:80px;">Konuyu biliyor…<br>ama sınavda<br><span class="hl" id="s1-hl"><span class="hl-bg" id="s1-hlbg"></span><span class="hl-tx">puan kaybediyor</span></span> mu?</div>
+<div id="s1-card">
+  <div class="ck" style="top:34px;font-size:32px;color:#8A93A6;letter-spacing:0.06em;font-weight:900;">TÜRKÇE · 1. YAZILI</div>
+  <div class="ck" style="top:120px;">1. Metnin konusu nedir?</div>
+  <div class="ck" style="top:270px;">2. Kelimenin anlamı ne?</div>
+  <div class="ck" style="top:420px;">3. Kendi cümlenle yaz.</div>
+  <svg class="ov" viewBox="0 0 860 560">
+    <path d="M60 210 c 25 -18 45 18 70 0 s 45 -18 70 0 s 45 18 70 0 s 45 -18 70 0 s 45 18 70 0" stroke="#3A5BA0" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M60 360 c 25 -18 45 18 70 0 s 45 -18 70 0 s 45 18 70 0" stroke="#3A5BA0" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M60 510 c 25 -18 45 18 70 0 s 45 -18 70 0 s 45 18 70 0 s 45 -18 70 0" stroke="#3A5BA0" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <g stroke="#D6453D" stroke-width="12" stroke-linecap="round" fill="none">
+      <path id="s1-x1a" d="M700 160 L770 230" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <path id="s1-x1b" d="M770 160 L700 230" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <path id="s1-x2a" d="M700 310 L770 380" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <path id="s1-x2b" d="M770 310 L700 380" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <path id="s1-x3a" d="M700 460 L770 530" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <path id="s1-x3b" d="M770 460 L700 530" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+      <ellipse id="s1-sc" cx="745" cy="58" rx="86" ry="62" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0" transform="rotate(-8 745 58)"/>
+    </g>
+    <text id="s1-45" x="745" y="84" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#D6453D" opacity="0">45</text>
+  </svg>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.set("#s1-card",{rotation:-2},0);
+tl.fromTo("#s1-card",{y:24},{y:0,duration:4.2,ease:"none"},0);
+tl.set("#s1-x1a",{opacity:1},1.85);
+tl.to("#s1-x1a",{strokeDashoffset:0,duration:0.1,ease:"none"},1.85);
+tl.set("#s1-x1b",{opacity:1},1.95);
+tl.to("#s1-x1b",{strokeDashoffset:0,duration:0.1,ease:"none"},1.95);
+tl.set("#s1-x2a",{opacity:1},2.15);
+tl.to("#s1-x2a",{strokeDashoffset:0,duration:0.1,ease:"none"},2.15);
+tl.set("#s1-x2b",{opacity:1},2.25);
+tl.to("#s1-x2b",{strokeDashoffset:0,duration:0.1,ease:"none"},2.25);
+tl.set("#s1-x3a",{opacity:1},2.45);
+tl.to("#s1-x3a",{strokeDashoffset:0,duration:0.1,ease:"none"},2.45);
+tl.set("#s1-x3b",{opacity:1},2.55);
+tl.to("#s1-x3b",{strokeDashoffset:0,duration:0.1,ease:"none"},2.55);
+tl.set("#s1-sc",{opacity:1},2.8);
+tl.to("#s1-sc",{strokeDashoffset:0,duration:0.3,ease:"power1.inOut"},2.8);
+tl.fromTo("#s1-45",{opacity:0,scale:1.6,svgOrigin:"745 58"},{opacity:1,scale:1,svgOrigin:"745 58",duration:0.25,ease:"back.out(2)"},2.85);
+tl.fromTo("#s1-hl",{scale:1},{scale:1.06,duration:0.2,yoyo:true,repeat:1,ease:"sine.inOut"},2.85);
+window.__timelines["s1"] = tl;
+</script>
+</template>

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-sitesi",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "web-sitesi"],
+      "port": 8123
+    },
+    {
+      "name": "kampanya",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8124", "--directory", "kampanya-2027"],
+      "port": 8124
+    }
+  ]
+}

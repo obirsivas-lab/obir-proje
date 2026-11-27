@@ -1,0 +1,20 @@
+<template>
+<style>
+#root { position:absolute; inset:0; pointer-events:none; }
+#brand-logo { position:absolute; left:370px; top:128px; width:340px; height:auto; }
+#root svg.deco { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+</style>
+<div id="root" data-composition-id="brand" data-width="1080" data-height="1920" data-duration="41.5" data-layout-ignore>
+<svg class="deco" viewBox="0 0 1080 1920">
+  <path d="M-40 250 C 120 120, 260 40, 420 -40" stroke="#F6D70C" stroke-width="34" fill="none" stroke-linecap="round"/>
+  <path d="M-40 330 C 140 190, 320 90, 520 -40" stroke="#F6D70C" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M700 1980 C 860 1880, 1000 1800, 1140 1690" stroke="#F6D70C" stroke-width="34" fill="none" stroke-linecap="round"/>
+</svg>
+<img id="brand-logo" src="assets/logo-obir.png" alt="Obir Kurs Merkezi"/>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#brand-logo",{scale:1},{scale:1.04,duration:0.6,yoyo:true,repeat:1,ease:"sine.inOut"},0.2);
+window.__timelines["brand"] = tl;
+</script>
+</template>

@@ -1,0 +1,47 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#1E2B4A; }
+#s5-tag { position:absolute; left:290px; top:350px; width:500px; height:80px; border-radius:40px; background:#1E2B4A; color:#F6D70C;
+  font-size:42px; font-weight:900; letter-spacing:0.05em; display:flex; align-items:center; justify-content:center; }
+#s5-book { position:absolute; left:290px; top:460px; width:500px; height:280px; }
+#s5-bub { position:absolute; left:70px; top:790px; width:940px; height:250px; border-radius:36px; background:#FFFFFF; border:6px solid #1E2B4A;
+  display:flex; align-items:center; justify-content:center; text-align:center; font-size:64px; font-weight:900; line-height:1.12; padding:0 40px; }
+#s5-tail { position:absolute; left:430px; top:752px; width:80px; height:48px; }
+#root .hl { position:relative; display:inline-block; }
+#root .hl-bg { position:absolute; left:-8px; right:-8px; top:20%; bottom:4%; background:#F6D70C; border-radius:10px; }
+#root .hl-tx { position:relative; }
+#s5-clk { position:absolute; left:70px; width:940px; top:1090px; height:120px; display:flex; align-items:center; justify-content:center; gap:28px;
+  font-size:66px; font-weight:900; }
+</style>
+<div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-duration="9.5">
+<div id="s5-tag">EVDE · BU AKŞAM</div>
+<svg id="s5-book" viewBox="0 0 500 280">
+  <path d="M250 50 C 190 20, 90 20, 20 40 L20 260 C 90 240, 190 240, 250 270 Z" fill="#FFFFFF" stroke="#1E2B4A" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M250 50 C 310 20, 410 20, 480 40 L480 260 C 410 240, 310 240, 250 270 Z" fill="#FFFFFF" stroke="#1E2B4A" stroke-width="8" stroke-linejoin="round"/>
+  <g stroke="#9AA6BF" stroke-width="8" stroke-linecap="round">
+    <path id="s5-l1" d="M60 90 L215 90" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+    <path id="s5-l2" d="M60 130 L215 130" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+    <path id="s5-l3" d="M60 170 L180 170" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+    <path id="s5-l4" d="M285 90 L440 90" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+    <path id="s5-l5" d="M285 130 L440 130" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+    <path id="s5-l6" d="M285 170 L400 170" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>
+  </g>
+</svg>
+<svg id="s5-tail" viewBox="0 0 80 48"><path d="M10 46 L40 4 L70 46 Z" fill="#FFFFFF" stroke="#1E2B4A" stroke-width="6" stroke-linejoin="round"/><rect x="4" y="40" width="72" height="12" fill="#FFFFFF"/></svg>
+<div id="s5-bub"><div>"Bunu bana <span class="hl"><span class="hl-bg" id="s5-hlbg"></span><span class="hl-tx">tek cümleyle</span></span><br>anlatır mısın?"</div></div>
+<div id="s5-clk"><svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="48" fill="#FFFFFF" stroke="#1E2B4A" stroke-width="8"/>
+  <path d="M55 55 L55 28" stroke="#1E2B4A" stroke-width="8" stroke-linecap="round"/>
+  <path id="s5-hand" d="M55 55 L76 55" stroke="#D6453D" stroke-width="8" stroke-linecap="round"/></svg><span>Her gün <span style="color:#D6453D">10 dakika</span></span></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s5-tag",{opacity:0,y:-20},{opacity:1,y:0,duration:0.3,ease:"power2.out"},0.1);
+tl.fromTo("#s5-book",{opacity:0,scale:0.8},{opacity:1,scale:1,duration:0.35,ease:"back.out(1.6)"},0.3);
+["#s5-l1","#s5-l2","#s5-l3","#s5-l4","#s5-l5","#s5-l6"].forEach((id,i)=>{tl.set(id,{opacity:1},1.0+i*0.22);tl.to(id,{strokeDashoffset:0,duration:0.25,ease:"none"},1.0+i*0.22);});
+tl.fromTo(["#s5-bub","#s5-tail"],{opacity:0,y:30},{opacity:1,y:0,duration:0.35,ease:"back.out(1.5)"},4.6);
+tl.fromTo("#s5-hlbg",{scaleX:0,transformOrigin:"0% 50%"},{scaleX:1,duration:0.35,ease:"power2.out"},5.4);
+tl.fromTo("#s5-clk",{opacity:0,y:30},{opacity:1,y:0,duration:0.3,ease:"power3.out"},7.3);
+tl.fromTo("#s5-hand",{rotation:0,svgOrigin:"55 55"},{rotation:300,svgOrigin:"55 55",duration:2.1,ease:"power1.inOut"},7.4);
+window.__timelines["s5"] = tl;
+</script>
+</template>

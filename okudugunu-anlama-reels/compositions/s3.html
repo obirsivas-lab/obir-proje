@@ -1,0 +1,33 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#1E2B4A; }
+#root .card { position:absolute; left:70px; width:940px; border-radius:28px; background:#FFFFFF; padding:36px 44px;
+  box-shadow:0 10px 0 rgba(30,43,74,0.10); }
+#root .tag { display:inline-block; height:62px; line-height:62px; padding:0 26px; border-radius:31px; font-size:36px; font-weight:900; letter-spacing:0.05em; }
+#root .q { font-size:58px; font-weight:900; line-height:1.12; margin-top:22px; }
+#root .ft { font-size:40px; font-weight:800; margin-top:22px; }
+#root .hl { position:relative; display:inline-block; }
+#root .hl-bg { position:absolute; left:-8px; right:-8px; top:20%; bottom:4%; background:#F6D70C; border-radius:10px; }
+#root .hl-tx { position:relative; }
+</style>
+<div id="root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="7.3">
+<div class="card" id="s3-old" style="top:360px;height:330px;">
+  <span class="tag" style="background:#E4E7EE;color:#5B6477;">ESKİ SORU</span>
+  <div class="q" style="color:#4A5568;">"Köy odalarında kimler kalırdı?"</div>
+  <div class="ft" style="color:#8A93A6;">→ Cevap metinde hazır: bul, kopyala</div>
+</div>
+<div class="card" id="s3-new" style="top:740px;height:470px;border:6px solid #1E2B4A;">
+  <span class="tag" style="background:#F6D70C;color:#1E2B4A;">YENİ SORU · MAARİF</span>
+  <div class="q">"Metnin konusu nedir?<br><span class="hl"><span class="hl-bg" id="s3-hlbg"></span><span class="hl-tx">Kendi cümlenle yaz.</span></span>"</div>
+  <div class="ft" style="color:#2E9E5B;">→ Önce anla, sonra kendi sözünle söyle</div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s3-old",{opacity:0,y:40},{opacity:1,y:0,duration:0.3,ease:"power3.out"},0.1);
+tl.to("#s3-old",{opacity:0.5,scale:0.96,duration:0.4,ease:"power2.out"},3.1);
+tl.fromTo("#s3-new",{opacity:0,y:60},{opacity:1,y:0,duration:0.35,ease:"back.out(1.4)"},3.15);
+tl.fromTo("#s3-hlbg",{scaleX:0,transformOrigin:"0% 50%"},{scaleX:1,duration:0.45,ease:"power2.out"},5.5);
+window.__timelines["s3"] = tl;
+</script>
+</template>

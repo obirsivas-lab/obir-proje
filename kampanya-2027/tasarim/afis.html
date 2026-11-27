@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Bursluluk Afiş</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D20;--ink2:#2E2E33;--sari:#F6D70C;--krem:#F7F5EE;--soluk:#a9a69b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;overflow:hidden;background:var(--ink)}
+body{font-family:Nunito,"Segoe UI",sans-serif;color:var(--krem);-webkit-font-smoothing:antialiased}
+.sahne{width:1080px;position:relative;overflow:hidden;background:radial-gradient(900px 700px at 85% 8%,#3d3d45 0%,transparent 60%),linear-gradient(165deg,var(--ink2),var(--ink));display:flex;flex-direction:column}
+.f45 .sahne{height:1350px;padding:64px 72px 0}
+.f916 .sahne{height:1920px;padding:250px 80px 0}
+.kavis{position:absolute;border:7px solid var(--sari);border-radius:50%;pointer-events:none}
+.k1{width:900px;height:900px;right:-520px;top:-560px;border-color:transparent transparent var(--sari) transparent;transform:rotate(-28deg);opacity:.9}
+.k2{width:760px;height:760px;left:-520px;bottom:-330px;border-color:var(--sari) transparent transparent transparent;transform:rotate(25deg);opacity:.75}
+.k3{width:300px;height:300px;right:70px;top:430px;border-width:5px;border-color:transparent var(--sari) transparent transparent;opacity:.35;transform:rotate(15deg)}
+.f916 .k1{top:-380px}.f916 .k3{top:700px}
+.ust{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.ust img{height:86px}
+.sehir{font-weight:900;font-size:26px;letter-spacing:4px;color:var(--ink);background:var(--sari);padding:10px 20px;border-radius:14px}
+.kicker{margin-top:54px;font-weight:900;font-size:30px;letter-spacing:6px;color:var(--sari);text-transform:uppercase;position:relative;z-index:2}
+h1{font-weight:900;line-height:.98;letter-spacing:-3px;margin-top:14px;position:relative;z-index:2}
+.f45 h1{font-size:128px}.f916 h1{font-size:136px}
+h1 .s{color:var(--sari)}
+.alt{font-weight:800;font-size:40px;color:#d6d3c8;margin-top:22px;line-height:1.25;position:relative;z-index:2}
+.alt b{color:#fff}
+.bilgi{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;margin-top:46px;position:relative;z-index:2}
+.tarih{background:var(--sari);color:var(--ink);border-radius:34px;padding:30px 34px;position:relative;overflow:hidden}
+.tarih small{display:block;font-weight:900;font-size:24px;letter-spacing:3px;opacity:.75}
+.tarih b{display:block;font-weight:900;font-size:96px;line-height:.95;letter-spacing:-3px;margin-top:6px}
+.tarih span{display:block;font-weight:900;font-size:34px;margin-top:6px}
+.tarih::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;border:6px solid var(--ink);opacity:.1;right:-70px;bottom:-90px}
+.siniflar{border:3px solid rgba(255,255,255,.16);border-radius:34px;padding:28px 30px;background:rgba(255,255,255,.04)}
+.siniflar small{display:block;font-weight:900;font-size:24px;letter-spacing:3px;color:var(--soluk)}
+.sk{display:flex;gap:12px;margin-top:16px}
+.sk i{font-style:normal;flex:1;aspect-ratio:1;display:grid;place-items:center;font-weight:900;font-size:58px;border:3px solid var(--sari);border-radius:20px;color:var(--sari)}
+.siniflar span{display:block;font-weight:900;font-size:30px;margin-top:14px}
+.ucretsiz{position:absolute;z-index:3;right:72px;top:258px;width:220px;height:220px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;text-align:center;transform:rotate(12deg);box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.ucretsiz b{font-weight:900;font-size:44px;line-height:1;letter-spacing:-1px}
+.ucretsiz small{display:block;font-weight:900;font-size:22px;margin-top:4px;letter-spacing:1px}
+.f916 .ucretsiz{top:400px;right:80px}
+.maddeler{display:grid;gap:18px;margin-top:44px;position:relative;z-index:2}
+.m{display:flex;align-items:center;gap:22px;font-weight:800;font-size:36px}
+.m .ik{width:64px;height:64px;border-radius:18px;background:rgba(246,215,12,.14);border:2px solid rgba(246,215,12,.5);display:grid;place-items:center;flex:none}
+.cta{margin-top:auto;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;color:var(--ink);border-radius:30px 30px 0 0;padding:34px 40px}
+.f916 .cta{margin-bottom:300px;border-radius:30px}
+.cta b{display:block;font-weight:900;font-size:44px;letter-spacing:-1px}
+.cta span{display:block;font-weight:800;font-size:28px;color:#55555d;margin-top:2px}
+.cta .ok{width:96px;height:96px;border-radius:50%;background:var(--sari);display:grid;place-items:center;flex:none}
+/* karne */
+.karne-ik{position:absolute;z-index:1;right:40px;top:300px;width:330px;height:410px;background:#fff;border-radius:22px;transform:rotate(9deg);box-shadow:0 40px 80px -30px rgba(0,0,0,.7);padding:30px;color:var(--ink);opacity:.96}
+.karne-ik .b{font-weight:900;font-size:30px;letter-spacing:2px}
+.karne-ik .c{height:16px;border-radius:8px;background:#e7e4db;margin-top:22px}
+.karne-ik .c.k{width:70%}.karne-ik .c.y{background:var(--sari);width:85%}
+.karne-ik .yildiz{position:absolute;right:24px;bottom:24px;width:110px;height:110px;border-radius:50%;background:var(--sari);display:grid;place-items:center;font-weight:900;font-size:56px}
+.f916 .karne-ik{top:520px}
+/* son çağrı */
+.sayac{display:flex;align-items:flex-end;gap:24px;margin-top:20px;position:relative;z-index:2}
+.sayac b{font-weight:900;font-size:300px;line-height:.8;color:var(--sari);letter-spacing:-10px}
+.sayac span{font-weight:900;font-size:64px;line-height:1;padding-bottom:20px}
+.gizli{display:none!important}
+/* FOTOĞRAFLI */
+.foto-blok{position:absolute;left:0;right:0;top:0;z-index:1;background:#222 url('foto/sinav-grup.jpg') no-repeat;background-size:cover}
+.f45 .foto-blok{height:600px;background-position:44% 30%}
+.f916 .foto-blok{height:960px;background-size:auto 100%;background-position:47% 0}
+.foto-blok::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,29,32,.75) 0%,rgba(29,29,32,0) 26%,rgba(29,29,32,0) 62%,rgba(29,29,32,1) 100%)}
+.foto .k2{display:none}
+.f45 .foto-blok{height:660px}
+.foto-blok::before{background:linear-gradient(180deg,rgba(29,29,32,.75) 0%,rgba(29,29,32,0) 24%)}
+.foto-blok{-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+.f916 .foto-blok{height:760px !important}
+.f916.foto .kicker.v-foto{margin-top:390px !important}
+.f916.foto .ucretsiz{top:560px !important}
+.f916.foto .cta{margin-bottom:300px}
+.foto .alt.v-foto{font-size:34px;margin-top:14px}
+.foto .ust,.foto .ucretsiz{z-index:3}
+.foto .kicker.v-foto{margin-top:auto}
+.f45.foto .kicker.v-foto{margin-top:470px}
+.f916.foto .kicker.v-foto{margin-top:600px}
+.foto h1.v-foto{font-size:118px}
+.f916.foto h1.v-foto{font-size:132px}
+.f45.foto .ucretsiz{top:410px;width:190px;height:190px}
+.f916.foto .ucretsiz{top:760px}
+.f45.foto .bilgi{margin-top:26px}
+.f916.foto .bilgi{margin-top:40px;margin-bottom:56px}
+/* 4:5 sıkıştırma */
+.f45 .sahne{padding-top:54px}
+.f45 .ust img{height:74px}
+.f45 .kicker{margin-top:34px;font-size:27px}
+.f45 h1{font-size:112px}
+.f45 .alt{font-size:34px;margin-top:16px}
+.f45 .bilgi{margin-top:32px}
+.f45 .tarih{padding:24px 30px}.f45 .tarih b{font-size:84px}
+.f45 .siniflar{padding:22px 26px}.f45 .sk i{font-size:50px}
+.f45 .maddeler{margin-top:28px;gap:12px}
+.f45 .m{font-size:31px}.f45 .m .ik{width:54px;height:54px}
+.f45 .cta{padding:26px 36px}.f45 .cta b{font-size:40px}.f45 .cta .ok{width:84px;height:84px}
+.ucretsiz b{font-size:31px}
+.f45 .ucretsiz{width:200px;height:200px;top:236px}
+.k2{bottom:-520px;left:-560px}
+.f916 .maddeler{margin-bottom:56px}
+.f916 .ucretsiz{top:610px}
+.f916 h1{font-size:128px}
+</style>
+</head>
+<body>
+<div class="sahne">
+  <div class="kavis k1"></div><div class="kavis k2"></div><div class="kavis k3"></div>
+  <div class="ust"><img src="logo-obir.png" alt=""><span class="sehir">SİVAS</span></div>
+
+  <!-- FOTOĞRAFLI -->
+  <div class="foto-blok v-foto"></div>
+  <div class="kicker v-foto">2027 · Başvurular açık</div>
+  <h1 class="v-foto"><span class="s">Bursluluk</span> Sınavı</h1>
+  <p class="alt v-foto">Öğrenciniz seviyesini görsün, <b>gelecek yıl için burs</b> kazansın.</p>
+
+  <!-- ANA -->
+  <div class="ucretsiz v-ana v-son v-foto"><div><b>ÜCRETSİZ</b><small>BAŞVURU</small></div></div>
+  <div class="kicker v-ana">2027 · Başvurular açık</div>
+  <h1 class="v-ana"><span class="s">Bursluluk</span><br>Sınavı</h1>
+  <p class="alt v-ana">Öğrenciniz seviyesini görsün,<br><b>gelecek yıl için burs</b> kazansın.</p>
+
+  <!-- KARNE -->
+  <div class="karne-ik v-karne"><div class="b">KARNE</div><div class="c"></div><div class="c k"></div><div class="c y"></div><div class="c"></div><div class="c k"></div><div class="c"></div><div class="yildiz">?</div></div>
+  <div class="kicker v-karne">Karne haftası</div>
+  <h1 class="v-karne">Karnesini<br>aldı.<br><span class="s">Şimdi</span><br><span class="s">gerçek</span><br><span class="s">seviyesini</span><br>görsün.</h1>
+
+  <!-- SON ÇAĞRI -->
+  <div class="kicker v-son">2027 Bursluluk Sınavı</div>
+  <div class="sayac v-son"><b>SON</b></div>
+  <h1 class="v-son" style="margin-top:0">günler!</h1>
+  <p class="alt v-son">Bursluluk başvuruları<br><b>kapanmak üzere.</b></p>
+
+  <div class="bilgi">
+    <div class="tarih"><small>SINAV TARİHİ</small><b>7 Şubat</b><span>Pazar · 2027</span></div>
+    <div class="siniflar"><small>SINIFLAR</small><div class="sk"><i>4</i><i>5</i><i>6</i><i>7</i></div><span>Tüm okullardan</span></div>
+  </div>
+
+  <div class="maddeler v-ana v-karne">
+    <div class="m"><span class="ik"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21l1.5-7L2 9.3l7-.8L12 2Z"/></svg></span>Başarısına göre burs</div>
+    <div class="m"><span class="ik"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg></span>Maarif Modeli'ne uygun sorular</div>
+    <div class="m"><span class="ik"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>Sonuçlar size özel sayfada</div>
+  </div>
+
+  <div class="cta">
+    <div><b>Hemen başvurun</b><span>Başvuru 1 dakika · obirkurs.com.tr</span></div>
+    <div class="ok"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></div>
+  </div>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+const v = q.get('v') || 'ana', f = q.get('f') || '45';
+document.body.classList.add('f' + f);
+if(v === 'foto'){ document.body.classList.add('foto'); document.querySelector('.maddeler').classList.add('gizli'); }
+document.querySelectorAll('[class*="v-"]').forEach(el => {
+  if(!el.classList.contains('v-' + v)) el.classList.add('gizli');
+});
+if(v === 'ana'){ document.querySelector('h1.v-ana').style.fontSize = f === '45' ? '150px' : '160px'; }
+if(v === 'karne'){
+  document.querySelector('h1.v-karne').style.fontSize = f === '45' ? '94px' : '118px';
+  document.querySelector('.maddeler').classList.add('gizli');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#1E2B4A; }
+#s4-a { position:absolute; left:70px; width:940px; top:430px; text-align:center; font-size:84px; font-weight:900; color:#5B6477; }
+#s4-b { position:absolute; left:70px; width:940px; top:560px; text-align:center; font-size:168px; font-weight:900; line-height:1.02; }
+#root .hl { position:relative; display:inline-block; }
+#root .hl-bg { position:absolute; left:-14px; right:-14px; top:22%; bottom:6%; background:#F6D70C; border-radius:14px; }
+#root .hl-tx { position:relative; }
+#s4-ck { position:absolute; left:440px; top:1000px; width:200px; height:200px; }
+</style>
+<div id="root" data-composition-id="s4" data-width="1080" data-height="1920" data-duration="2.8">
+<div id="s4-a">Korkmayın,</div>
+<div id="s4-b">çözümü<br><span class="hl"><span class="hl-bg" id="s4-hlbg"></span><span class="hl-tx">var.</span></span></div>
+<svg id="s4-ck" viewBox="0 0 200 200"><circle id="s4-c" cx="100" cy="100" r="92" fill="#2E9E5B"/>
+<path id="s4-p" d="M52 104 L86 138 L150 66" stroke="#fff" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/></svg>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s4-a",{opacity:0,y:20},{opacity:1,y:0,duration:0.3,ease:"power2.out"},0.1);
+tl.fromTo("#s4-b",{opacity:0,scale:0.85},{opacity:1,scale:1,duration:0.35,ease:"back.out(1.8)"},1.0);
+tl.fromTo("#s4-hlbg",{scaleX:0,transformOrigin:"0% 50%"},{scaleX:1,duration:0.3,ease:"power2.out"},2.0);
+tl.fromTo("#s4-c",{scale:0,svgOrigin:"100 100"},{scale:1,svgOrigin:"100 100",duration:0.3,ease:"back.out(2)"},1.95);
+tl.set("#s4-p",{opacity:1},2.15);
+tl.to("#s4-p",{strokeDashoffset:0,duration:0.3,ease:"power2.out"},2.15);
+window.__timelines["s4"] = tl;
+</script>
+</template>

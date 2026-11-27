@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obir Kurs Merkezi – Sivas LGS Hazırlık ve 5-6-7. Sınıf Kursu</title>
+<meta name="description" content="Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi. Maarif Modeli'ne uyumlu öğretim, düzenli deneme sınavları ve online sonuç takibi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D1D20; --ink2:#2E2E33; --ink3:#3a3a41;
+  --sari:#F6D70C; --sari2:#ffe44d; --sari-soft:#fff8cc; --krem:#F7F5EE;
+  --bg:#f6f4ee; --kart:#fff; --metin:#1f1f24; --soluk:#66666f; --cizgi:#e7e4db;
+  --yesil:#1f9d6a;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--metin);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{max-width:100%;display:block}
+.kap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.taslak-bant{background:var(--sari);color:var(--ink);text-align:center;font-weight:800;font-size:13px;padding:6px 16px}
+
+/* ---------- butonlar ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:900;font-size:16px;padding:15px 24px;border-radius:14px;transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .2s, color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-3px)}
+.btn-sari{background:var(--sari);color:var(--ink);box-shadow:0 14px 34px -14px rgba(246,215,12,.75)}
+.btn-sari:hover{box-shadow:0 20px 40px -14px rgba(246,215,12,.9)}
+.btn-hayalet{border:2px solid rgba(255,255,255,.22);color:var(--krem)}
+.btn-hayalet:hover{border-color:var(--sari);color:var(--sari)}
+.btn-koyu{background:var(--ink);color:var(--krem)}
+.btn-koyu:hover{color:var(--sari)}
+.ok{transition:transform .25s}
+.btn:hover .ok{transform:translateX(4px)}
+
+/* ---------- ÜST MENÜ ---------- */
+.ust{position:sticky;top:0;z-index:50;transition:background .3s, box-shadow .3s, backdrop-filter .3s;background:var(--ink)}
+.ust.kaydi{background:rgba(29,29,32,.86);backdrop-filter:blur(14px);box-shadow:0 10px 30px -18px rgba(0,0,0,.6)}
+.ust-ic{display:flex;align-items:center;gap:22px;height:74px}
+.ust .logo img{height:40px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu > li{list-style:none;position:relative}
+.menu > li > a{display:block;color:#d8d5ca;font-weight:800;font-size:15px;padding:10px 12px;border-radius:10px;transition:color .2s}
+.menu > li > a:hover{color:var(--sari)}
+.alt-menu{position:absolute;top:100%;left:0;min-width:220px;background:#26262b;border:1px solid #38383f;border-radius:14px;padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .2s}
+.menu > li:hover .alt-menu,.menu > li:focus-within .alt-menu{opacity:1;visibility:visible;transform:none}
+.alt-menu a{display:block;color:#d8d5ca;font-weight:700;font-size:14.5px;padding:10px 12px;border-radius:9px}
+.alt-menu a:hover{background:#323238;color:var(--sari)}
+.ust-btnlar{display:flex;gap:10px;align-items:center}
+.veli-btn{display:inline-flex;align-items:center;gap:8px;color:var(--krem);font-weight:800;font-size:14px;padding:10px 14px;border:1.5px solid #4a4a52;border-radius:12px;transition:border-color .2s,color .2s}
+.veli-btn:hover{border-color:var(--sari);color:var(--sari)}
+.burs-btn{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--sari);color:var(--ink);font-weight:900;font-size:14px;padding:11px 16px;border-radius:12px;overflow:hidden}
+.burs-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-100%);animation:parilti 3.2s infinite}
+.hamburger{display:none;width:44px;height:44px;border-radius:12px;border:1.5px solid #44444b;position:relative}
+.hamburger span{position:absolute;left:12px;right:12px;height:2.5px;background:var(--krem);border-radius:2px;transition:transform .3s, opacity .2s}
+.hamburger span:nth-child(1){top:15px}.hamburger span:nth-child(2){top:21px}.hamburger span:nth-child(3){top:27px}
+.menu-acik .hamburger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-acik .hamburger span:nth-child(2){opacity:0}
+.menu-acik .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobil-menu{position:fixed;inset:74px 0 0 0;background:var(--ink);z-index:49;padding:20px;display:flex;flex-direction:column;gap:6px;transform:translateY(-12px);opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+.menu-acik .mobil-menu{transform:none;opacity:1;visibility:visible}
+.mobil-menu a{color:var(--krem);font-weight:900;font-size:22px;padding:12px 4px;border-bottom:1px solid #2f2f35}
+.mobil-menu a.alt{font-size:16px;font-weight:700;color:#b4b1a6;padding:9px 4px 9px 18px;border:0}
+.mobil-menu .btn{margin-top:14px;white-space:normal;text-align:center}
+
+/* ---------- HERO ---------- */
+.hero{background:radial-gradient(900px 500px at 85% 10%,#3a3a41 0%,transparent 60%),linear-gradient(170deg,var(--ink2),var(--ink));color:var(--krem);position:relative;overflow:hidden}
+.hero-ic{display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:center;padding:72px 20px 110px;max-width:var(--max);margin:0 auto;position:relative;z-index:2}
+.kavisler{position:absolute;inset:0;pointer-events:none;z-index:1}
+.kavisler path{fill:none;stroke:var(--sari);stroke-width:3;stroke-linecap:round;opacity:.6}
+.ust-etiket{display:inline-flex;align-items:center;gap:10px;font-size:13.5px;font-weight:800;color:var(--sari);background:rgba(246,215,12,.1);border:1px solid rgba(246,215,12,.3);padding:7px 14px;border-radius:999px}
+.ust-etiket i{width:8px;height:8px;border-radius:50%;background:var(--sari);animation:nabiz 1.8s infinite}
+.hero h1{font-size:clamp(38px,5.6vw,68px);line-height:1.04;font-weight:900;letter-spacing:-1.5px;margin:22px 0 22px}
+.hero h1 .satir{display:block;overflow:hidden}
+.hero h1 .satir > span{display:inline-block;transform:translateY(110%);animation:yukari .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .satir:nth-child(2) > span{animation-delay:.12s}
+.hero h1 .satir:nth-child(3) > span{animation-delay:.24s}
+.vurgu{color:var(--sari);position:relative;white-space:nowrap}
+.vurgu svg{position:absolute;left:-2%;bottom:-.18em;width:104%;height:.38em;overflow:visible}
+.vurgu svg path{fill:none;stroke:var(--sari);stroke-width:5;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:ciz 1.1s .9s cubic-bezier(.6,.1,.2,1) forwards}
+.donen{display:inline-grid;grid-template-columns:100%;vertical-align:bottom;color:var(--sari);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.donen span{grid-area:1/1;white-space:nowrap;width:max-content;opacity:0;transform:translateY(40%);transition:opacity .5s, transform .5s cubic-bezier(.2,.8,.2,1)}
+.donen span.aktif{opacity:1;transform:none}
+.donen span.cik{opacity:0;transform:translateY(-40%)}
+.hero p.giris{font-size:clamp(17px,1.6vw,19.5px);color:#c4c1b6;max-width:540px;font-weight:600;opacity:0;animation:belir .8s .5s forwards}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;opacity:0;animation:belir .8s .7s forwards}
+.guven{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;opacity:0;animation:belir .8s .9s forwards}
+.guven div{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;color:#d9d6cb}
+.guven svg{flex:none}
+
+/* hero sınıf görseli */
+.sinif-sahne{position:relative;aspect-ratio:1/1;max-width:500px;justify-self:center;width:100%}
+.sinif-kart{position:absolute;inset:6% 4%;background:linear-gradient(160deg,#34343b,#26262b);border:1px solid #44444b;border-radius:34px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden;opacity:0;animation:buyu .9s .3s cubic-bezier(.2,.8,.2,1) forwards}
+.sinif-kart .bas{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 0;font-weight:900;font-size:15px}
+.sinif-kart .bas small{display:block;font-size:12.5px;color:#9e9b90;font-weight:700}
+.canli{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:900;color:#5fe0a8;background:rgba(31,157,106,.15);padding:6px 10px;border-radius:999px}
+.canli i{width:7px;height:7px;border-radius:50%;background:#5fe0a8;animation:nabizY 1.6s infinite}
+.masa-svg{position:absolute;left:0;right:0;top:16%;bottom:6%;width:100%;height:78%}
+.koltuk{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.3)}
+.sahne-gorundu .koltuk{animation:koltuk .55s cubic-bezier(.2,1.4,.4,1) forwards}
+.yuzen{position:absolute;background:#fff;color:var(--ink);border-radius:16px;padding:11px 14px;font-weight:900;font-size:13.5px;display:flex;align-items:center;gap:10px;box-shadow:0 18px 40px -16px rgba(0,0,0,.55);opacity:0;animation:belirY .7s cubic-bezier(.2,.8,.2,1) forwards, suzul 6s ease-in-out infinite}
+.yuzen small{display:block;font-size:11.5px;color:var(--soluk);font-weight:700}
+.yuzen .ik{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.y1{top:2%;right:-2%;animation-delay:1.3s,1.3s}
+.y2{bottom:4%;left:-4%;animation-delay:1.5s,2.2s}
+.y3{bottom:20%;right:-5%;animation-delay:1.7s,3s;background:var(--sari)}
+
+/* ---------- KAYAN ŞERİT ---------- */
+.serit{background:var(--sari);color:var(--ink);overflow:hidden;transform:rotate(-1.6deg);margin:-30px -20px 0;position:relative;z-index:3;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)}
+.serit-ic{display:flex;width:max-content;animation:kay 34s linear infinite}
+.serit span{font-weight:900;font-size:clamp(17px,2vw,22px);padding:16px 22px;white-space:nowrap;display:flex;align-items:center;gap:22px}
+.serit span::after{content:"✦";font-size:.8em}
+
+/* ---------- genel bölüm ---------- */
+section.b{padding:110px 0}
+.b-bas{max-width:720px;margin-bottom:48px}
+.b-bas.orta{margin-left:auto;margin-right:auto;text-align:center}
+.kucuk-baslik{display:inline-block;font-size:13px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#8a7a00;background:var(--sari-soft);padding:6px 12px;border-radius:8px;margin-bottom:16px}
+.koyu .kucuk-baslik{color:var(--sari);background:rgba(246,215,12,.1)}
+h2.bb{font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900;letter-spacing:-1px}
+.b-bas p{font-size:18px;color:var(--soluk);margin-top:16px;font-weight:600}
+.koyu{background:var(--ink);color:var(--krem)}
+.koyu .b-bas p{color:#b6b3a8}
+
+/* ---------- RAKAMLAR ---------- */
+.rakamlar{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:70px}
+.rakam{background:var(--kart);border:1px solid var(--cizgi);border-radius:22px;padding:26px 22px;position:relative;overflow:hidden}
+.rakam b{font-size:clamp(40px,4.5vw,56px);font-weight:900;letter-spacing:-1.5px;line-height:1;display:block}
+.rakam b em{font-style:normal;color:#c9ad00}
+.rakam span{font-weight:800;color:var(--soluk);font-size:15px;display:block;margin-top:8px}
+.rakam::before{content:"";position:absolute;right:-40px;top:-40px;width:110px;height:110px;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;opacity:.6;transform:rotate(30deg)}
+
+/* ---------- MAARİF ---------- */
+.maarif-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.maarif-sol{position:sticky;top:110px}
+.maarif-sol p{font-size:18px;color:#b6b3a8;font-weight:600;margin:18px 0 26px}
+.once-sonra{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+.once-sonra div{border-radius:16px;padding:16px;font-weight:800;font-size:14.5px}
+.once-sonra .eski{background:#2a2a30;color:#9a978c}
+.once-sonra .eski b{color:#c9c6bb}
+.once-sonra .yeni{background:rgba(246,215,12,.12);border:1px solid rgba(246,215,12,.35);color:#f3eecf}
+.once-sonra .yeni b{color:var(--sari)}
+.once-sonra b{display:block;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.maarif-kartlar{display:grid;gap:16px}
+.m-kart{background:linear-gradient(160deg,#2b2b31,#232328);border:1px solid #38383f;border-radius:24px;padding:28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;transition:border-color .3s, transform .3s}
+.m-kart:hover{border-color:rgba(246,215,12,.5);transform:translateX(6px)}
+.m-no{width:54px;height:54px;border-radius:16px;background:var(--sari);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:22px}
+.m-kart h3{font-size:21px;font-weight:900;margin-bottom:6px}
+.m-kart p{color:#b6b3a8;font-weight:600;font-size:15.5px}
+.m-kart .biz{margin-top:12px;font-size:14.5px;font-weight:800;color:var(--sari);display:flex;gap:8px}
+
+/* ---------- BUTİK ---------- */
+.butik-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.secici{display:inline-flex;background:#ebe8df;border-radius:14px;padding:5px;margin-bottom:22px}
+.secici button{font-weight:900;font-size:14.5px;padding:11px 16px;border-radius:10px;color:#56565e;transition:all .25s}
+.secici button.aktif{background:var(--ink);color:var(--sari);box-shadow:0 8px 20px -10px rgba(0,0,0,.5)}
+.sinif-izgara{background:var(--kart);border:1px solid var(--cizgi);border-radius:26px;padding:28px}
+.ogretmen{display:flex;align-items:center;gap:10px;font-weight:900;font-size:14px;margin-bottom:20px}
+.ogretmen i{width:34px;height:34px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.noktalar{display:grid;grid-template-columns:repeat(10,1fr);gap:10px}
+.nokta{aspect-ratio:1;border-radius:50%;background:#d8d4c8;transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s, background .5s}
+.nokta.secili{background:var(--sari);box-shadow:inset 0 0 0 3px rgba(0,0,0,.08)}
+.nokta.gizli{transform:scale(0);opacity:0}
+.olcum{margin-top:24px;display:grid;gap:12px}
+.olcum-satir{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-weight:800;font-size:14px;color:var(--soluk)}
+.olcum-bar{height:14px;background:#efece4;border-radius:99px;overflow:hidden}
+.olcum-bar i{display:block;height:100%;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.olcum-satir b{color:var(--metin);font-size:16px;text-align:right}
+.butik-maddeler{display:grid;gap:14px;margin-top:28px}
+.butik-maddeler div{display:flex;gap:14px;align-items:flex-start;font-weight:700;font-size:16.5px}
+.tik{width:28px;height:28px;flex:none;border-radius:9px;background:var(--sari);display:grid;place-items:center}
+.dipnot{font-size:12.5px;color:var(--soluk);font-weight:600;margin-top:14px}
+
+/* ---------- PROGRAMLAR ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.prog{background:var(--kart);border:1px solid var(--cizgi);border-radius:26px;padding:26px 22px;display:flex;flex-direction:column;position:relative;transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;transform-style:preserve-3d}
+.prog:hover{box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.prog .sinif-no{font-size:72px;font-weight:900;line-height:.9;letter-spacing:-3px;color:var(--ink)}
+.prog .sinif-no sup{font-size:22px;letter-spacing:0;vertical-align:top;position:relative;top:10px;margin-left:2px}
+.prog h3{font-size:20px;font-weight:900;margin:12px 0 4px}
+.prog .hedef{color:var(--soluk);font-weight:700;font-size:14.5px;min-height:44px}
+.prog ul{list-style:none;margin:18px 0 22px;display:grid;gap:9px;flex:1}
+.prog li{display:flex;gap:9px;font-weight:700;font-size:14.5px}
+.prog li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sari);margin-top:7px;flex:none;box-shadow:0 0 0 3px var(--sari-soft)}
+.prog .deneme-rozet{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--sari-soft);color:#6d6000;font-weight:900;font-size:13px;padding:6px 11px;border-radius:9px}
+.prog .btn{width:100%;padding:13px}
+.prog.lgs{background:var(--ink);color:var(--krem);border-color:var(--ink)}
+.prog.lgs .sinif-no{color:var(--sari)}
+.prog.lgs .hedef{color:#b0ada2}
+.prog.lgs li::before{box-shadow:0 0 0 3px rgba(246,215,12,.18)}
+.prog.lgs .deneme-rozet{background:rgba(246,215,12,.14);color:var(--sari)}
+.prog .rozet-ust{position:absolute;top:18px;right:18px;background:var(--sari);color:var(--ink);font-weight:900;font-size:12px;padding:5px 10px;border-radius:8px}
+
+/* ---------- PROGRAM KEŞFİ ---------- */
+.pk{background:var(--kart);border:1px solid var(--cizgi);border-radius:30px;padding:10px;box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}
+.akis{display:grid;gap:0;position:relative}
+.akis-adim{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding-bottom:14px;position:relative;opacity:0;transform:translateX(-8px);transition:opacity .4s, transform .4s cubic-bezier(.2,.8,.2,1)}
+.akis-adim.on{opacity:1;transform:none}
+.akis-adim:not(:last-child)::after{content:"";position:absolute;left:18px;top:38px;bottom:2px;width:2px;background:repeating-linear-gradient(to bottom,#d8d4c8 0 4px,transparent 4px 8px)}
+.akis-adim .no{width:38px;height:38px;border-radius:12px;background:var(--ink);color:var(--sari);display:grid;place-items:center;font-size:18px}
+.akis-adim b{display:block;font-size:15.5px;font-weight:900;line-height:1.2;margin-top:2px}
+.akis-adim span{font-size:13.5px;color:var(--soluk);font-weight:600}
+.pk-sekmeler{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#f1eee6;border-radius:22px;padding:6px;position:relative}
+.pk-sekmeler button{text-align:left;padding:14px 18px;border-radius:17px;transition:background .3s, color .3s, box-shadow .3s;color:#4d4d55}
+.pk-sekmeler button b{display:block;font-size:17px;font-weight:900}
+.pk-sekmeler button small{font-size:13px;font-weight:800;opacity:.75}
+.pk-sekmeler button:hover{background:#e8e4da}
+.pk-sekmeler button.aktif{background:var(--ink);color:var(--krem);box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
+.pk-sekmeler button.aktif small{color:var(--sari);opacity:1}
+.pk-panel{display:grid;grid-template-columns:1fr 1.05fr;gap:34px;padding:34px 30px 30px}
+.pk-panel.degisiyor .pk-sol,.pk-panel.degisiyor .pk-sag{opacity:0;transform:translateY(10px)}
+.pk-sol,.pk-sag{transition:opacity .35s, transform .35s cubic-bezier(.2,.8,.2,1)}
+.pk-etiket{display:inline-block;font-size:12.5px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#6d6000;background:var(--sari-soft);padding:6px 11px;border-radius:8px}
+.pk-sol h3{font-size:clamp(28px,3.2vw,38px);font-weight:900;letter-spacing:-.8px;line-height:1.1;margin:14px 0 10px}
+.pk-kimler{font-size:17px;color:var(--soluk);font-weight:600}
+.pk-liste{list-style:none;display:grid;gap:11px;margin:22px 0}
+.pk-liste li{display:flex;gap:12px;font-weight:700;font-size:15.5px}
+.pk-liste li::before{content:"";width:22px;height:22px;flex:none;border-radius:7px;background:var(--sari) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D1D20' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/13px no-repeat}
+.pk-hediye{display:none;align-items:center;gap:12px;background:linear-gradient(100deg,#fff8cc,#fffdf0);border:1.5px dashed #e6cc2b;border-radius:16px;padding:13px 16px;font-weight:800;font-size:14.5px;margin-bottom:22px}
+.pk-hediye.var{display:flex}
+.pk-hediye .kutu{font-size:22px}
+.pk-kutu{background:#faf8f3;border:1px solid var(--cizgi);border-radius:22px;padding:20px}
+.pk-kutu + .pk-kutu{margin-top:14px}
+.pk-kutu-bas{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;font-weight:900;font-size:15px}
+.pk-kutu-bas small{color:var(--soluk);font-weight:700;font-size:12.5px}
+.pk-kutu-bas b{font-size:14px;background:var(--ink);color:var(--sari);padding:5px 10px;border-radius:9px}
+.hafta{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.gun{border-radius:14px;padding:10px 4px 9px;text-align:center;background:#efece4;color:#a29f94;font-weight:800;font-size:12.5px;position:relative;transition:background .4s, color .4s, transform .4s}
+.gun b{display:block;font-size:22px;font-weight:900;line-height:1.1;margin-top:4px;color:transparent;transition:color .4s}
+.gun small{display:block;font-size:10.5px;font-weight:800;min-height:13px}
+.gun.dolu{background:var(--ink);color:#d2cfc4;transform:translateY(-3px)}
+.gun.dolu b{color:var(--sari)}
+.gun.yok{opacity:.55}
+.dagilim{display:grid;gap:11px}
+.d-satir{display:grid;grid-template-columns:150px 1fr 34px;align-items:center;gap:12px;font-weight:800;font-size:14.5px}
+.d-bar{height:16px;background:#ebe8df;border-radius:99px;overflow:hidden;display:flex;gap:3px;padding:0}
+.d-bar i{flex:0 0 calc((100% - 9px)/4);height:100%;background:var(--sari);border-radius:5px;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.d-bar i.on{transform:scaleX(1)}
+.d-satir b{text-align:right;font-size:17px;font-weight:900}
+.pk-not{font-size:13px;color:var(--soluk);font-weight:600;margin-top:12px}
+.lgs-bos{text-align:center;padding:26px 10px;color:var(--soluk);font-weight:700}
+.lgs-bos b{display:block;font-size:46px;color:var(--ink);font-weight:900;letter-spacing:-1px;line-height:1}
+.deneme-serit{margin-top:18px;background:var(--ink);color:var(--krem);border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.deneme-serit > div:first-child{flex:1;min-width:240px}
+.deneme-serit b{display:block;font-size:17px;font-weight:900}
+.deneme-serit span{color:#aeaba0;font-size:14px;font-weight:600}
+.deneme-hap{display:flex;align-items:center;gap:8px;background:#2c2c32;border-radius:12px;padding:9px 13px;font-weight:800;font-size:14px}
+.deneme-hap i{font-style:normal;font-weight:900;color:var(--sari)}
+.deneme-hap.koyu-hap{background:var(--sari);color:var(--ink)}
+.deneme-hap.koyu-hap i{color:var(--ink)}
+.prog-sec{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- DENEMELER ---------- */
+.dn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dn{background:#26262b;border:1px solid #36363d;border-radius:24px;padding:24px 22px;text-align:center}
+.dn small{display:block;font-weight:900;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#a9a69b}
+.dn b{display:block;font-weight:900;font-size:64px;line-height:1;color:var(--sari);margin:8px 0 4px;letter-spacing:-2px}
+.dn span{font-weight:800;color:#d6d3c8;font-size:15px}
+.dn.lgs{background:var(--sari);border-color:var(--sari)}.dn.lgs small,.dn.lgs span{color:#4d4600}.dn.lgs b{color:var(--ink)}
+.yayin-bant{margin:46px 0 40px}
+.yb-bas{text-align:center;font-weight:900;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#a9a69b;margin-bottom:18px}
+.yb-serit{overflow:hidden;padding:7px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.yb-ic{display:flex;gap:14px;width:max-content;animation:kay 46s linear infinite}
+.yb-serit.ters .yb-ic{animation-direction:reverse;animation-duration:52s}
+.yb-serit:hover .yb-ic{animation-play-state:paused}
+.yl{flex:none;width:190px;height:96px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;padding:12px 16px;overflow:hidden}
+.yl img{display:block;width:auto;height:auto;max-width:158px;max-height:68px;object-fit:contain}
+.yl.yazi b{font-weight:900;font-size:22px;letter-spacing:-.3px;text-align:center;line-height:1.05}
+.yl.madalyon b{color:#b8860b}.yl.maximal b{color:#c4161c}.yl.liderler b{color:#1f4fa3}.yl.sinav b{color:#e30613}
+
+.kaynak{background:#26262b;border:1px solid #36363d;border-radius:26px;padding:26px}
+.kaynak-bas{display:flex;gap:18px;align-items:center;margin-bottom:20px}
+.kaynak-bas .ik{width:62px;height:62px;flex:none;border-radius:18px;background:var(--sari);display:grid;place-items:center}
+.kaynak-bas b{display:block;font-size:22px;font-weight:900}
+.kaynak-bas span{color:#b6b3a8;font-weight:700;font-size:14.5px}
+.kaynak-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:14px}
+.kg{background:#1f1f24;border:1px solid #33333a;border-radius:20px;padding:18px 20px}
+.kg.lgs{border-color:rgba(246,215,12,.45)}
+.kg-bas{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.kg-bas b{font-size:18px;font-weight:900;color:var(--sari)}
+.kg-bas em{font-style:normal;font-weight:900;font-size:13px;background:var(--sari);color:var(--ink);padding:5px 10px;border-radius:8px}
+.kg ul{list-style:none;display:grid;gap:0}
+.kg li{padding:11px 0;border-top:1px dashed #3a3a41;display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
+.kg li:first-child{border-top:0}
+.kg li b{font-weight:900;font-size:16px}
+.kg li span{color:#b6b3a8;font-weight:700;font-size:14px;text-align:right}
+
+/* ---------- SÜREÇ ---------- */
+.surec{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.surec-cizgi{position:absolute;top:31px;left:8%;right:8%;height:3px;background:#e2dfd5;border-radius:3px;overflow:hidden}
+.surec-cizgi i{display:block;height:100%;width:0;background:var(--sari);transition:width 1.8s cubic-bezier(.4,.1,.2,1)}
+.adim{position:relative;text-align:center}
+.adim .daire{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:var(--kart);border:3px solid #e2dfd5;display:grid;place-items:center;font-weight:900;font-size:22px;transition:background .4s, border-color .4s, transform .4s;position:relative;z-index:1}
+.adim.yandi .daire{background:var(--sari);border-color:var(--sari);transform:scale(1.06)}
+.adim h3{font-size:17.5px;font-weight:900}
+.adim p{color:var(--soluk);font-size:14.5px;font-weight:600;margin-top:6px}
+
+/* ---------- SONUÇ TANITIM ---------- */
+.sonuc-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.telefon{width:290px;height:590px;margin:0 auto;border-radius:46px;background:#111;padding:12px;box-shadow:0 50px 100px -40px rgba(0,0,0,.8),0 0 0 2px #333;position:relative;transform:rotate(-4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.telefon:hover{transform:rotate(0) scale(1.02)}
+.telefon::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#111;border-radius:20px;z-index:3}
+.ekran{width:100%;height:100%;border-radius:36px;overflow:hidden;background:#f4f2ec;position:relative}
+.e-ust{background:linear-gradient(170deg,var(--ink2),var(--ink));color:#fff;padding:52px 18px 56px}
+.e-ust small{color:#aaa79c;font-weight:700;font-size:11px;display:block}
+.e-ust .ad{font-weight:900;font-size:15px;margin:2px 0 14px}
+.e-ust .p{font-size:46px;font-weight:900;letter-spacing:-1.5px;line-height:1}
+.e-ust .p span{color:var(--sari)}
+.e-ust .d{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:900;color:#5fe0a8;background:rgba(31,157,106,.18);padding:4px 8px;border-radius:7px}
+.e-kart{background:#fff;margin:-38px 14px 10px;border-radius:16px;padding:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.3)}
+.e-kart .t{font-size:11px;font-weight:900;color:var(--soluk);text-transform:uppercase;letter-spacing:.8px}
+.e-grafik{height:110px;margin-top:6px}
+.e-grafik path.c{stroke-dasharray:300;stroke-dashoffset:300}
+.gorundu .e-grafik path.c{animation:ciz 1.6s .3s cubic-bezier(.4,.1,.2,1) forwards}
+.e-dersler{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 14px}
+.e-ders{background:#fff;border-radius:12px;padding:10px;font-size:11px;font-weight:800;color:var(--soluk)}
+.e-ders b{display:block;font-size:18px;color:var(--metin);font-weight:900}
+.ozellikler{display:grid;gap:18px;margin:26px 0 32px}
+.ozellik{display:flex;gap:16px;align-items:flex-start}
+.ozellik .ik{width:46px;height:46px;flex:none;border-radius:14px;background:rgba(246,215,12,.12);border:1px solid rgba(246,215,12,.3);display:grid;place-items:center}
+.ozellik b{display:block;font-size:17px;font-weight:900}
+.ozellik span{color:#b6b3a8;font-weight:600;font-size:15px}
+
+/* ---------- BURSLULUK ---------- */
+.burs{position:relative;background:var(--sari);border-radius:34px;padding:56px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.burs::before,.burs::after{content:"";position:absolute;border-radius:50%;border:3px solid var(--ink);opacity:.12}
+.burs::before{width:420px;height:420px;right:-120px;top:-180px}
+.burs::after{width:300px;height:300px;right:40px;bottom:-200px}
+.burs h2{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.02;letter-spacing:-1.2px;color:var(--ink)}
+.burs p{font-size:18px;font-weight:700;color:#3d3a1c;margin:16px 0 26px;max-width:520px}
+.burs-tarih{position:relative;z-index:1;background:var(--ink);color:var(--krem);border-radius:26px;padding:28px;text-align:center;transform:rotate(3deg)}
+.burs-tarih small{display:block;color:#a8a59a;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.burs-tarih b{display:block;font-size:64px;font-weight:900;color:var(--sari);line-height:1;margin:8px 0 2px;letter-spacing:-2px}
+.burs-tarih span{font-weight:800;font-size:18px}
+.burs-tarih .siniflar{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.burs-tarih .siniflar i{font-style:normal;font-weight:900;font-size:13px;border:1.5px solid #4a4a52;border-radius:8px;padding:5px 9px}
+.burs-tarih .siniflar i.one{background:var(--sari);border-color:var(--sari);color:var(--ink)}
+
+/* ---------- KADRO ---------- */
+.kadro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ogr-kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:24px;overflow:hidden;transition:transform .3s}
+.ogr-kart:hover{transform:translateY(-6px)}
+.ogr-foto{aspect-ratio:4/4.2;background:linear-gradient(160deg,#2f2f35,#1d1d20);position:relative;display:grid;place-items:center;overflow:hidden}
+.ogr-foto::after{content:"";position:absolute;width:160%;height:160%;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;top:55%;opacity:.5}
+.ogr-foto span{font-size:13px;font-weight:800;color:#77757a;border:1.5px dashed #4a4a52;padding:8px 12px;border-radius:10px}
+.ogr-bilgi{padding:16px 18px}
+.ogr-bilgi b{font-size:17px;font-weight:900;display:block}
+.ogr-bilgi span{font-size:14px;color:var(--soluk);font-weight:700}
+
+/* ---------- İLETİŞİM ---------- */
+.iletisim-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.form-kart{background:var(--kart);border-radius:28px;padding:34px;color:var(--metin)}
+.form-kart h3{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.form-kart > p{color:var(--soluk);font-weight:600;margin:6px 0 22px}
+.f-satir{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f-alan{margin-bottom:14px}
+.f-alan label{display:block;font-size:13px;font-weight:900;margin-bottom:6px}
+.f-alan input,.f-alan select,.f-alan textarea{width:100%;font:inherit;font-size:16px;font-weight:700;padding:13px 14px;border:2px solid var(--cizgi);border-radius:12px;background:#fbfaf7;outline:none;transition:border-color .2s, box-shadow .2s;color:var(--metin)}
+.f-alan textarea{resize:vertical;min-height:90px}
+.f-alan input:focus,.f-alan select:focus,.f-alan textarea:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(246,215,12,.35)}
+.sinif-sec{display:flex;gap:8px;flex-wrap:wrap}
+.sinif-sec label{margin:0;position:relative}
+.sinif-sec input{position:absolute;opacity:0;pointer-events:none}
+.sinif-sec span{display:inline-block;font-weight:900;font-size:15px;padding:11px 16px;border:2px solid var(--cizgi);border-radius:12px;cursor:pointer;transition:all .2s}
+.sinif-sec input:checked + span{background:var(--ink);color:var(--sari);border-color:var(--ink)}
+.kvkk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--soluk);font-weight:600;margin:6px 0 18px}
+.kvkk input{margin-top:3px;accent-color:var(--ink);width:17px;height:17px;flex:none}
+.kvkk a{text-decoration:underline}
+.form-kart .btn{width:100%}
+.gonderildi{display:none;text-align:center;padding:40px 10px}
+.gonderildi .tikb{width:72px;height:72px;border-radius:50%;background:var(--sari);display:grid;place-items:center;margin:0 auto 18px;animation:buyu .6s cubic-bezier(.2,1.4,.4,1)}
+.bilgi-kartlar{display:grid;gap:14px;align-content:start}
+.bilgi{display:flex;gap:16px;align-items:center;background:#26262b;border:1px solid #36363d;border-radius:20px;padding:20px;transition:border-color .2s}
+.bilgi:hover{border-color:rgba(246,215,12,.5)}
+.bilgi .ik{width:50px;height:50px;border-radius:15px;background:var(--sari);display:grid;place-items:center;flex:none}
+.bilgi small{display:block;color:#9e9b90;font-weight:800;font-size:12.5px;letter-spacing:1px;text-transform:uppercase}
+.bilgi b{font-size:17px;font-weight:900}
+.harita{border-radius:20px;overflow:hidden;background:#26262b;border:1px solid #36363d;min-height:190px;display:grid;place-items:center;color:#77757a;font-weight:800;font-size:14px;position:relative}
+.harita svg{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
+.harita span{position:relative;border:1.5px dashed #4a4a52;padding:8px 12px;border-radius:10px;background:#26262b}
+
+/* ---------- FOOTER ---------- */
+footer{background:#161618;color:#9e9b90;padding:60px 0 30px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+footer img{height:44px;margin-bottom:16px}
+footer h4{color:var(--krem);font-size:15px;font-weight:900;margin-bottom:12px}
+footer a{display:block;font-weight:700;font-size:14.5px;padding:4px 0;transition:color .2s}
+footer a:hover{color:var(--sari)}
+.f-alt{border-top:1px solid #2a2a2e;margin-top:40px;padding-top:22px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.wa-sabit{position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.7);transition:transform .2s}
+.wa-sabit:hover{transform:scale(1.08)}
+.wa-sabit::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:halka 2.2s infinite}
+
+/* ---------- animasyon yardımcıları ---------- */
+.gor{opacity:0;transform:translateY(34px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+.gor.gorundu{opacity:1;transform:none}
+.gor.g2{transition-delay:.1s}.gor.g3{transition-delay:.2s}.gor.g4{transition-delay:.3s}
+
+@keyframes yukari{to{transform:none}}
+@keyframes belir{to{opacity:1}}
+@keyframes belirY{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes buyu{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+@keyframes ciz{to{stroke-dashoffset:0}}
+@keyframes kay{to{transform:translateX(-50%)}}
+@keyframes suzul{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes koltuk{to{opacity:1;transform:scale(1)}}
+@keyframes nabiz{0%{box-shadow:0 0 0 0 rgba(246,215,12,.6)}70%{box-shadow:0 0 0 9px rgba(246,215,12,0)}100%{box-shadow:0 0 0 0 rgba(246,215,12,0)}}
+@keyframes nabizY{0%{box-shadow:0 0 0 0 rgba(95,224,168,.6)}70%{box-shadow:0 0 0 7px rgba(95,224,168,0)}100%{box-shadow:0 0 0 0 rgba(95,224,168,0)}}
+@keyframes parilti{0%,60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes halka{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+
+/* ---------- duyarlı ---------- */
+@media (max-width:1080px){
+  .menu,.veli-btn .yazi{display:none}
+  .hamburger{display:block}
+  .ust-ic{gap:12px}
+  .ust-btnlar{margin-left:auto}
+  .prog-grid{grid-template-columns:1fr 1fr}
+  .kadro-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .hero-ic{grid-template-columns:1fr;padding:48px 20px 100px;gap:20px}
+  .sinif-sahne{max-width:420px}
+  .rakamlar{grid-template-columns:1fr 1fr}
+  .maarif-grid,.butik-grid,.sonuc-grid,.iletisim-grid{grid-template-columns:1fr;gap:40px}
+  .maarif-sol{position:static}
+  .pk-panel{grid-template-columns:1fr;padding:26px 16px 16px;gap:26px}
+  .pk-sekmeler{grid-template-columns:1fr 1fr}
+  .dn-grid{grid-template-columns:1fr 1fr}
+  .kaynak-grid{grid-template-columns:1fr}
+  .surec{grid-template-columns:1fr;gap:0}
+  .surec-cizgi{left:31px;right:auto;top:10px;bottom:10px;width:3px;height:auto}
+  .surec-cizgi i{width:100%!important;height:0;transition:height 1.8s cubic-bezier(.4,.1,.2,1)}
+  .adim{display:grid;grid-template-columns:64px 1fr;gap:0 18px;text-align:left;padding-bottom:26px}
+  .adim .daire{margin:0;grid-row:span 2}
+  .adim h3{align-self:end}
+  .burs{grid-template-columns:1fr;padding:36px 26px}
+  .burs-tarih{transform:none;max-width:340px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  section.b{padding:80px 0}
+}
+@media (max-width:560px){
+  .burs-btn .uzun{display:none}
+  .ust .logo img{height:32px}
+  .veli-btn{padding:10px}
+  .pk{padding:6px;border-radius:24px}
+  .yl{width:150px;height:78px}
+  .yl img{max-width:124px;max-height:54px}
+  .dn b{font-size:52px}
+  .kg li{flex-direction:column;gap:2px}
+  .kg li span{text-align:left}
+  .kaynak{padding:20px 16px}
+  .pk-sekmeler{grid-template-columns:1fr;border-radius:18px}
+  .pk-sekmeler button{display:flex;justify-content:space-between;align-items:center;padding:12px 14px}
+  .pk-sekmeler button b{font-size:16px}
+  .pk-panel{padding:22px 10px 10px}
+  .pk-kutu{padding:16px 12px}
+  .hafta{gap:4px}
+  .gun{padding:8px 2px;font-size:11px;border-radius:10px}
+  .gun b{font-size:18px}
+  .gun small{font-size:9px}
+  .d-satir{grid-template-columns:104px 1fr 28px;gap:8px;font-size:13px}
+  .pk-sol .btn{width:100%;white-space:normal}
+  .hero-cta .btn{width:100%}
+  .noktalar{gap:7px}
+  .olcum-satir{grid-template-columns:96px 1fr 56px;font-size:13px}
+  .f-satir{grid-template-columns:1fr}
+  .form-kart{padding:24px 20px}
+  .kadro-grid{gap:10px}
+  .ogr-bilgi{padding:12px}
+  .ogr-bilgi b{font-size:15px}
+  .y1{right:0}.y2{left:0}.y3{right:0}
+  .telefon{width:260px;height:530px}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}
+  .gor{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="taslak-bant">TASLAK · Fotoğraflar, adres ve telefon gerçek bilgilerle değiştirilecek</div>
+
+<!-- ============ ÜST MENÜ ============ -->
+<header class="ust" id="ust">
+  <div class="kap ust-ic">
+    <a href="#" class="logo"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></a>
+    <ul class="menu">
+      <li><a href="#hakkimizda">Hakkımızda</a>
+        <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a></div></li>
+      <li><a href="#programlar">Eğitim Paketlerimiz</a></li>
+      <li><a href="#maarif">Maarif Modeli</a></li>
+      <li><a href="#surec">Sınavlar</a>
+        <div class="alt-menu"><a href="#denemeler">Denemeler ve Kaynaklar</a><a href="bursluluk.html">Bursluluk Başvurusu</a><a href="#bursluluk">Bursluluk Sonuçları</a></div></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+    <div class="ust-btnlar">
+      <a href="sonuc-ekrani-taslak.html" class="veli-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        <span class="yazi">Veli Girişi</span></a>
+      <a href="bursluluk.html" class="burs-btn">Bursluluk <span class="uzun">Başvurusu</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobil-menu" id="mobilMenu">
+    <a href="#hakkimizda">Hakkımızda</a><a class="alt" href="#kadro">Kadromuz</a><a class="alt" href="#">Galeri</a>
+    <a href="#programlar">Eğitim Paketlerimiz</a>
+    <a href="#maarif">Maarif Modeli</a>
+    <a href="#surec">Sınavlar</a><a class="alt" href="#denemeler">Denemeler ve Kaynaklar</a><a class="alt" href="bursluluk.html">Bursluluk Başvurusu</a><a class="alt" href="#bursluluk">Bursluluk Sonuçları</a>
+    <a href="#iletisim">İletişim</a>
+    <a href="sonuc-ekrani-taslak.html" class="btn btn-hayalet">Veli Girişi · Deneme Sonuçları</a>
+    <a href="#iletisim" class="btn btn-sari">Bilgi Al</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hakkimizda">
+  <svg class="kavisler" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path id="kv1" d="M-60 160 C 200 -40, 420 40, 520 -60"/>
+    <path id="kv2" d="M1460 560 C 1250 860, 1000 820, 900 900"/>
+    <path id="kv3" d="M1180 -40 C 1300 120, 1420 140, 1480 120" style="opacity:.35"/>
+  </svg>
+  <div class="hero-ic">
+    <div>
+      <span class="ust-etiket"><i></i>Sivas · 2026–2027 kayıtları devam ediyor</span>
+      <h1>
+        <span class="satir"><span>Her öğrenciye</span></span>
+        <span class="satir"><span>yetecek <span class="vurgu">ilgi<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 14 C 50 4, 120 4, 197 10"/></svg></span>,</span></span>
+        <span class="satir"><span><span class="donen" id="donen"><span class="aktif">LGS'ye</span><span>5. sınıfa</span><span>6. sınıfa</span><span>7. sınıfa</span></span> hazır.</span></span>
+      </h1>
+      <p class="giris">8-10 kişilik butik sınıflarda, Maarif Modeli'ni gerçekten anlayan bir kadroyla LGS hazırlık ve 5, 6, 7. sınıf eğitimi.</p>
+      <div class="hero-cta">
+        <a href="#iletisim" class="btn btn-sari">Ücretsiz Tanışma Görüşmesi <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a href="#programlar" class="btn btn-hayalet">Programları İncele</a>
+      </div>
+      <div class="guven">
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>En fazla 10 kişilik sınıf</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Maarif Modeli uyumlu</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Online sonuç takibi</div>
+      </div>
+    </div>
+
+    <div class="sinif-sahne" id="sahne">
+      <div class="sinif-kart">
+        <div class="bas"><div>8-A · LGS Grubu<small>Matematik · Yeni nesil sorular</small></div><span class="canli"><i></i>Derste</span></div>
+        <svg class="masa-svg" viewBox="0 0 400 300" aria-hidden="true">
+          <rect x="95" y="95" width="210" height="110" rx="55" fill="#3a3a41" stroke="#4a4a52" stroke-width="2"/>
+          <text x="200" y="146" text-anchor="middle" fill="#F6D70C" font-family="Nunito" font-weight="900" font-size="26">9</text>
+          <text x="200" y="170" text-anchor="middle" fill="#9e9b90" font-family="Nunito" font-weight="800" font-size="13">öğrenci</text>
+          <g id="koltuklar"></g>
+        </svg>
+      </div>
+      <div class="yuzen y1"><span class="ik" style="background:#fff3b0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span><div>Kazanım analizi<small>Her denemeden sonra, öğrenci öğrenci</small></div></div>
+      <div class="yuzen y2"><span class="ik" style="background:#e3f5ec"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f9d6a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div>Maarif Modeli<small>Beceri temelli öğretim</small></div></div>
+      <div class="yuzen y3"><div>Her öğrenciye<small style="color:#4d4500">ders içinde ~4,5 dakika birebir</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="serit" aria-hidden="true"><div class="serit-ic" id="serit">
+  <span>8-10 kişilik butik sınıflar</span><span>Maarif Modeli uyumlu öğretim</span><span>Yılda 65 kurum denemesi</span><span>Online sonuç ve gelişim takibi</span><span>LGS · 5 · 6 · 7. sınıf</span><span>Düzenli veli görüşmeleri</span>
+</div></div>
+
+<!-- ============ RAKAMLAR ============ -->
+<div class="kap">
+  <div class="rakamlar">
+    <div class="rakam gor"><b>8<em>–</em>10</b><span>kişilik butik sınıflar</span></div>
+    <div class="rakam gor g2"><b data-say="30">0</b><span>LGS denemesi (8. sınıf, yıllık)</span></div>
+    <div class="rakam gor g3"><b data-say="65">0</b><span>kurum denemesi (tüm sınıflar, yıllık)</span></div>
+    <div class="rakam gor g4"><b data-say="4">0</b><span>sınıf seviyesi: 5, 6, 7 ve 8</span></div>
+  </div>
+</div>
+
+<!-- ============ MAARİF ============ -->
+<section class="b koyu" id="maarif" style="margin-top:110px">
+  <div class="kap maarif-grid">
+    <div class="maarif-sol gor">
+      <span class="kucuk-baslik">Bizi farklı kılan</span>
+      <h2 class="bb">Maarif Modeli'ni <span style="color:var(--sari)">anlıyoruz.</span> Öğrencimizi hızla uyumlu hale getiriyoruz.</h2>
+      <p>Türkiye Yüzyılı Maarif Modeli ile sorular, dersler ve beklentiler değişti. Pek çok veli bu değişikliği takip etmekte zorlanıyor. Biz programımızı baştan bu modele göre kurduk.</p>
+      <div class="once-sonra">
+        <div class="eski"><b>Eski alışkanlık</b>Konu anlat, test çöz, ezberle</div>
+        <div class="yeni"><b>Yeni model</b>Anla, yorumla, beceriyi kullan</div>
+      </div>
+      <a href="#" class="btn btn-sari">Maarif Modeli'ni İncele <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+    </div>
+    <div class="maarif-kartlar">
+      <div class="m-kart gor"><div class="m-no">1</div><div><h3>Okuduğunu anlama her dersin temeli</h3><p>Yeni nesil sorular uzun metin, tablo ve görsellerle geliyor. Matematik ve fen sorusu bile önce doğru okumayı istiyor.</p><div class="biz">→ Her derste metin okuma ve yorumlama çalışması yapıyoruz.</div></div></div>
+      <div class="m-kart gor g2"><div class="m-no">2</div><div><h3>Ezber değil, beceri</h3><p>Model bilgiyi hatırlamaktan çok, bilgiyi yeni bir durumda kullanabilmeyi ölçüyor.</p><div class="biz">→ Konu sonunda günlük hayattan problemlerle beceri çalışması.</div></div></div>
+      <div class="m-kart gor g3"><div class="m-no">3</div><div><h3>Kazanım bazlı takip</h3><p>Her denemeden sonra öğrencinin hangi kazanımda zorlandığını tek tek görüyoruz.</p><div class="biz">→ Eksik kazanımlar bir sonraki haftanın etüt programına giriyor.</div></div></div>
+      <div class="m-kart gor g4"><div class="m-no">4</div><div><h3>Disiplinler arası düşünme</h3><p>Dersler artık birbirinden kopuk değil. Bir konu Türkçe, sosyal ve fenle birlikte ele alınabiliyor.</p><div class="biz">→ Öğretmenlerimiz ortak planlama ile çalışıyor.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUTİK ============ -->
+<section class="b" id="butik">
+  <div class="kap butik-grid">
+    <div class="gor">
+      <span class="kucuk-baslik">Butik eğitim</span>
+      <h2 class="bb">Kalabalıkta kaybolmuyor, sınıfta görülüyor.</h2>
+      <div class="butik-maddeler">
+        <div><span class="tik"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Öğretmen her öğrencinin eksiğini adıyla bilir.</div>
+        <div><span class="tik"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Soru sormaya çekinen öğrenci bile söz alır.</div>
+        <div><span class="tik"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Ödev kontrolü ve geri bildirim her derste yapılır.</div>
+        <div><span class="tik"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Gruplar seviyeye göre oluşturulur, kimse geride kalmaz.</div>
+      </div>
+    </div>
+    <div class="gor g2">
+      <div class="secici" role="tablist">
+        <button data-n="30" role="tab">Kalabalık sınıf · 30</button>
+        <button data-n="9" class="aktif" role="tab">Obir sınıfı · 9</button>
+      </div>
+      <div class="sinif-izgara">
+        <div class="ogretmen"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i><span>1 öğretmen · <b id="ogrSayi">9</b> öğrenci</span></div>
+        <div class="noktalar" id="noktalar"></div>
+        <div class="olcum">
+          <div class="olcum-satir"><span>Öğrenci başına süre</span><div class="olcum-bar"><i id="barSure" style="background:var(--sari)"></i></div><b id="sure">4,4 dk</b></div>
+          <div class="olcum-satir"><span>Ders içi söz alma</span><div class="olcum-bar"><i id="barSoz" style="background:var(--ink)"></i></div><b id="soz">Her ders</b></div>
+        </div>
+        <div class="dipnot">40 dakikalık bir derste öğretmenin öğrenci başına ayırabileceği süre.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMLAR ============ -->
+<section class="b" id="programlar" style="padding-top:20px">
+  <div class="kap">
+    <div class="b-bas orta gor">
+      <span class="kucuk-baslik">Eğitim paketlerimiz</span>
+      <h2 class="bb">Çocuğunuza uygun programı seçin</h2>
+      <p>Haftalık ders planları aşağıda. Paket detayları ve size uygun grup için bizimle görüşün.</p>
+    </div>
+
+    <div class="pk gor">
+      <div class="pk-sekmeler" role="tablist" id="pkSekmeler">
+        <button role="tab" class="aktif" data-p="genel"><b>Genel Program</b><small>5 · 6 · 7. sınıf</small></button>
+        <button role="tab" data-p="kulup"><b>Matematik Kulübü</b><small>5 · 6 · 7. sınıf</small></button>
+        <button role="tab" data-p="lgs"><b>LGS Hazırlık</b><small>8. sınıf</small></button>
+        <button role="tab" data-p="odev"><b>Ödev Yardımı</b><small>Hafta içi, okul sonrası</small></button>
+      </div>
+
+      <div class="pk-panel" id="pkPanel">
+        <div class="pk-sol">
+          <span class="pk-etiket" id="pkEtiket"></span>
+          <h3 id="pkBaslik"></h3>
+          <p class="pk-kimler" id="pkKimler"></p>
+          <ul class="pk-liste" id="pkListe"></ul>
+          <div class="pk-hediye" id="pkHediye"></div>
+          <a href="#iletisim" class="btn btn-sari" id="pkBtn">Bu program için bilgi al <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+        <div class="pk-sag">
+          <div class="pk-kutu">
+            <div class="pk-kutu-bas"><span>Haftalık takvim</span><b id="pkToplam"></b></div>
+            <div class="hafta" id="pkHafta"></div>
+          </div>
+          <div class="pk-kutu">
+            <div class="pk-kutu-bas"><span id="pkDBas">Derslere göre dağılım</span><small id="pkDAlt">haftalık ders saati</small></div>
+            <div class="dagilim" id="pkDagilim"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deneme-serit gor">
+      <div><b>Yıl boyu düzenli kurum denemeleri</b><span>Sonuçlar ve gelişim grafiği velilerimize online sunulur.</span></div>
+      <div class="deneme-hap"><i>5.</i>10 deneme</div>
+      <div class="deneme-hap"><i>6.</i>10 deneme</div>
+      <div class="deneme-hap"><i>7.</i>15 deneme</div>
+      <div class="deneme-hap koyu-hap"><i>8.</i>30 deneme</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DENEMELER ============ -->
+<section class="b koyu" id="denemeler">
+  <div class="kap">
+    <div class="b-bas orta gor">
+      <span class="kucuk-baslik">Denemelerimiz ve kaynaklarımız</span>
+      <h2 class="bb">Türkiye'nin önde gelen yayınlarıyla <span style="color:var(--sari)">yıl boyu deneme</span></h2>
+      <p>Her denemeden sonra kazanım bazlı analiz yapıyor, sonuçları velimizin telefonuna ulaştırıyoruz.</p>
+    </div>
+    <div class="dn-grid gor">
+      <div class="dn"><small>5. sınıf</small><b data-say="10">0</b><span>deneme / yıl</span></div>
+      <div class="dn"><small>6. sınıf</small><b data-say="10">0</b><span>deneme / yıl</span></div>
+      <div class="dn"><small>7. sınıf</small><b data-say="15">0</b><span>deneme / yıl</span></div>
+      <div class="dn lgs"><small>8. sınıf · LGS</small><b data-say="30">0</b><span>deneme / yıl</span></div>
+    </div>
+  </div>
+  <div class="yayin-bant gor">
+    <p class="yb-bas">Denemelerini uyguladığımız yayınlardan bazıları</p>
+    <div class="yb-serit"><div class="yb-ic"><span class="yl"><img src="assets/yayinlar/hiperzeka.png" alt="HiperZeka"></span><span class="yl"><img src="assets/yayinlar/unluler-karmasi.png" alt="Ünlüler Karması"></span><span class="yl"><img src="assets/yayinlar/madalyon.png" alt="Madalyon Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/ankara.png" alt="Ankara Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/aci.png" alt="Açı Yayınları"></span><span class="yl"><img src="assets/yayinlar/3d.png" alt="3D Yayınları"></span><span class="yl"><img src="assets/yayinlar/gunay.png" alt="Günay Yayınları"></span><span class="yl"><img src="assets/yayinlar/maximal.png" alt="Maximal Yayınları"></span><span class="yl"><img src="assets/yayinlar/fenomen-okul.png" alt="Fenomen Okul"></span><span class="yl"><img src="assets/yayinlar/sonuc.png" alt="Sonuç Yayınları"></span><span class="yl"><img src="assets/yayinlar/sinan-kuzucu.png" alt="Sinan Kuzucu Yayınları"></span><span class="yl"><img src="assets/yayinlar/hiperzeka.png" alt="HiperZeka"></span><span class="yl"><img src="assets/yayinlar/unluler-karmasi.png" alt="Ünlüler Karması"></span><span class="yl"><img src="assets/yayinlar/madalyon.png" alt="Madalyon Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/ankara.png" alt="Ankara Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/aci.png" alt="Açı Yayınları"></span><span class="yl"><img src="assets/yayinlar/3d.png" alt="3D Yayınları"></span><span class="yl"><img src="assets/yayinlar/gunay.png" alt="Günay Yayınları"></span><span class="yl"><img src="assets/yayinlar/maximal.png" alt="Maximal Yayınları"></span><span class="yl"><img src="assets/yayinlar/fenomen-okul.png" alt="Fenomen Okul"></span><span class="yl"><img src="assets/yayinlar/sonuc.png" alt="Sonuç Yayınları"></span><span class="yl"><img src="assets/yayinlar/sinan-kuzucu.png" alt="Sinan Kuzucu Yayınları"></span></div></div>
+    <div class="yb-serit ters"><div class="yb-ic"><span class="yl"><img src="assets/yayinlar/kafa-dengi.png" alt="Kafa Dengi"></span><span class="yl"><img src="assets/yayinlar/liderler-karmasi.png" alt="Liderler Karması"></span><span class="yl"><img src="assets/yayinlar/sadik-uygun.png" alt="Sadık Uygun Yayınları"></span><span class="yl"><img src="assets/yayinlar/analiz.png" alt="Analiz Yayınları"></span><span class="yl"><img src="assets/yayinlar/x-yayincilik.png" alt="X Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/nartest.png" alt="Nartest"></span><span class="yl"><img src="assets/yayinlar/sinav.png" alt="Sınav Yayınları"></span><span class="yl"><img src="assets/yayinlar/gizli.png" alt="Gizli Yayınları"></span><span class="yl"><img src="assets/yayinlar/motivasyon.png" alt="Motivasyon"></span><span class="yl"><img src="assets/yayinlar/startfen.png" alt="Startfen"></span><span class="yl"><img src="assets/yayinlar/kafa-dengi.png" alt="Kafa Dengi"></span><span class="yl"><img src="assets/yayinlar/liderler-karmasi.png" alt="Liderler Karması"></span><span class="yl"><img src="assets/yayinlar/sadik-uygun.png" alt="Sadık Uygun Yayınları"></span><span class="yl"><img src="assets/yayinlar/analiz.png" alt="Analiz Yayınları"></span><span class="yl"><img src="assets/yayinlar/x-yayincilik.png" alt="X Yayıncılık"></span><span class="yl"><img src="assets/yayinlar/nartest.png" alt="Nartest"></span><span class="yl"><img src="assets/yayinlar/sinav.png" alt="Sınav Yayınları"></span><span class="yl"><img src="assets/yayinlar/gizli.png" alt="Gizli Yayınları"></span><span class="yl"><img src="assets/yayinlar/motivasyon.png" alt="Motivasyon"></span><span class="yl"><img src="assets/yayinlar/startfen.png" alt="Startfen"></span></div></div>
+  </div>
+  <div class="kap">
+    <div class="kaynak gor">
+      <div class="kaynak-bas"><span class="ik"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14Z"/><path d="M8 7h8M8 11h6"/></svg></span><div><b>Öğrencilerimize ücretsiz verdiğimiz kaynaklar</b><span>2026-2027 eğitim yılı · Kaynaklar her yıl güncellenir.</span></div></div>
+      <div class="kaynak-grid">
+        <div class="kg lgs"><div class="kg-bas"><b>8. sınıf · LGS</b><em>30 Türkiye geneli deneme</em></div><ul><li><b>Fenomen A</b><span>Matematik · Türkçe · Fen Bilimleri</span></li><li><b>Maximal Modüler Sistem</b><span>Matematik · Fen Bilimleri · Sosyal Bilgiler · Türkçe</span></li><li><b>Bloom Soru Bankası</b><span>Matematik · Sosyal Bilgiler · Fen Bilimleri · Türkçe</span></li><li><b>Combo Team Soru Bankası</b><span>İngilizce</span></li></ul></div>
+        <div class="kg"><div class="kg-bas"><b>5 · 6 · 7. sınıf</b><em>10-15 Türkiye geneli deneme</em></div><ul><li><b>Fenomen A</b><span>Türkçe · Matematik · Sosyal Bilgiler · Fen Bilimleri</span></li><li><b>Combo Team Soru Bankası</b><span>İngilizce</span></li></ul></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px" class="gor"><a href="sonuc-ekrani-taslak.html" class="btn btn-sari">Deneme sonuç ekranını görün</a></div>
+  </div>
+</section>
+
+<!-- ============ SÜREÇ ============ -->
+<section class="b" id="surec" style="background:#efece4">
+  <div class="kap">
+    <div class="b-bas orta gor">
+      <span class="kucuk-baslik">Nasıl çalışıyoruz</span>
+      <h2 class="bb">Tanışmadan LGS'ye, adım adım</h2>
+    </div>
+    <div class="surec" id="surecListe">
+      <div class="surec-cizgi"><i id="surecCizgi"></i></div>
+      <div class="adim"><div class="daire">1</div><h3>Tanışma</h3><p>Öğrenciyi ve hedeflerini birlikte konuşuruz.</p></div>
+      <div class="adim"><div class="daire">2</div><h3>Seviye belirleme</h3><p>Kısa bir değerlendirmeyle başlangıç noktasını görürüz.</p></div>
+      <div class="adim"><div class="daire">3</div><h3>Doğru grup</h3><p>Seviyesine uygun 8-10 kişilik gruba yerleşir.</p></div>
+      <div class="adim"><div class="daire">4</div><h3>Deneme ve analiz</h3><p>Düzenli denemeler, kazanım bazlı eksik takibi.</p></div>
+      <div class="adim"><div class="daire">5</div><h3>Veliyle iletişim</h3><p>Online sonuç ekranı ve düzenli veli görüşmeleri.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SONUÇ TANITIM ============ -->
+<section class="b koyu">
+  <div class="kap sonuc-grid">
+    <div class="gor" id="telefonKap">
+      <div class="telefon"><div class="ekran">
+        <div class="e-ust"><small>5. Kurum Denemesi · 20 Kasım</small><div class="ad">Örnek Öğrenci · 8-A</div><div class="p">403<span>,7</span></div><span class="d">▲ 18,8 puan</span></div>
+        <div class="e-kart"><div class="t">Gelişim</div>
+          <svg class="e-grafik" viewBox="0 0 240 110" width="100%">
+            <defs><linearGradient id="eg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F6D70C" stop-opacity=".45"/><stop offset="1" stop-color="#F6D70C" stop-opacity="0"/></linearGradient></defs>
+            <path d="M10 82 L65 62 L120 68 L175 40 L230 20 L230 105 L10 105Z" fill="url(#eg)"/>
+            <path d="M10 88 L65 84 L120 85 L175 80 L230 77" fill="none" stroke="#8d8a80" stroke-width="1.6" stroke-dasharray="4 4"/>
+            <path class="c" d="M10 82 L65 62 L120 68 L175 40 L230 20" fill="none" stroke="#1D1D20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="230" cy="20" r="5.5" fill="#F6D70C" stroke="#1D1D20" stroke-width="2.4"/>
+          </svg></div>
+        <div class="e-dersler"><div class="e-ders">Türkçe<b>17,33</b></div><div class="e-ders">Matematik<b>14,67</b></div><div class="e-ders">Fen<b>18,00</b></div><div class="e-ders">İngilizce<b>9,00</b></div></div>
+      </div></div>
+    </div>
+    <div class="gor g2">
+      <span class="kucuk-baslik">Veliler için</span>
+      <h2 class="bb">Deneme sonuçları artık telefonunuzda.</h2>
+      <div class="ozellikler">
+        <div class="ozellik"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span><div><b>Gelişim grafiği</b><span>Tüm denemeler tek grafikte, ders ders.</span></div></div>
+        <div class="ozellik"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Sonuç açıklandığı gün</b><span>Karneyi beklemeden, istediğiniz an görün.</span></div></div>
+        <div class="ozellik"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Güvenli giriş</b><span>Yalnızca öğrencinin TC'si ve doğum tarihiyle.</span></div></div>
+      </div>
+      <a href="sonuc-ekrani-taslak.html" class="btn btn-sari">Sonuç Ekranını Gör <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BURSLULUK ============ -->
+<section class="b" id="bursluluk">
+  <div class="kap">
+    <div class="burs gor">
+      <div style="position:relative;z-index:1">
+        <h2>2027 Bursluluk Sınavı başvuruları başladı.</h2>
+        <p>4, 5, 6 ve 7. sınıf öğrencileri seviyesini ücretsiz görsün, başarısına göre gelecek yıl için burs kazansın. Sonuçlar sitemizden açıklanır.</p>
+        <a href="bursluluk.html" class="btn btn-koyu">Hemen Başvur <svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="burs-tarih"><small>Sınav tarihi</small><b>7 Şubat</b><span>2027 · Pazar</span><div class="siniflar"><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KADRO ============ -->
+<section class="b" id="kadro" style="padding-top:0">
+  <div class="kap">
+    <div class="b-bas gor">
+      <span class="kucuk-baslik">Kadromuz</span>
+      <h2 class="bb">Öğrencilerimizi adıyla tanıyan öğretmenler</h2>
+    </div>
+    <div class="kadro-grid">
+      <div class="ogr-kart gor"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Matematik</span></div></div>
+      <div class="ogr-kart gor g2"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Türkçe</span></div></div>
+      <div class="ogr-kart gor g3"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Fen Bilimleri</span></div></div>
+      <div class="ogr-kart gor g4"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>İngilizce</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ İLETİŞİM ============ -->
+<section class="b koyu" id="iletisim">
+  <div class="kap iletisim-grid">
+    <div class="form-kart gor">
+      <div id="formIcerik">
+        <h3>Bilgi alın, sizi arayalım</h3>
+        <p>Paket içerikleri ve ders programı için formu doldurun, en kısa sürede sizi arayalım.</p>
+        <form id="bilgiForm">
+          <div class="f-satir">
+            <div class="f-alan"><label for="vAd">Veli adı soyadı</label><input id="vAd" required autocomplete="name"></div>
+            <div class="f-alan"><label for="vTel">Telefon</label><input id="vTel" required inputmode="tel" autocomplete="tel" placeholder="05__ ___ __ __"></div>
+          </div>
+          <div class="f-alan"><label>İlgilendiğiniz program</label>
+            <div class="sinif-sec">
+              <label><input type="radio" name="program" value="genel" checked><span>Genel Program</span></label>
+              <label><input type="radio" name="program" value="kulup"><span>Matematik Kulübü</span></label>
+              <label><input type="radio" name="program" value="lgs"><span>LGS Hazırlık</span></label>
+              <label><input type="radio" name="program" value="odev"><span>Ödev Yardımı</span></label>
+              <label><input type="radio" name="program" value="burs"><span>Bursluluk</span></label>
+            </div></div>
+          <div class="f-alan"><label>Öğrencinin sınıfı</label>
+            <div class="sinif-sec">
+              <label><input type="radio" name="sinif" value="4"><span>4. sınıf</span></label>
+              <label><input type="radio" name="sinif" value="5"><span>5. sınıf</span></label>
+              <label><input type="radio" name="sinif" value="6"><span>6. sınıf</span></label>
+              <label><input type="radio" name="sinif" value="7"><span>7. sınıf</span></label>
+              <label><input type="radio" name="sinif" value="8" checked><span>8. sınıf</span></label>
+            </div></div>
+          <div class="f-alan"><label for="mesaj">Mesajınız (isteğe bağlı)</label><textarea id="mesaj" placeholder="Örn. hafta sonu grubu var mı?"></textarea></div>
+          <label class="kvkk"><input type="checkbox" required><span><a href="#">KVKK Aydınlatma Metni</a>'ni okudum, benimle iletişime geçilmesini kabul ediyorum.</span></label>
+          <button class="btn btn-sari" type="submit">Gönder</button>
+        </form>
+      </div>
+      <div class="gonderildi" id="gonderildi">
+        <div class="tikb"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h3>Teşekkürler!</h3><p style="color:var(--soluk);font-weight:600;margin-top:6px">Taslak: gerçek sitede bilgiler size e-posta veya tablo olarak ulaşacak.</p>
+      </div>
+    </div>
+    <div class="bilgi-kartlar">
+      <div class="gor g2">
+        <span class="kucuk-baslik">İletişim</span>
+        <h2 class="bb" style="margin-bottom:22px">Bir telefon kadar yakınız.</h2>
+      </div>
+      <a href="#" class="bilgi gor g2"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Telefon</small><b>0 (346) ___ __ __</b></div></a>
+      <a href="#" class="bilgi gor g3"><span class="ik" style="background:#25D366"><svg width="22" height="22" viewBox="0 0 24 24" fill="#06351a"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></span><div><small>WhatsApp</small><b>Hemen yazın</b></div></a>
+      <div class="bilgi gor g3"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Adres</small><b>Merkez, Sivas · adres eklenecek</b></div></div>
+      <div class="harita gor g4">
+        <svg viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true"><g stroke="#4a4a52" stroke-width="2" fill="none"><path d="M0 60 H400"/><path d="M0 140 H400"/><path d="M90 0 V200"/><path d="M250 0 V200"/><path d="M0 200 L180 0"/></g><circle cx="250" cy="100" r="10" fill="#F6D70C"/></svg>
+        <span>Google Haritalar konumu eklenecek</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="kap">
+    <div class="f-grid">
+      <div><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"><p style="font-weight:600;font-size:14.5px;max-width:300px">Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi.</p></div>
+      <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a><a href="#maarif">Maarif Modeli</a></div>
+      <div><h4>Eğitim</h4><a href="#programlar">Eğitim Paketlerimiz</a><a href="#surec">Sınavlar</a><a href="bursluluk.html">Bursluluk</a><a href="sonuc-ekrani-taslak.html">Deneme Sonuçları</a></div>
+      <div><h4>Bize ulaşın</h4><a href="#iletisim">İletişim Formu</a><a href="#">WhatsApp</a><a href="#">Instagram</a></div>
+    </div>
+    <div class="f-alt"><span>© 2026 Obir Kurs Merkezi</span><span><a href="#" style="display:inline">KVKK Aydınlatma Metni</a></span></div>
+  </div>
+</footer>
+
+<a href="#" class="wa-sabit" aria-label="WhatsApp ile yazın"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* menü */
+const ust = $('#ust');
+addEventListener('scroll', () => ust.classList.toggle('kaydi', scrollY > 20), {passive:true});
+$('#hamburger').addEventListener('click', () => {
+  $('#mobilMenu').style.top = ust.getBoundingClientRect().bottom + 'px';
+  document.body.classList.toggle('menu-acik');
+});
+$$('#mobilMenu a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-acik')));
+
+/* hero kavisleri çiz */
+$$('.kavisler path').forEach((p,i) => {
+  const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+  p.animate([{strokeDashoffset:L},{strokeDashoffset:0}], {duration:azHareket?1:1800, delay:300+i*250, easing:'cubic-bezier(.6,.1,.2,1)', fill:'forwards'});
+});
+
+/* dönen kelime */
+(() => {
+  const kap = $('#donen'), ks = $$('#donen span'); let i = 0;
+  const genislik = () => kap.style.width = ks[i].offsetWidth + 'px';
+  document.fonts.ready.then(genislik); addEventListener('resize', genislik);
+  if(azHareket) return;
+  setInterval(() => {
+    const eski = ks[i]; i = (i+1) % ks.length; const yeni = ks[i];
+    genislik();
+    eski.classList.remove('aktif'); eski.classList.add('cik');
+    yeni.classList.remove('cik'); yeni.classList.add('aktif');
+    setTimeout(() => eski.classList.remove('cik'), 500);
+  }, 2400);
+})();
+
+/* masa etrafında koltuklar */
+(() => {
+  const g = $('#koltuklar'), cx = 200, cy = 150, rx = 150, ry = 100, n = 10, dolu = 9;
+  let html = '';
+  for(let k=0;k<n;k++){
+    const a = -Math.PI/2 + k*2*Math.PI/n, x = cx + rx*Math.cos(a), y = cy + ry*Math.sin(a);
+    const bos = k===n-1;
+    html += `<g class="koltuk" style="animation-delay:${0.6+k*0.08}s"><circle cx="${x}" cy="${y}" r="17" fill="${bos?'none':'#F6D70C'}" stroke="${bos?'#5a5a62':'#1D1D20'}" stroke-width="${bos?2:3}" ${bos?'stroke-dasharray="4 4"':''}/>${bos?'':`<circle cx="${x}" cy="${y-4}" r="5" fill="#1D1D20"/><path d="M${x-8} ${y+9} a8 7 0 0 1 16 0" fill="#1D1D20"/>`}</g>`;
+  }
+  g.innerHTML = html;
+  requestAnimationFrame(() => $('#sahne').classList.add('sahne-gorundu'));
+})();
+
+/* şeridi çoğalt */
+$('#serit').innerHTML += $('#serit').innerHTML;
+
+/* sayaçlar */
+function say(el){
+  const hedef = +el.dataset.say, t0 = performance.now(), sure = azHareket ? 1 : 1500;
+  const f = t => { const p = Math.min(1,(t-t0)/sure); el.textContent = Math.round(hedef*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(f); };
+  requestAnimationFrame(f);
+}
+
+/* butik sınıf karşılaştırma */
+(() => {
+  const kap = $('#noktalar');
+  kap.innerHTML = Array.from({length:30},(_,i)=>`<i class="nokta"></i>`).join('');
+  const noktalar = $$('#noktalar .nokta');
+  const goster = n => {
+    noktalar.forEach((d,i) => {
+      d.classList.toggle('gizli', i >= n);
+      d.classList.toggle('secili', n<=10 && i < n);
+      d.style.transitionDelay = (n<=10 ? (29-i) : i) * 12 + 'ms';
+    });
+    $('#ogrSayi').textContent = n;
+    const dk = 40/n;
+    $('#sure').textContent = dk.toLocaleString('tr-TR',{maximumFractionDigits:1}) + ' dk';
+    $('#barSure').style.width = (dk/4.5*100) + '%';
+    $('#soz').textContent = n<=10 ? 'Her ders' : 'Ara sıra';
+    $('#barSoz').style.width = n<=10 ? '95%' : '28%';
+  };
+  $$('.secici button').forEach(b => b.addEventListener('click', () => {
+    $$('.secici button').forEach(x => x.classList.toggle('aktif', x===b));
+    goster(+b.dataset.n);
+  }));
+  goster(30);
+  window.__butikBasla = () => setTimeout(() => goster(9), 500);
+})();
+
+/* süreç çizgisi */
+function surecBasla(){
+  const dikey = matchMedia('(max-width:900px)').matches;
+  const c = $('#surecCizgi');
+  if(dikey) c.style.height = '100%'; else c.style.width = '100%';
+  $$('.adim').forEach((a,i) => setTimeout(() => a.classList.add('yandi'), 250 + i*340));
+}
+
+/* görünür olunca */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(!e.isIntersecting) return;
+  const el = e.target;
+  el.classList.add('gorundu');
+  el.querySelectorAll('[data-say]').forEach(say);
+  if(el.matches('[data-say]')) say(el);
+  if(el.id === 'surecListe') surecBasla();
+  if(el.querySelector && el.querySelector('#noktalar')) window.__butikBasla();
+  io.unobserve(el);
+}), {threshold:.2});
+$$('.gor, #surecListe').forEach(el => io.observe(el));
+
+/* program kartı eğimi */
+if(!azHareket && matchMedia('(hover:hover)').matches){
+  $$('[data-tilt]').forEach(k => {
+    k.addEventListener('mousemove', e => {
+      const r = k.getBoundingClientRect(), x = (e.clientX-r.left)/r.width-.5, y = (e.clientY-r.top)/r.height-.5;
+      k.style.transform = `perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-6px)`;
+    });
+    k.addEventListener('mouseleave', () => k.style.transform = '');
+  });
+}
+
+/* ---------- program keşfi ---------- */
+const PROGRAMLAR = {
+  genel: {
+    etiket:'5 · 6 · 7. sınıf', baslik:'Genel Program', form:'genel', sinif:'6',
+    kimler:'Okul derslerinde güçlü olmak ve LGS\'ye erken, sağlam bir temelle hazırlanmak isteyen ara sınıf öğrencileri için.',
+    liste:['Tüm ana dersler tek programda','8-10 kişilik seviye grupları','Maarif Modeli\'ne uygun beceri çalışmaları','Kurum denemeleri ve online sonuç takibi'],
+    gunler:{Çar:[3,'akşam'], Cmt:[5,''], Paz:[5,'']},
+    dersler:[['Matematik',4],['Türkçe',3],['Fen Bilimleri',2],['Sosyal Bilgiler',2],['İngilizce',2]],
+  },
+  kulup: {
+    etiket:'5 · 6 · 7. sınıf', baslik:'Matematik Kulübü', form:'kulup', sinif:'5',
+    kimler:'"Çocuğum çok yorulmasın ama temeli de eksik kalmasın" diyen veliler için daha hafif ama etkili bir program.',
+    liste:['Sadece hafta sonu, haftada 6 ders','Matematikte temel eksiklerin kapatılması','Her derse yarayan okuduğunu anlama dersi','Küçük ve samimi gruplar'],
+    hediye:'<span class="kutu">🎁</span><span>Matematik Kulübü öğrencilerimize <b>İngilizce Kulübü hediye!</b></span>',
+    gunler:{Cmt:[3,''], Paz:[3,'']},
+    dersler:[['Matematik',3],['Okuduğunu Anlama',1],['İngilizce',2]],
+  },
+  lgs: {
+    etiket:'8. sınıf', baslik:'LGS Hazırlık', form:'lgs', sinif:'8',
+    kimler:'Hedef liseye odaklanan 8. sınıf öğrencileri için LGS\'nin tüm derslerini kapsayan yoğun program.',
+    liste:['LGS formatında ders ve yeni nesil soru çözümü','Yılda 30 kurum denemesi ve kazanım analizi','Kişisel tercih danışmanlığı','Online sonuç ekranı ve gelişim grafiği'],
+    gunler:{Sal:[3,'akşam'], Per:[3,'akşam'], Cmt:[5,''], Paz:[5,'']},
+    dersler:[['Türkçe',4],['Matematik',4],['Fen Bilimleri',4],['İngilizce',2],['Sosyal / İnkılap',2]],
+  },
+  odev: {
+    etiket:'Hafta içi her gün', baslik:'Ödev Yardımı', form:'odev', sinif:'',
+    kimler:'Okuldan çıkan çocuğunuz evde ödevle tek başına uğraşmasın. Öğretmen eşliğinde ödevini bitirir, günün derslerini tekrar eder, kitabını okur ve eve yükü hafiflemiş gelir.',
+    liste:['Okul ödevleri her gün öğretmen eşliğinde tamamlanır','Haftalık tüm derslerden düzenli etüt','Günlük kitap okuma saati ve okuma takibi','Ertesi günün derslerine hazırlık','Akşamlar ailenizle geçen kaliteli zamana kalır'],
+    toplamYazi:'Her gün en az 2 saat',
+    gunler:{Pzt:['2+','saat'], Sal:['2+','saat'], Çar:['2+','saat'], Per:['2+','saat'], Cum:['2+','saat']},
+    dBas:'Bir günümüz', dAlt:'okul çıkışından itibaren',
+    akis:[['Ödev zamanı','Günün okul ödevleri öğretmen eşliğinde, anlayarak bitirilir.'],['Etüt','O haftanın derslerinden konu tekrarı ve soru çözümü.'],['Kitap okuma','Her gün düzenli okuma; okunan kitaplar takip edilir.'],['Yarına hazırlık','Çanta, defter ve ertesi günün dersleri gözden geçirilir.']],
+  },
+};
+const GUNLER = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+function programGoster(k, anim=true){
+  const p = PROGRAMLAR[k], panel = $('#pkPanel');
+  const doldur = () => {
+    $('#pkEtiket').textContent = p.etiket;
+    $('#pkBaslik').textContent = p.baslik;
+    $('#pkKimler').textContent = p.kimler;
+    $('#pkListe').innerHTML = p.liste.map(x => `<li>${x}</li>`).join('');
+    $('#pkHediye').innerHTML = p.hediye || ''; $('#pkHediye').classList.toggle('var', !!p.hediye);
+    const toplam = Object.values(p.gunler).reduce((a,[n])=>a+n,0);
+    $('#pkToplam').textContent = p.toplamYazi || `Haftada ${toplam} ders`;
+    $('#pkDBas').textContent = p.dBas || 'Derslere göre dağılım';
+    $('#pkDAlt').textContent = p.dAlt || 'haftalık ders saati';
+    $('#pkHafta').innerHTML = GUNLER.map(g => { const d = p.gunler[g]; return `<div class="gun ${d?'':'yok'}" data-g="${g}">${g}<b>${d?d[0]:'·'}</b><small>${d?(d[1]||'ders'):''}</small></div>`; }).join('');
+    $('#pkDagilim').innerHTML = p.akis
+      ? `<div class="akis">${p.akis.map(([b,s],i)=>`<div class="akis-adim"><span class="no">${i+1}</span><div><b>${b}</b><span>${s}</span></div></div>`).join('')}</div>`
+      : p.dersler.map(([ad,n]) => `<div class="d-satir"><span>${ad}</span><div class="d-bar">${'<i></i>'.repeat(4)}</div><b>${n}</b></div>`).join('');
+    $('#pkBtn').dataset.program = p.form; $('#pkBtn').dataset.sinif = p.sinif;
+    // animasyonlar
+    requestAnimationFrame(() => {
+      $$('#pkHafta .gun').forEach((el,i) => { if(!el.classList.contains('yok')) setTimeout(()=>el.classList.add('dolu'), 120 + i*70); });
+      $$('#pkDagilim .akis-adim').forEach((a,i) => setTimeout(()=>a.classList.add('on'), 250 + i*160));
+      $$('#pkDagilim .d-satir').forEach((s,si) => {
+        const n = p.dersler[si][1];
+        s.querySelectorAll('.d-bar i').forEach((c,ci) => { if(ci < n) setTimeout(()=>c.classList.add('on'), 250 + si*90 + ci*70); });
+      });
+    });
+  };
+  if(!anim){ doldur(); return; }
+  panel.classList.add('degisiyor');
+  setTimeout(() => { doldur(); panel.classList.remove('degisiyor'); }, 300);
+}
+$('#pkSekmeler').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  $$('#pkSekmeler button').forEach(x => x.classList.toggle('aktif', x===b));
+  programGoster(b.dataset.p);
+});
+programGoster('genel', false);
+
+/* "Bilgi al" → formda programı ve sınıfı seç */
+$('#pkBtn').addEventListener('click', () => {
+  const b = $('#pkBtn');
+  const r = document.querySelector(`input[name=program][value="${b.dataset.program}"]`); if(r) r.checked = true;
+  const s = document.querySelector(`input[name=sinif][value="${b.dataset.sinif}"]`); if(s) s.checked = true;
+});
+
+/* form (taslak) */
+$('#bilgiForm').addEventListener('submit', e => {
+  e.preventDefault();
+  $('#formIcerik').style.display = 'none';
+  $('#gonderildi').style.display = 'block';
+});
+</script>
+</body>
+</html>

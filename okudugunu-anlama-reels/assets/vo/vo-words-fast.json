@@ -1,0 +1,514 @@
+{
+ "l1": {
+  "text": "Çocuğunuz konuyu biliyor ama sınavda yine de puan mı kaybediyor?",
+  "duration": 3.727211,
+  "words": [
+   {
+    "text": "Çocuğunuz",
+    "start": 0,
+    "end": 0.436
+   },
+   {
+    "text": "konuyu",
+    "start": 0.491,
+    "end": 0.8
+   },
+   {
+    "text": "biliyor",
+    "start": 0.873,
+    "end": 1.382
+   },
+   {
+    "text": "ama",
+    "start": 1.473,
+    "end": 1.745
+   },
+   {
+    "text": "sınavda",
+    "start": 1.806,
+    "end": 2.255
+   },
+   {
+    "text": "yine",
+    "start": 2.298,
+    "end": 2.473
+   },
+   {
+    "text": "de",
+    "start": 2.521,
+    "end": 2.618
+   },
+   {
+    "text": "puan",
+    "start": 2.676,
+    "end": 2.909
+   },
+   {
+    "text": "mı",
+    "start": 2.957,
+    "end": 3.055
+   },
+   {
+    "text": "kaybediyor?",
+    "start": 3.091,
+    "end": 3.709
+   }
+  ]
+ },
+ "l2": {
+  "text": "Sorun bilgi değil. Soruyu anlamıyor. Maarif Modeli'yle sorular değişti: cevap artık metinde hazır durmuyor.",
+  "duration": 7.357279,
+  "words": [
+   {
+    "text": "Sorun",
+    "start": 0,
+    "end": 0.291
+   },
+   {
+    "text": "bilgi",
+    "start": 0.352,
+    "end": 0.655
+   },
+   {
+    "text": "değil.",
+    "start": 0.703,
+    "end": 1.273
+   },
+   {
+    "text": "Soruyu",
+    "start": 1.355,
+    "end": 1.745
+   },
+   {
+    "text": "anlamıyor.",
+    "start": 1.806,
+    "end": 2.473
+   },
+   {
+    "text": "Maarif",
+    "start": 2.633,
+    "end": 3.418
+   },
+   {
+    "text": "Modeli'yle",
+    "start": 3.466,
+    "end": 3.927
+   },
+   {
+    "text": "sorular",
+    "start": 3.982,
+    "end": 4.364
+   },
+   {
+    "text": "değişti:",
+    "start": 4.412,
+    "end": 5.236
+   },
+   {
+    "text": "cevap",
+    "start": 5.285,
+    "end": 5.527
+   },
+   {
+    "text": "artık",
+    "start": 5.6,
+    "end": 5.964
+   },
+   {
+    "text": "metinde",
+    "start": 6.018,
+    "end": 6.327
+   },
+   {
+    "text": "hazır",
+    "start": 6.375,
+    "end": 6.618
+   },
+   {
+    "text": "durmuyor.",
+    "start": 6.691,
+    "end": 7.345
+   }
+  ]
+ },
+ "l3": {
+  "text": "Eskiden \"Köy odalarında kimler kalırdı?\" diye soruluyordu. Şimdi \"Metnin konusu nedir? Kendi cümlenle yaz.\" deniyor.",
+  "duration": 6.917234,
+  "words": [
+   {
+    "text": "Eskiden",
+    "start": 0,
+    "end": 0.436
+   },
+   {
+    "text": "\"Köy",
+    "start": 0.545,
+    "end": 0.8
+   },
+   {
+    "text": "odalarında",
+    "start": 0.848,
+    "end": 1.309
+   },
+   {
+    "text": "kimler",
+    "start": 1.364,
+    "end": 1.673
+   },
+   {
+    "text": "kalırdı?\"",
+    "start": 1.727,
+    "end": 2.109
+   },
+   {
+    "text": "diye",
+    "start": 2.124,
+    "end": 2.182
+   },
+   {
+    "text": "soruluyordu.",
+    "start": 2.236,
+    "end": 2.909
+   },
+   {
+    "text": "Şimdi",
+    "start": 3.043,
+    "end": 3.709
+   },
+   {
+    "text": "\"Metnin",
+    "start": 3.855,
+    "end": 4.291
+   },
+   {
+    "text": "konusu",
+    "start": 4.354,
+    "end": 4.727
+   },
+   {
+    "text": "nedir?",
+    "start": 4.788,
+    "end": 5.345
+   },
+   {
+    "text": "Kendi",
+    "start": 5.396,
+    "end": 5.673
+   },
+   {
+    "text": "cümlenle",
+    "start": 5.709,
+    "end": 6.109
+   },
+   {
+    "text": "yaz.\"",
+    "start": 6.182,
+    "end": 6.473
+   },
+   {
+    "text": "deniyor.",
+    "start": 6.509,
+    "end": 6.909
+   }
+  ]
+ },
+ "l4": {
+  "text": "Korkmayın, bunun basit bir çözümü var.",
+  "duration": 2.477664,
+  "words": [
+   {
+    "text": "Korkmayın,",
+    "start": 0,
+    "end": 0.873
+   },
+   {
+    "text": "bunun",
+    "start": 0.921,
+    "end": 1.164
+   },
+   {
+    "text": "basit",
+    "start": 1.225,
+    "end": 1.527
+   },
+   {
+    "text": "bir",
+    "start": 1.564,
+    "end": 1.673
+   },
+   {
+    "text": "çözümü",
+    "start": 1.745,
+    "end": 2.109
+   },
+   {
+    "text": "var.",
+    "start": 2.164,
+    "end": 2.473
+   }
+  ]
+ },
+ "l5": {
+  "text": "Bu akşam çocuğunuz kısa bir metin okusun. Sonra sadece şunu sorun: \"Bunu bana tek cümleyle anlatır mısın?\" Her gün on dakika yeter.",
+  "duration": 9.103061,
+  "words": [
+   {
+    "text": "Bu",
+    "start": 0,
+    "end": 0.073
+   },
+   {
+    "text": "akşam",
+    "start": 0.134,
+    "end": 0.436
+   },
+   {
+    "text": "çocuğunuz",
+    "start": 0.485,
+    "end": 0.945
+   },
+   {
+    "text": "kısa",
+    "start": 1.004,
+    "end": 1.236
+   },
+   {
+    "text": "bir",
+    "start": 1.273,
+    "end": 1.382
+   },
+   {
+    "text": "metin",
+    "start": 1.418,
+    "end": 1.6
+   },
+   {
+    "text": "okusun.",
+    "start": 1.673,
+    "end": 2.109
+   },
+   {
+    "text": "Sonra",
+    "start": 2.255,
+    "end": 2.982
+   },
+   {
+    "text": "sadece",
+    "start": 3.045,
+    "end": 3.418
+   },
+   {
+    "text": "şunu",
+    "start": 3.491,
+    "end": 3.709
+   },
+   {
+    "text": "sorun:",
+    "start": 3.757,
+    "end": 4.4
+   },
+   {
+    "text": "\"Bunu",
+    "start": 4.6,
+    "end": 4.945
+   },
+   {
+    "text": "bana",
+    "start": 5.004,
+    "end": 5.236
+   },
+   {
+    "text": "tek",
+    "start": 5.309,
+    "end": 5.527
+   },
+   {
+    "text": "cümleyle",
+    "start": 5.564,
+    "end": 5.964
+   },
+   {
+    "text": "anlatır",
+    "start": 6.012,
+    "end": 6.327
+   },
+   {
+    "text": "mısın?\"",
+    "start": 6.364,
+    "end": 7.127
+   },
+   {
+    "text": "Her",
+    "start": 7.255,
+    "end": 7.636
+   },
+   {
+    "text": "gün",
+    "start": 7.691,
+    "end": 7.855
+   },
+   {
+    "text": "on",
+    "start": 7.927,
+    "end": 8.073
+   },
+   {
+    "text": "dakika",
+    "start": 8.135,
+    "end": 8.509
+   },
+   {
+    "text": "yeter.",
+    "start": 8.582,
+    "end": 9.091
+   }
+  ]
+ },
+ "l6": {
+  "text": "Obir Kurs Merkezi'nde Türkçe öğretmenlerimiz bunu her hafta çalışıyor: soruyu okumayı, metinde kanıt bulmayı ve kendi cümlesiyle yazmayı.",
+  "duration": 8.882018,
+  "words": [
+   {
+    "text": "Obir",
+    "start": 0,
+    "end": 0.218
+   },
+   {
+    "text": "Kurs",
+    "start": 0.255,
+    "end": 0.509
+   },
+   {
+    "text": "Merkezi'nde",
+    "start": 0.555,
+    "end": 1.091
+   },
+   {
+    "text": "Türkçe",
+    "start": 1.143,
+    "end": 1.455
+   },
+   {
+    "text": "öğretmenlerimiz",
+    "start": 1.495,
+    "end": 2.182
+   },
+   {
+    "text": "bunu",
+    "start": 2.24,
+    "end": 2.473
+   },
+   {
+    "text": "her",
+    "start": 2.527,
+    "end": 2.691
+   },
+   {
+    "text": "hafta",
+    "start": 2.727,
+    "end": 2.909
+   },
+   {
+    "text": "çalışıyor:",
+    "start": 2.97,
+    "end": 4.218
+   },
+   {
+    "text": "soruyu",
+    "start": 4.273,
+    "end": 4.582
+   },
+   {
+    "text": "okumayı,",
+    "start": 4.64,
+    "end": 5.236
+   },
+   {
+    "text": "metinde",
+    "start": 5.364,
+    "end": 5.964
+   },
+   {
+    "text": "kanıt",
+    "start": 6.025,
+    "end": 6.327
+   },
+   {
+    "text": "bulmayı",
+    "start": 6.382,
+    "end": 6.836
+   },
+   {
+    "text": "ve",
+    "start": 6.982,
+    "end": 7.273
+   },
+   {
+    "text": "kendi",
+    "start": 7.357,
+    "end": 7.782
+   },
+   {
+    "text": "cümlesiyle",
+    "start": 7.818,
+    "end": 8.291
+   },
+   {
+    "text": "yazmayı.",
+    "start": 8.364,
+    "end": 8.873
+   }
+  ]
+ },
+ "l7": {
+  "text": "Evde uygulayacağınız beş soruluk listeyi isterseniz, yorumlara OKU yazın.",
+  "duration": 4.450227,
+  "words": [
+   {
+    "text": "Evde",
+    "start": 0,
+    "end": 0.218
+   },
+   {
+    "text": "uygulayacağınız",
+    "start": 0.273,
+    "end": 0.945
+   },
+   {
+    "text": "beş",
+    "start": 1,
+    "end": 1.164
+   },
+   {
+    "text": "soruluk",
+    "start": 1.218,
+    "end": 1.6
+   },
+   {
+    "text": "listeyi",
+    "start": 1.644,
+    "end": 2.036
+   },
+   {
+    "text": "isterseniz,",
+    "start": 2.127,
+    "end": 2.909
+   },
+   {
+    "text": "yorumlara",
+    "start": 2.994,
+    "end": 3.636
+   },
+   {
+    "text": "OKU",
+    "start": 3.757,
+    "end": 4.073
+   },
+   {
+    "text": "yazın.",
+    "start": 4.127,
+    "end": 4.436
+   }
+  ]
+ }
+}

@@ -1,0 +1,196 @@
+{
+ "l1": {
+  "text": "Sivas'taki dört, beş, altı ve yedinci sınıf velileri!",
+  "duration": 3.647166,
+  "words": [
+   {
+    "text": "Sivas'taki",
+    "start": 0,
+    "end": 0.655
+   },
+   {
+    "text": "dört,",
+    "start": 0.742,
+    "end": 1.236
+   },
+   {
+    "text": "beş,",
+    "start": 1.327,
+    "end": 1.745
+   },
+   {
+    "text": "altı",
+    "start": 1.804,
+    "end": 2.036
+   },
+   {
+    "text": "ve",
+    "start": 2.134,
+    "end": 2.327
+   },
+   {
+    "text": "yedinci",
+    "start": 2.364,
+    "end": 2.691
+   },
+   {
+    "text": "sınıf",
+    "start": 2.752,
+    "end": 3.055
+   },
+   {
+    "text": "velileri!",
+    "start": 3.091,
+    "end": 3.636
+   }
+  ]
+ },
+ "l2": {
+  "text": "Çocuğunuz yeni nesil sorularda gerçekte nerede?",
+  "duration": 3.210816,
+  "words": [
+   {
+    "text": "Çocuğunuz",
+    "start": 0,
+    "end": 0.509
+   },
+   {
+    "text": "yeni",
+    "start": 0.596,
+    "end": 0.945
+   },
+   {
+    "text": "nesil",
+    "start": 1,
+    "end": 1.236
+   },
+   {
+    "text": "sorularda",
+    "start": 1.291,
+    "end": 1.891
+   },
+   {
+    "text": "gerçekte",
+    "start": 1.978,
+    "end": 2.618
+   },
+   {
+    "text": "nerede?",
+    "start": 2.655,
+    "end": 3.2
+   }
+  ]
+ },
+ "l3": {
+  "text": "Obir Bursluluk Sınavı'nda ücretsiz olarak seviyesini görsün, başarısına göre burs kazansın.",
+  "duration": 5.379252,
+  "words": [
+   {
+    "text": "Obir",
+    "start": 0,
+    "end": 0.291
+   },
+   {
+    "text": "Bursluluk",
+    "start": 0.4,
+    "end": 0.873
+   },
+   {
+    "text": "Sınavı'nda",
+    "start": 0.921,
+    "end": 1.382
+   },
+   {
+    "text": "ücretsiz",
+    "start": 1.455,
+    "end": 2.036
+   },
+   {
+    "text": "olarak",
+    "start": 2.088,
+    "end": 2.4
+   },
+   {
+    "text": "seviyesini",
+    "start": 2.448,
+    "end": 2.909
+   },
+   {
+    "text": "görsün,",
+    "start": 2.982,
+    "end": 3.782
+   },
+   {
+    "text": "başarısına",
+    "start": 3.83,
+    "end": 4.291
+   },
+   {
+    "text": "göre",
+    "start": 4.335,
+    "end": 4.509
+   },
+   {
+    "text": "burs",
+    "start": 4.582,
+    "end": 4.8
+   },
+   {
+    "text": "kazansın.",
+    "start": 4.836,
+    "end": 5.382
+   }
+  ]
+ },
+ "l4": {
+  "text": "Sınav yedi Şubat Pazar. Başvuru bir dakika, hemen başvurun!",
+  "duration": 3.793265,
+  "words": [
+   {
+    "text": "Sınav",
+    "start": 0,
+    "end": 0.291
+   },
+   {
+    "text": "yedi",
+    "start": 0.327,
+    "end": 0.509
+   },
+   {
+    "text": "Şubat",
+    "start": 0.57,
+    "end": 0.873
+   },
+   {
+    "text": "Pazar.",
+    "start": 0.945,
+    "end": 1.382
+   },
+   {
+    "text": "Başvuru",
+    "start": 1.527,
+    "end": 2.109
+   },
+   {
+    "text": "bir",
+    "start": 2.145,
+    "end": 2.255
+   },
+   {
+    "text": "dakika,",
+    "start": 2.317,
+    "end": 2.909
+   },
+   {
+    "text": "hemen",
+    "start": 2.957,
+    "end": 3.2
+   },
+   {
+    "text": "başvurun!",
+    "start": 3.252,
+    "end": 3.782
+   }
+  ]
+ }
+}

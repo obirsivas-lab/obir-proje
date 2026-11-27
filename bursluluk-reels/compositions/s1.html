@@ -1,0 +1,37 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#F7F5EE; }
+#root .c { position:absolute; left:0; width:1080px; text-align:center; }
+#s1-kicker { top:330px; }
+#s1-kicker span { display:inline-block; font-weight:900; font-size:30px; letter-spacing:6px; color:#1D1D20; background:#F6D70C; padding:10px 24px; border-radius:14px; }
+#s1-t1 { top:420px; font-weight:900; font-size:168px; line-height:1; letter-spacing:-4px; color:#F6D70C; }
+#s1-t2 { top:600px; font-weight:900; font-size:168px; line-height:1; letter-spacing:-4px; }
+#s1-row { top:840px; display:flex; justify-content:center; gap:20px; }
+#root .pill { height:112px; border-radius:28px; padding:0 36px; display:flex; align-items:center; font-weight:900; font-size:48px; white-space:nowrap; }
+#root .pill.y { background:#F6D70C; color:#1D1D20; }
+#root .pill.w { background:#F7F5EE; color:#1D1D20; }
+#s1-grades { top:1000px; display:flex; justify-content:center; align-items:center; gap:16px; }
+#root .g { width:116px; height:116px; border:5px solid #F6D70C; border-radius:22px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:66px; color:#F6D70C; }
+#s1-sinif { font-weight:900; font-size:46px; margin-left:10px; }
+</style>
+<div id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-duration="3.9">
+  <div id="s1-kicker" class="c"><span>SİVAS · 2027</span></div>
+  <div id="s1-t1" class="c">BURSLULUK</div>
+  <div id="s1-t2" class="c">SINAVI</div>
+  <div id="s1-row" class="c"><div id="s1-date" class="pill y">7 Şubat Pazar</div><div id="s1-free" class="pill w">ÜCRETSİZ</div></div>
+  <div id="s1-grades" class="c"><div id="s1-g4" class="g">4</div><div id="s1-g5" class="g">5</div><div id="s1-g6" class="g">6</div><div id="s1-g7" class="g">7</div><div id="s1-sinif">sınıflar</div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+// Kapak: her şey ilk karede ekranda. Sadece vurgular var.
+tl.fromTo("#s1-t1", { scale: 1 }, { scale: 1.035, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.15);
+const pop = (sel, t) => {
+  tl.to(sel, { scale: 1.25, backgroundColor: "#F6D70C", color: "#1D1D20", duration: 0.16, ease: "back.out(3)" }, t);
+  tl.to(sel, { scale: 1, duration: 0.25, ease: "power2.out" }, t + 0.16);
+};
+pop("#s1-g4", 0.89); pop("#s1-g5", 1.48); pop("#s1-g6", 1.95); pop("#s1-g7", 2.51);
+tl.fromTo("#s1-date", { scale: 1 }, { scale: 1.07, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2.95);
+tl.to(["#s1-kicker", "#s1-t1", "#s1-t2", "#s1-row", "#s1-grades"], { y: -60, opacity: 0, duration: 0.3, stagger: 0.03, ease: "power2.in" }, 3.5);
+window.__timelines["s1"] = tl;
+</script>
+</template>

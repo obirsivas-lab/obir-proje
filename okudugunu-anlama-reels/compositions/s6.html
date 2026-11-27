@@ -1,0 +1,29 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#1E2B4A; }
+#s6-a { position:absolute; left:70px; width:940px; top:345px; text-align:center; font-size:54px; font-weight:900; color:#5B6477; }
+#s6-b { position:absolute; left:70px; width:940px; top:420px; text-align:center; font-size:76px; font-weight:900; line-height:1.08; }
+#s6-card { position:absolute; left:70px; top:640px; width:940px; height:570px; border-radius:36px; background:#1E2B4A; }
+#root .st { position:absolute; left:50px; width:840px; height:140px; display:flex; align-items:center; gap:34px; color:#FFFFFF; font-size:62px; font-weight:900; }
+#root .st .n { width:104px; height:104px; border-radius:52px; background:#F6D70C; color:#1E2B4A; display:flex; align-items:center; justify-content:center; font-size:60px; flex:none; }
+</style>
+<div id="root" data-composition-id="s6" data-width="1080" data-height="1920" data-duration="9.3">
+<div id="s6-a">Obir Kurs Merkezi'nde</div>
+<div id="s6-b">Türkçe öğretmenlerimiz<br><span style="color:#D6453D">her hafta</span> çalışıyor:</div>
+<div id="s6-card">
+  <div class="st" id="s6-1" style="top:50px;"><div class="n">1</div><div>Soruyu oku</div></div>
+  <div class="st" id="s6-2" style="top:215px;"><div class="n">2</div><div>Metinde kanıtı bul</div></div>
+  <div class="st" id="s6-3" style="top:380px;"><div class="n">3</div><div>Kendi cümlenle yaz</div></div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s6-a",{opacity:0,y:20},{opacity:1,y:0,duration:0.3,ease:"power2.out"},0.1);
+tl.fromTo("#s6-b",{opacity:0,y:30},{opacity:1,y:0,duration:0.35,ease:"power3.out"},1.2);
+tl.fromTo("#s6-card",{opacity:0,y:60},{opacity:1,y:0,duration:0.4,ease:"power3.out"},3.3);
+tl.fromTo("#s6-1",{opacity:0,x:-50},{opacity:1,x:0,duration:0.3,ease:"back.out(1.6)"},4.35);
+tl.fromTo("#s6-2",{opacity:0,x:-50},{opacity:1,x:0,duration:0.3,ease:"back.out(1.6)"},6.1);
+tl.fromTo("#s6-3",{opacity:0,x:-50},{opacity:1,x:0,duration:0.3,ease:"back.out(1.6)"},7.45);
+window.__timelines["s6"] = tl;
+</script>
+</template>

@@ -1,0 +1,438 @@
+{
+ "l1": {
+  "text": "Çocuğunuz dörtte birin, üçte birden büyük olduğunu mu sanıyor?",
+  "words": [
+   {
+    "text": "Çocuğunuz",
+    "start": 0.0,
+    "end": 0.509
+   },
+   {
+    "text": "dörtte",
+    "start": 0.553,
+    "end": 0.873
+   },
+   {
+    "text": "birin,",
+    "start": 0.927,
+    "end": 1.455
+   },
+   {
+    "text": "üçte",
+    "start": 1.527,
+    "end": 1.745
+   },
+   {
+    "text": "birden",
+    "start": 1.797,
+    "end": 2.109
+   },
+   {
+    "text": "büyük",
+    "start": 2.157,
+    "end": 2.4
+   },
+   {
+    "text": "olduğunu",
+    "start": 2.44,
+    "end": 2.764
+   },
+   {
+    "text": "mu",
+    "start": 2.788,
+    "end": 2.836
+   },
+   {
+    "text": "sanıyor?",
+    "start": 2.891,
+    "end": 3.418
+   }
+  ],
+  "end": 3.418
+ },
+ "l2": {
+  "text": "Bir pizza düşünelim. Dört eşit parçaya bölüyoruz. Alttaki sayı, payda: kaç eşit parçaya böldüğümüz.",
+  "words": [
+   {
+    "text": "Bir",
+    "start": 0.0,
+    "end": 0.145
+   },
+   {
+    "text": "pizza",
+    "start": 0.194,
+    "end": 0.436
+   },
+   {
+    "text": "düşünelim.",
+    "start": 0.473,
+    "end": 0.945
+   },
+   {
+    "text": "Dört",
+    "start": 1.236,
+    "end": 1.673
+   },
+   {
+    "text": "eşit",
+    "start": 1.731,
+    "end": 1.964
+   },
+   {
+    "text": "parçaya",
+    "start": 2.022,
+    "end": 2.327
+   },
+   {
+    "text": "bölüyoruz.",
+    "start": 2.382,
+    "end": 2.982
+   },
+   {
+    "text": "Alttaki",
+    "start": 3.175,
+    "end": 3.855
+   },
+   {
+    "text": "sayı,",
+    "start": 3.927,
+    "end": 4.473
+   },
+   {
+    "text": "payda:",
+    "start": 4.536,
+    "end": 5.273
+   },
+   {
+    "text": "kaç",
+    "start": 5.373,
+    "end": 5.673
+   },
+   {
+    "text": "eşit",
+    "start": 5.716,
+    "end": 5.891
+   },
+   {
+    "text": "parçaya",
+    "start": 5.949,
+    "end": 6.327
+   },
+   {
+    "text": "böldüğümüz.",
+    "start": 6.375,
+    "end": 6.982
+   }
+  ],
+  "end": 6.982
+ },
+ "l3": {
+  "text": "Bir dilim alıyoruz. Üstteki sayı, pay: kaç parça aldığımız. İşte dörtte bir.",
+  "words": [
+   {
+    "text": "Bir",
+    "start": 0.0,
+    "end": 0.073
+   },
+   {
+    "text": "dilim",
+    "start": 0.109,
+    "end": 0.291
+   },
+   {
+    "text": "alıyoruz.",
+    "start": 0.339,
+    "end": 1.127
+   },
+   {
+    "text": "Üstteki",
+    "start": 1.209,
+    "end": 1.6
+   },
+   {
+    "text": "sayı,",
+    "start": 1.673,
+    "end": 2.109
+   },
+   {
+    "text": "pay:",
+    "start": 2.218,
+    "end": 2.618
+   },
+   {
+    "text": "kaç",
+    "start": 2.745,
+    "end": 3.127
+   },
+   {
+    "text": "parça",
+    "start": 3.182,
+    "end": 3.491
+   },
+   {
+    "text": "aldığımız.",
+    "start": 3.527,
+    "end": 4.4
+   },
+   {
+    "text": "İşte",
+    "start": 4.48,
+    "end": 4.8
+   },
+   {
+    "text": "dörtte",
+    "start": 4.858,
+    "end": 5.309
+   },
+   {
+    "text": "bir.",
+    "start": 5.382,
+    "end": 5.6
+   }
+  ],
+  "end": 5.6
+ },
+ "l4": {
+  "text": "Şimdi aynı pizzayı üç parçaya bölelim. Dilimler büyüdü, değil mi? Payda büyüdükçe dilim küçülür. Yani üçte bir, dörtte birden büyüktür.",
+  "words": [
+   {
+    "text": "Şimdi",
+    "start": 0.0,
+    "end": 0.291
+   },
+   {
+    "text": "aynı",
+    "start": 0.349,
+    "end": 0.582
+   },
+   {
+    "text": "pizzayı",
+    "start": 0.655,
+    "end": 1.164
+   },
+   {
+    "text": "üç",
+    "start": 1.285,
+    "end": 1.527
+   },
+   {
+    "text": "parçaya",
+    "start": 1.585,
+    "end": 1.964
+   },
+   {
+    "text": "bölelim.",
+    "start": 2.012,
+    "end": 2.4
+   },
+   {
+    "text": "Dilimler",
+    "start": 2.564,
+    "end": 3.345
+   },
+   {
+    "text": "büyüdü,",
+    "start": 3.4,
+    "end": 3.782
+   },
+   {
+    "text": "değil",
+    "start": 3.818,
+    "end": 4.0
+   },
+   {
+    "text": "mi?",
+    "start": 4.048,
+    "end": 4.218
+   },
+   {
+    "text": "Payda",
+    "start": 4.4,
+    "end": 5.018
+   },
+   {
+    "text": "büyüdükçe",
+    "start": 5.073,
+    "end": 5.818
+   },
+   {
+    "text": "dilim",
+    "start": 5.891,
+    "end": 6.255
+   },
+   {
+    "text": "küçülür.",
+    "start": 6.327,
+    "end": 6.836
+   },
+   {
+    "text": "Yani",
+    "start": 7.011,
+    "end": 7.709
+   },
+   {
+    "text": "üçte",
+    "start": 7.806,
+    "end": 8.145
+   },
+   {
+    "text": "bir,",
+    "start": 8.182,
+    "end": 8.582
+   },
+   {
+    "text": "dörtte",
+    "start": 8.625,
+    "end": 8.945
+   },
+   {
+    "text": "birden",
+    "start": 8.997,
+    "end": 9.309
+   },
+   {
+    "text": "büyüktür.",
+    "start": 9.345,
+    "end": 9.964
+   }
+  ],
+  "end": 9.964
+ },
+ "l5": {
+  "text": "Peki iki dilim alırsak? Dörtte iki, pizzanın tam yarısı.",
+  "words": [
+   {
+    "text": "Peki",
+    "start": 0.0,
+    "end": 0.291
+   },
+   {
+    "text": "iki",
+    "start": 0.345,
+    "end": 0.509
+   },
+   {
+    "text": "dilim",
+    "start": 0.564,
+    "end": 0.8
+   },
+   {
+    "text": "alırsak?",
+    "start": 0.848,
+    "end": 1.382
+   },
+   {
+    "text": "Dörtte",
+    "start": 1.673,
+    "end": 2.182
+   },
+   {
+    "text": "iki,",
+    "start": 2.255,
+    "end": 2.909
+   },
+   {
+    "text": "pizzanın",
+    "start": 2.91,
+    "end": 3.346
+   },
+   {
+    "text": "tam",
+    "start": 3.419,
+    "end": 3.637
+   },
+   {
+    "text": "yarısı.",
+    "start": 3.692,
+    "end": 4.146
+   }
+  ],
+  "end": 4.146
+ },
+ "l6": {
+  "text": "Sıra sizde: beşte iki mi büyük, üçte iki mi? Cevabı yorumlara yazın. Kaydedin, bir veliye gönderin.",
+  "words": [
+   {
+    "text": "Sıra",
+    "start": 0.0,
+    "end": 0.145
+   },
+   {
+    "text": "sizde:",
+    "start": 0.218,
+    "end": 0.582
+   },
+   {
+    "text": "beşte",
+    "start": 0.764,
+    "end": 1.382
+   },
+   {
+    "text": "iki",
+    "start": 1.418,
+    "end": 1.527
+   },
+   {
+    "text": "mi",
+    "start": 1.575,
+    "end": 1.673
+   },
+   {
+    "text": "büyük,",
+    "start": 1.734,
+    "end": 2.327
+   },
+   {
+    "text": "üçte",
+    "start": 2.375,
+    "end": 2.545
+   },
+   {
+    "text": "iki",
+    "start": 2.6,
+    "end": 2.764
+   },
+   {
+    "text": "mi?",
+    "start": 2.812,
+    "end": 2.982
+   },
+   {
+    "text": "Cevabı",
+    "start": 3.345,
+    "end": 3.927
+   },
+   {
+    "text": "yorumlara",
+    "start": 3.975,
+    "end": 4.364
+   },
+   {
+    "text": "yazın.",
+    "start": 4.418,
+    "end": 4.727
+   },
+   {
+    "text": "Kaydedin,",
+    "start": 4.873,
+    "end": 5.673
+   },
+   {
+    "text": "bir",
+    "start": 5.764,
+    "end": 6.036
+   },
+   {
+    "text": "veliye",
+    "start": 6.073,
+    "end": 6.4
+   },
+   {
+    "text": "gönderin.",
+    "start": 6.452,
+    "end": 6.909
+   }
+  ],
+  "end": 6.909
+ }
+}

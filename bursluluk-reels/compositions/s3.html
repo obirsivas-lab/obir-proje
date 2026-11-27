@@ -1,0 +1,31 @@
+<template>
+<style>
+#root { position:absolute; inset:0; overflow:hidden; font-family:'Nunito',sans-serif; color:#F7F5EE; }
+#s3-kicker { position:absolute; left:0; width:1080px; top:330px; text-align:center; }
+#s3-kicker span { display:inline-block; font-weight:900; font-size:34px; letter-spacing:4px; color:#F6D70C; border:4px solid #F6D70C; padding:10px 24px; border-radius:16px; }
+#root .kart { position:absolute; left:110px; width:860px; height:210px; border-radius:30px; background:rgba(255,255,255,.06); border:3px solid rgba(255,255,255,.14); display:flex; align-items:center; gap:30px; padding:0 34px; }
+#root .ik { width:120px; height:120px; flex:none; border-radius:28px; background:#F6D70C; display:flex; align-items:center; justify-content:center; }
+#root .kart b { display:block; font-weight:900; font-size:62px; line-height:1.05; }
+#root .kart small { display:block; font-weight:800; font-size:34px; color:#bdbab0; margin-top:6px; }
+#s3-k1 { top:450px; } #s3-k2 { top:690px; } #s3-k3 { top:930px; }
+#s3-k3 { background:#F6D70C; border-color:#F6D70C; color:#1D1D20; }
+#s3-k3 .ik { background:#1D1D20; }
+#s3-k3 small { color:#4d4600; }
+</style>
+<div id="root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="5.7">
+  <div id="s3-kicker"><span>OBİR BURSLULUK SINAVI</span></div>
+  <div id="s3-k1" class="kart"><span class="ik"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8c-2-4-6-4-6-1s6 1 6 1 6 2 6-1-4-3-6 1"/></svg></span><div><b>Ücretsiz katılım</b><small>Başvuru 1 dakika</small></div></div>
+  <div id="s3-k2" class="kart"><span class="ik"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span><div><b>Seviyesini görsün</b><small>Maarif Modeli'ne uygun sorular</small></div></div>
+  <div id="s3-k3" class="kart"><span class="ik"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#F6D70C" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21l1.5-7L2 9.3l7-.8L12 2Z"/></svg></span><div><b>Burs kazansın</b><small>Başarısına göre, gelecek yıl için</small></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.from("#s3-kicker", { y: -30, opacity: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+tl.from("#s3-k1", { x: -160, opacity: 0, duration: 0.42, ease: "back.out(1.6)" }, 1.45);
+tl.from("#s3-k2", { x: 160, opacity: 0, duration: 0.42, ease: "back.out(1.6)" }, 2.45);
+tl.from("#s3-k3", { scale: 0.6, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 3.85);
+tl.to("#s3-k3", { scale: 1.05, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, 4.68);
+tl.to(["#s3-kicker", "#s3-k1", "#s3-k2", "#s3-k3"], { y: -60, opacity: 0, duration: 0.25, stagger: 0.03, ease: "power2.in" }, 5.4);
+window.__timelines["s3"] = tl;
+</script>
+</template>

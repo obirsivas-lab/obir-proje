@@ -1,0 +1,5 @@
+- [Marka yüzü ve sesi: Elif Öztürk](brand-voice-elif-ozturk.md) — kendi videolarında gerçek sesi; bursluluk reklamında yapay ses reddedildi → Elif Hoca'nın kaydı; klon yok
+- [Reels görsel kimliği](reels-visual-style.md) — logo dosyası, renkler, onaylı ilk reels şablonu
+- [Aralık 2026 Instagram planı](instagram-content-plan-dec-2026.md) — plan belgesi linki; reklamlı/organik ayrımı şart
+- [Reels içerik tercihleri](reels-content-feedback.md) — okuduğunu anlama öncelikli, animasyonda isim yok, farklı görünümler, ekranı verimli kullan
+- [Web sitesi projesi](website-project.md) — LGS + 5-7. sınıf, butik 8-10 kişi, Maarif Modeli farkı, fiyat yok, deneme sonuç sorgulama, Ocak bursluluk
