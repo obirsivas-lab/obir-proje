@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Obir Kurs Merkezi – Sivas LGS Hazırlık ve 5-6-7. Sınıf Kursu</title>
 <meta name="description" content="Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi. Maarif Modeli'ne uyumlu öğretim, düzenli deneme sınavları ve online sonuç takibi.">
@@ -343,12 +344,26 @@ h2.bb{font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900;letter-s
 .kadro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .ogr-kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:24px;overflow:hidden;transition:transform .3s}
 .ogr-kart:hover{transform:translateY(-6px)}
-.ogr-foto{aspect-ratio:4/4.2;background:linear-gradient(160deg,#2f2f35,#1d1d20);position:relative;display:grid;place-items:center;overflow:hidden}
+.ogr-foto{aspect-ratio:4/5;background:linear-gradient(160deg,#2f2f35,#1d1d20);position:relative;display:grid;place-items:center;overflow:hidden}
 .ogr-foto::after{content:"";position:absolute;width:160%;height:160%;border-radius:50%;border:3px solid var(--sari);border-color:var(--sari) transparent transparent transparent;top:55%;opacity:.5}
-.ogr-foto span{font-size:13px;font-weight:800;color:#77757a;border:1.5px dashed #4a4a52;padding:8px 12px;border-radius:10px}
+.ogr-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:1;transition:transform .5s}
+.ogr-kart:hover .ogr-foto img{transform:scale(1.04)}
+.bas-harf{position:relative;z-index:1;width:46%;aspect-ratio:1;border-radius:50%;background:var(--sari);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:clamp(26px,3.4vw,40px);letter-spacing:-1px}
 .ogr-bilgi{padding:16px 18px}
 .ogr-bilgi b{font-size:17px;font-weight:900;display:block}
 .ogr-bilgi span{font-size:14px;color:var(--soluk);font-weight:700}
+.alt-baslik{font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--soluk);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.alt-baslik::after{content:"";flex:1;height:1px;background:var(--cizgi)}
+.yon-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px;margin-bottom:44px}
+.yon-kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:24px;padding:18px;display:flex;align-items:center;gap:16px}
+.yon-kart.mudur{background:var(--ink);color:var(--krem);border-color:var(--ink)}
+.yon-foto{width:84px;height:84px;flex:none;border-radius:50%;overflow:hidden;background:linear-gradient(160deg,#2f2f35,#1d1d20);display:grid;place-items:center}
+.yon-foto img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.yon-foto .bas-harf{width:100%;font-size:28px}
+.yon-kart.mudur .yon-foto{width:96px;height:96px;box-shadow:0 0 0 4px rgba(246,215,12,.35)}
+.yon-kart b{display:block;font-size:18px;font-weight:900;line-height:1.2}
+.yon-kart b+span{display:block;font-size:14px;font-weight:800;color:var(--soluk);margin-top:3px}
+.yon-kart.mudur b+span{color:var(--sari)}
 
 /* ---------- İLETİŞİM ---------- */
 .iletisim-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -378,9 +393,9 @@ h2.bb{font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900;letter-s
 .bilgi .ik{width:50px;height:50px;border-radius:15px;background:var(--sari);display:grid;place-items:center;flex:none}
 .bilgi small{display:block;color:#9e9b90;font-weight:800;font-size:12.5px;letter-spacing:1px;text-transform:uppercase}
 .bilgi b{font-size:17px;font-weight:900}
-.harita{border-radius:20px;overflow:hidden;background:#26262b;border:1px solid #36363d;min-height:190px;display:grid;place-items:center;color:#77757a;font-weight:800;font-size:14px;position:relative}
+.harita{text-decoration:none;color:inherit;border-radius:20px;overflow:hidden;background:#26262b;border:1px solid #36363d;min-height:190px;display:grid;place-items:center;color:#77757a;font-weight:800;font-size:14px;position:relative}
 .harita svg{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
-.harita span{position:relative;border:1.5px dashed #4a4a52;padding:8px 12px;border-radius:10px;background:#26262b}
+.harita span{position:relative;color:var(--sari);border:1.5px dashed #4a4a52;padding:8px 12px;border-radius:10px;background:#26262b}
 
 /* ---------- FOOTER ---------- */
 footer{background:#161618;color:#9e9b90;padding:60px 0 30px}
@@ -421,6 +436,7 @@ footer a:hover{color:var(--sari)}
   .ust-btnlar{margin-left:auto}
   .prog-grid{grid-template-columns:1fr 1fr}
   .kadro-grid{grid-template-columns:repeat(2,1fr)}
+  .yon-grid{grid-template-columns:1fr}
 }
 @media (max-width:900px){
   .hero-ic{grid-template-columns:1fr;padding:48px 20px 100px;gap:20px}
@@ -473,6 +489,11 @@ footer a:hover{color:var(--sari)}
   .kadro-grid{gap:10px}
   .ogr-bilgi{padding:12px}
   .ogr-bilgi b{font-size:15px}
+  .ogr-bilgi span{font-size:13px}
+  .yon-kart{padding:14px}
+  .yon-foto{width:68px;height:68px}
+  .yon-kart.mudur .yon-foto{width:76px;height:76px}
+  .yon-kart b{font-size:16px}
   .y1{right:0}.y2{left:0}.y3{right:0}
   .telefon{width:260px;height:530px}
   .f-grid{grid-template-columns:1fr}
@@ -484,12 +505,12 @@ footer a:hover{color:var(--sari)}
 </style>
 </head>
 <body>
-<div class="taslak-bant">TASLAK · Fotoğraflar, adres ve telefon gerçek bilgilerle değiştirilecek</div>
+<div class="taslak-bant">TASLAK · Fotoğraflar, adres ve telefon gerçek bilgilerle değiştirilecek · Diğer sayfalar: <a href="sonuc-ekrani-taslak.html" style="text-decoration:underline">Veli sonuç portalı</a> · <a href="bursluluk.html" style="text-decoration:underline">Bursluluk başvurusu</a> · <a href="bursluluk-belge-taslak.html" style="text-decoration:underline">Giriş belgesi ve WhatsApp mesajı</a></div>
 
 <!-- ============ ÜST MENÜ ============ -->
 <header class="ust" id="ust">
   <div class="kap ust-ic">
-    <a href="#" class="logo"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></a>
+    <a href="#hakkimizda" class="logo"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></a>
     <ul class="menu">
       <li><a href="#hakkimizda">Hakkımızda</a>
         <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a></div></li>
@@ -779,11 +800,22 @@ footer a:hover{color:var(--sari)}
       <span class="kucuk-baslik">Kadromuz</span>
       <h2 class="bb">Öğrencilerimizi adıyla tanıyan öğretmenler</h2>
     </div>
+    <h3 class="alt-baslik gor">Yönetim</h3>
+    <div class="yon-grid">
+      <div class="yon-kart mudur gor"><div class="yon-foto"><span class="bas-harf">EÖ</span></div><div><b>Elif ÖZTÜRK</b><span>Kurum Müdürü</span></div></div>
+      <div class="yon-kart gor g2"><div class="yon-foto"><span class="bas-harf">FÖ</span></div><div><b>Fırat Kemal ÖZTÜRK</b><span>Müdür Yardımcısı</span></div></div>
+      <div class="yon-kart gor g3"><div class="yon-foto"><img src="assets/kadro/mujgan-kantar.jpg" alt="Müjgan KANTAR" loading="lazy"></div><div><b>Müjgan KANTAR</b><span>Müdür Yardımcısı</span></div></div>
+    </div>
+    <h3 class="alt-baslik gor">Öğretmenlerimiz</h3>
     <div class="kadro-grid">
-      <div class="ogr-kart gor"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Matematik</span></div></div>
-      <div class="ogr-kart gor g2"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Türkçe</span></div></div>
-      <div class="ogr-kart gor g3"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>Fen Bilimleri</span></div></div>
-      <div class="ogr-kart gor g4"><div class="ogr-foto"><span>Fotoğraf</span></div><div class="ogr-bilgi"><b>Öğretmen Adı</b><span>İngilizce</span></div></div>
+      <div class="ogr-kart gor"><div class="ogr-foto"><span class="bas-harf">EÖ</span></div><div class="ogr-bilgi"><b>Elif ÖZTÜRK</b><span>Türkçe</span></div></div>
+      <div class="ogr-kart gor g2"><div class="ogr-foto"><img src="assets/kadro/yasemin-gulsafak.jpg" alt="Yasemin GÜLŞAFAK" loading="lazy"></div><div class="ogr-bilgi"><b>Yasemin GÜLŞAFAK</b><span>Türkçe</span></div></div>
+      <div class="ogr-kart gor g3"><div class="ogr-foto"><img src="assets/kadro/ceyda-tuna.jpg" alt="Ceyda TUNA" loading="lazy"></div><div class="ogr-bilgi"><b>Ceyda TUNA</b><span>Matematik</span></div></div>
+      <div class="ogr-kart gor g4"><div class="ogr-foto"><img src="assets/kadro/esma-cansu.jpg" alt="Esma CANSU" loading="lazy"></div><div class="ogr-bilgi"><b>Esma CANSU</b><span>Matematik</span></div></div>
+      <div class="ogr-kart gor"><div class="ogr-foto"><img src="assets/kadro/ufuk-tunc.jpg" alt="Ufuk TUNÇ" loading="lazy"></div><div class="ogr-bilgi"><b>Ufuk TUNÇ</b><span>Matematik</span></div></div>
+      <div class="ogr-kart gor g2"><div class="ogr-foto"><img src="assets/kadro/ebrar-sen.jpg" alt="Ebrar ŞEN" loading="lazy"></div><div class="ogr-bilgi"><b>Ebrar ŞEN</b><span>Sosyal Bilgiler</span></div></div>
+      <div class="ogr-kart gor g3"><div class="ogr-foto"><img src="assets/kadro/zeynep-altunbas.jpg" alt="Zeynep ALTUNBAŞ" loading="lazy"></div><div class="ogr-bilgi"><b>Zeynep ALTUNBAŞ</b><span>İngilizce</span></div></div>
+      <div class="ogr-kart gor g4"><div class="ogr-foto"><img src="assets/kadro/mine-temel.jpg" alt="Mine TEMEL" loading="lazy"></div><div class="ogr-bilgi"><b>Mine TEMEL</b><span>Rehberlik</span></div></div>
     </div>
   </div>
 </section>
@@ -831,13 +863,13 @@ footer a:hover{color:var(--sari)}
         <span class="kucuk-baslik">İletişim</span>
         <h2 class="bb" style="margin-bottom:22px">Bir telefon kadar yakınız.</h2>
       </div>
-      <a href="#" class="bilgi gor g2"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Telefon</small><b>0 (346) ___ __ __</b></div></a>
-      <a href="#" class="bilgi gor g3"><span class="ik" style="background:#25D366"><svg width="22" height="22" viewBox="0 0 24 24" fill="#06351a"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></span><div><small>WhatsApp</small><b>Hemen yazın</b></div></a>
-      <div class="bilgi gor g3"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Adres</small><b>Merkez, Sivas · adres eklenecek</b></div></div>
-      <div class="harita gor g4">
+      <a href="tel:+905332298058" class="bilgi gor g2"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Telefon</small><b>0533 229 80 58</b></div></a>
+      <a href="https://wa.me/905332298058?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="bilgi gor g3"><span class="ik" style="background:#25D366"><svg width="22" height="22" viewBox="0 0 24 24" fill="#06351a"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></span><div><small>WhatsApp</small><b>Hemen yazın</b></div></a>
+      <div class="bilgi gor g3"><span class="ik"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Adres</small><b>Kardeşler Mahallesi, Bağdat Caddesi, 51-48 Sokak No: 8A, Uygun AVM arkası · Sivas</b></div></div>
+      <a class="harita gor g4" href="https://www.google.com/maps/search/?api=1&query=Obir+Kurs+Merkezi+Sivas" target="_blank" rel="noopener">
         <svg viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true"><g stroke="#4a4a52" stroke-width="2" fill="none"><path d="M0 60 H400"/><path d="M0 140 H400"/><path d="M90 0 V200"/><path d="M250 0 V200"/><path d="M0 200 L180 0"/></g><circle cx="250" cy="100" r="10" fill="#F6D70C"/></svg>
-        <span>Google Haritalar konumu eklenecek</span>
-      </div>
+        <span>Google Haritalar'da yol tarifi al →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -848,13 +880,13 @@ footer a:hover{color:var(--sari)}
       <div><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"><p style="font-weight:600;font-size:14.5px;max-width:300px">Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi.</p></div>
       <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#">Galeri</a><a href="#maarif">Maarif Modeli</a></div>
       <div><h4>Eğitim</h4><a href="#programlar">Eğitim Paketlerimiz</a><a href="#surec">Sınavlar</a><a href="bursluluk.html">Bursluluk</a><a href="sonuc-ekrani-taslak.html">Deneme Sonuçları</a></div>
-      <div><h4>Bize ulaşın</h4><a href="#iletisim">İletişim Formu</a><a href="#">WhatsApp</a><a href="#">Instagram</a></div>
+      <div><h4>Bize ulaşın</h4><a href="#iletisim">İletişim Formu</a><a href="https://wa.me/905332298058?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/obir_kurs_merkezi/" target="_blank" rel="noopener">Instagram</a><a href="tel:+905332298058">0533 229 80 58</a></div>
     </div>
     <div class="f-alt"><span>© 2026 Obir Kurs Merkezi</span><span><a href="#" style="display:inline">KVKK Aydınlatma Metni</a></span></div>
   </div>
 </footer>
 
-<a href="#" class="wa-sabit" aria-label="WhatsApp ile yazın"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+<a href="https://wa.me/905332298058?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="wa-sabit" aria-label="WhatsApp ile yazın"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.2c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
 
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
