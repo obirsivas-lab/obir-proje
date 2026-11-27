@@ -84,7 +84,13 @@ $basliklar .= "MIME-Version: 1.0\r\n";
 $basliklar .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $basliklar .= "Content-Transfer-Encoding: 8bit\r\n";
 
-$gitti = @mail(ALICI, $konu, $govde, $basliklar, '-f' . GONDEREN);
+$gitti = false;
+$neden = '';
+try {
+    if (!function_exists('mail')) { $neden = 'mail-yok'; }
+    else { $gitti = @mail(ALICI, $konu, $govde, $basliklar, '-f' . GONDEREN); if (!$gitti) $neden = 'mail-false'; }
+} catch (Throwable $h) { $neden = 'hata:' . get_class($h); }
+if (!$gitti) header('X-Obir-Neden: ' . $neden);
 
 if (!$gitti) cevap(false, 'Şu an gönderilemedi. Lütfen bizi arayın ya da WhatsApp\'tan yazın: 0533 229 80 58', 500);
 cevap(true, 'Teşekkürler! En kısa sürede sizi arayacağız.');
