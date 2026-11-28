@@ -31,3 +31,4 @@ sınav logo.png
 
 # veli portalı verisi (öğrenci adları ve sonuçlar) - sunucuya elle yüklenir, GitHub a ASLA gitmez
 portal-veri/
+__pycache__/
