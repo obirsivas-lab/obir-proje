@@ -20,7 +20,7 @@ function istek($url, $govde = null) {
     // POST (govde verilirse) ya da GET; yönlendirmeyi izlemez. [kod, Location, gövde] döner.
     if (function_exists('curl_init')) {
         $c = curl_init($url);
-        curl_setopt_array($c, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HEADER => true, CURLOPT_TIMEOUT => 15,
+        curl_setopt_array($c, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HEADER => true, CURLOPT_TIMEOUT => 40,
                                CURLOPT_FOLLOWLOCATION => false, CURLOPT_SSL_VERIFYPEER => true]);
         if ($govde !== null) { curl_setopt($c, CURLOPT_POST, true); curl_setopt($c, CURLOPT_POSTFIELDS, $govde); }
         $yanit = curl_exec($c);
@@ -33,7 +33,7 @@ function istek($url, $govde = null) {
         return [$kod, $yer, substr($yanit, $bs)];
     }
     $baglam = stream_context_create(['http' => [
-        'method' => $govde !== null ? 'POST' : 'GET', 'timeout' => 15, 'follow_location' => 0, 'ignore_errors' => true,
+        'method' => $govde !== null ? 'POST' : 'GET', 'timeout' => 40, 'follow_location' => 0, 'ignore_errors' => true,
         'header' => $govde !== null ? "Content-Type: application/x-www-form-urlencoded\r\n" : '',
         'content' => $govde ?? '']]);
     $icerik = @file_get_contents($url, false, $baglam);
