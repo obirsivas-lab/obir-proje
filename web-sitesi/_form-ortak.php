@@ -3,10 +3,10 @@
 if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === realpath(__FILE__)) { http_response_code(404); exit; }
 
 // Apps Script adresi koda yazılmaz (site kodu herkese açık): public_html'in yanındaki obir-veri/form-adresi.txt
-function form_adresi() {
+function form_adresi($dosya = 'form-adresi.txt') {
     $adaylar = [];
-    if (!empty($_SERVER['DOCUMENT_ROOT'])) $adaylar[] = dirname(rtrim($_SERVER['DOCUMENT_ROOT'], '/')) . '/obir-veri/form-adresi.txt';
-    $adaylar[] = dirname(__DIR__) . '/obir-veri/form-adresi.txt';
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) $adaylar[] = dirname(rtrim($_SERVER['DOCUMENT_ROOT'], '/')) . '/obir-veri/' . $dosya;
+    $adaylar[] = dirname(__DIR__) . '/obir-veri/' . $dosya;
     foreach ($adaylar as $a) {
         if (is_file($a)) {
             $u = trim((string)file_get_contents($a));
@@ -47,8 +47,8 @@ function istek($url, $govde = null) {
 
 
 // Veriyi Apps Script'e gönderir. Dönüş: [başarılı mı, neden, Apps Script yanıtı]
-function tabloya_gonder(array $alanlar) {
-    $adres = form_adresi();
+function tabloya_gonder(array $alanlar, $dosya = 'form-adresi.txt') {
+    $adres = form_adresi($dosya);
     if (!$adres) return [false, 'adres-yok', null];
     [$kod, $yer, $icerik] = istek($adres, http_build_query($alanlar));
     if ($kod === 302 && $yer) {

@@ -52,7 +52,7 @@ $no = 'BS27-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
 [$gitti, $neden] = tabloya_gonder([
     'tur' => 'burs', 'no' => $no, 'ogrenci' => $ogrenci, 'sinif' => $sinif, 'okul' => $okul,
     'veli' => $veli, 'tel' => $tel, 'program' => $program, 'bulusma' => $bulusma, 'ticari' => $ticari,
-]);
+], 'burs-adresi.txt');   // bursluluk ayrı tabloda: obir-veri/burs-adresi.txt
 if (!$gitti) {
     header('X-Obir-Neden: ' . $neden);
     cevap(false, 'Başvuru şu an iletilemedi.', 500);
