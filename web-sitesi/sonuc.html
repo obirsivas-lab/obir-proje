@@ -192,6 +192,20 @@ footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;pad
 .bos-durum{background:#fff;border:1px solid #e7e4db;border-radius:22px;padding:34px 24px;text-align:center;margin:24px 0}
 .bos-durum b{display:block;font-size:20px;font-weight:900;margin-bottom:6px}
 .bos-durum span{color:#66666f;font-weight:600}
+.konu-sekme{margin:0 0 14px}
+.tum-kz{margin-top:14px;padding:4px 18px}
+.tum-kz summary{cursor:pointer;font-weight:900;padding:14px 0;list-style:none}
+.tum-kz summary::after{content:" ▾"}
+.tum-kz[open] summary::after{content:" ▴"}
+.kz-ders{padding:6px 0 14px;border-top:1px solid var(--cizgi)}
+.kz-bas{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 6px}
+.kz-bas b{font-size:15px;font-weight:900}.kz-bas span{font-size:13px;font-weight:800;color:var(--soluk)}
+.kz-satir{display:grid;grid-template-columns:1fr 90px 38px;gap:10px;align-items:center;padding:6px 0;border-top:1px dashed var(--cizgi)}
+.kz-ad{font-size:13.5px;font-weight:700;line-height:1.35}
+.kz-bar{display:flex;height:8px;border-radius:99px;background:#ece9e0;overflow:hidden}
+.kz-bar i{display:block;height:100%}
+.kz-sayi{font-size:13px;font-weight:900;text-align:right}
+@media (max-width:560px){.kz-satir{grid-template-columns:1fr 54px 34px;gap:8px}.tum-kz{padding:2px 14px}}
 </style>
 </head>
 <body>
@@ -245,7 +259,7 @@ footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;pad
       <div class="degisim art" id="puanDegisim"></div>
     </div>
     <div class="hero-aksiyon">
-      <a class="btn-cerceve dolu karne-btn" href="#" onclick="return pdfIndir(event)">
+      <a class="btn-cerceve dolu karne-btn" href="#">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         Karneyi indir (PDF)</a>
       <a class="btn-cerceve" id="gelisimLink" href="#gelisim">Gelişimi incele</a>
@@ -283,7 +297,8 @@ footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;pad
     </section>
 
     <section class="bolum gor" id="konuBolum">
-      <div class="bolum-bas"><div><h4>Konu analizi</h4><p>Son 3 denemedeki kazanımlara göre</p></div></div>
+      <div class="bolum-bas"><div><h4>Konu analizi</h4><p id="konuAlt">Son 3 denemedeki kazanımlara göre</p></div></div>
+      <div class="sekmeler konu-sekme" id="konuSekme"></div>
       <div class="konu-grid">
         <div class="kart konu-kart">
           <h5><span class="nokta" style="background:var(--yesil-soft)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1f9d6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Güçlü olduğu konular</h5>
@@ -295,6 +310,7 @@ footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;pad
           <p class="konu-not">Öğretmenlerimiz bu konuları etüt programına ekler. Detaylı bilgi için rehberlik birimimizle görüşebilirsiniz.</p>
         </div>
       </div>
+      <details class="kart tum-kz" id="tumKzKutu" style="display:none"><summary>Tüm kazanımları gör</summary><div id="tumKz"></div></details>
     </section>
 
     <section class="bolum gor">
@@ -350,6 +366,7 @@ let ZAYIF = [
 ];
 const ORNEK = {DERSLER, DENEMELER, GUCLU, ZAYIF, ad:'Ela Demirtaş', sube:'6-A'};
 let ornekMod = false;
+let OTURUM = '';
 
 /* ---------- sunucudan gelen gerçek veriyi panel biçimine çevir ---------- */
 function veriyiHazirla(c){
@@ -367,6 +384,8 @@ function veriyiHazirla(c){
       dy: ix.map(i => i >= 0 ? s.dy[i] : null),
       soru: ix.map((i, j) => i >= 0 ? sv.dersler[i].soru : DERSLER[j].soru),
       ko: ix.map(i => al(sv.ko, i)), go: ix.map(i => al(sv.go, i)),
+      id: s.s, karne: !!s.karne,
+      kz: (s.kz || []).map(([n, so, d, y]) => { const t = (sv.kazanimlar || [])[n] || ['', '']; return [t[0], t[1], so, d, y]; }),
     };
   });
   GUCLU = []; ZAYIF = [];
@@ -417,6 +436,7 @@ $('girisForm').addEventListener('submit', async e => {
     if(!c) throw new Error('Sunucuya ulaşılamadı. Lütfen biraz sonra tekrar deneyin.');
     if(!c.ok) return hataGoster(c.mesaj, c.alan==='dt' ? 'alanDt' : 'alanTc');
     ornekMod = false;
+    OTURUM = c.oturum || '';
     veriyiHazirla(c);
     $('tc').value = ''; $('dt').value = '';
     paneliAc(c.ogrenci.ad, c.ogrenci.sube);
@@ -434,7 +454,7 @@ $('ornekGiris').addEventListener('click', () => {
 $('cikis').addEventListener('click', () => {
   $('panel').classList.remove('acik'); $('giris').style.display='flex'; $('ornekBant').style.display='none';
   $('tc').value=''; $('dt').value=''; $('hata').textContent=''; window.scrollTo(0,0);
-  DENEMELER = []; ornekMod = false;
+  DENEMELER = []; ornekMod = false; OTURUM = '';
 });
 
 /* ---------- PANEL ---------- */
@@ -531,14 +551,21 @@ function panelKur(){
   };
   $('grafik').querySelector('svg')?.remove();
 
-  // konu analizi: yalnızca veri varsa
-  $('konuBolum').style.display = (GUCLU.length || ZAYIF.length) ? '' : 'none';
-  const konuSatir = (x,renk) => `<div class="konu"><span class="etiket">${x.k}</span><span class="ad">${x.ad}</span><span class="oran" style="color:${renk}">${x.o}</span></div>`;
-  $('guclu').innerHTML = GUCLU.map(x=>konuSatir(x,'var(--yesil)')).join('');
-  $('zayif').innerHTML = ZAYIF.map(x=>konuSatir(x,'var(--kirmizi)')).join('');
+  // konu analizi
+  const kzVar = DENEMELER.some(d => d.kz && d.kz.length);
+  $('konuBolum').style.display = (ornekMod || kzVar) ? '' : 'none';
+  if(ornekMod){
+    const konuSatir = (x,renk) => `<div class="konu"><span class="etiket">${x.k}</span><span class="ad">${x.ad}</span><span class="oran" style="color:${renk}">${x.o}</span></div>`;
+    $('guclu').innerHTML = GUCLU.map(x=>konuSatir(x,'var(--yesil)')).join('');
+    $('zayif').innerHTML = ZAYIF.map(x=>konuSatir(x,'var(--kirmizi)')).join('');
+  }
+  konuKur();
 
   // karne butonları yalnızca örnek ekranda (gerçek karneler ileride eklenecek)
-  document.querySelectorAll('.karne-btn').forEach(b => b.style.display = ornekMod ? '' : 'none');
+  const kb = document.querySelector('.karne-btn');
+  if(ornekMod){ kb.href = '#'; kb.onclick = pdfIndir; kb.style.display = ''; kb.removeAttribute('download'); }
+  else if(son.karne && OTURUM){ kb.href = karneLink(son); kb.onclick = null; kb.style.display = ''; kb.setAttribute('download', ''); }
+  else kb.style.display = 'none';
 
   // geçmiş
   $('gecmisAlt').textContent = `${DENEMELER.length} deneme`;
@@ -548,9 +575,49 @@ function panelKur(){
     <td data-e="Puan"><b>${fmt(d.puan,1)}</b></td>
     <td data-e="Net">${fmt(toplamNet(d))}</td>
     <td data-e="Kurum">${d.kd}/${d.kk}</td>
-    <td class="pdf">${ornekMod ? `<button class="pdf-btn" onclick="pdfIndir(event)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Karne</button>` : ''}</td>
+    <td class="pdf">${(!ornekMod && d.karne && OTURUM) ? `<a class="pdf-btn" href="${karneLink(d)}" download><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Karne</a>` : ornekMod ? `<button class="pdf-btn" onclick="pdfIndir(event)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Karne</button>` : ''}</td>
   </tr>`).join('');
 }
+
+/* ---------- KONU ANALİZİ (deneme başına) ---------- */
+const DERS_AD = {TÜR:'Türkçe', SOS:'Sosyal Bilgiler', İNK:'İnkılap Tarihi', DİN:'Din Kültürü', İNG:'İngilizce', MAT:'Matematik', FEN:'Fen Bilimleri'};
+const kacis = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function konuKur(){
+  const kzli = DENEMELER.map((d,i) => ({d, i})).filter(x => x.d.kz && x.d.kz.length);
+  if(ornekMod || !kzli.length){
+    $('konuSekme').innerHTML = ''; $('tumKzKutu').style.display = 'none';
+    $('konuAlt').textContent = ornekMod ? 'Son 3 denemedeki kazanımlara göre' : '';
+    return;
+  }
+  $('tumKzKutu').style.display = '';
+  $('konuSekme').innerHTML = [...kzli].reverse().map((x,j) => `<button class="sekme${j?'':' aktif'}" data-i="${x.i}">${kacis(x.d.ad)} · ${kisaTarih(x.d.tarih)}</button>`).join('');
+  $('konuSekme').onclick = e => {
+    const b = e.target.closest('.sekme'); if(!b) return;
+    $('konuSekme').querySelectorAll('.sekme').forEach(x => x.classList.toggle('aktif', x === b));
+    konuCiz(+b.dataset.i);
+  };
+  konuCiz(kzli.at(-1).i);
+}
+function konuCiz(i){
+  const d = DENEMELER[i];
+  const kz = d.kz.map(([ders, ad, s, dd, y]) => ({k:ders, ad, s, d:dd, y, b:s-dd-y, p:Math.round(dd/s*100)}));
+  $('konuAlt').textContent = `${d.ad} · ${tarihYaz(d.tarih)} · ${kz.length} kazanım`;
+  const guclu = kz.filter(x => x.p === 100).sort((a,b) => b.s - a.s).slice(0, 6);
+  const zayif = kz.filter(x => x.p < 50).sort((a,b) => (b.s - b.d) - (a.s - a.d) || a.p - b.p).slice(0, 6);
+  const satir = (x, renk) => `<div class="konu"><span class="etiket">${x.k}</span><span class="ad">${kacis(x.ad)}</span><span class="oran" style="color:${renk}">${x.d}/${x.s}</span></div>`;
+  $('guclu').innerHTML = guclu.length ? guclu.map(x => satir(x,'var(--yesil)')).join('') : '<p class="konu-not">Bu denemede tam isabet edilen kazanım yok.</p>';
+  $('zayif').innerHTML = zayif.length ? zayif.map(x => satir(x,'var(--kirmizi)')).join('') : '<p class="konu-not">Bu denemede yarının altında kalan kazanım yok. Tebrikler!</p>';
+  const gruplar = {};
+  kz.forEach(x => (gruplar[x.k] = gruplar[x.k] || []).push(x));
+  $('tumKz').innerHTML = Object.entries(gruplar).map(([k, liste]) => {
+    const top = liste.reduce((a,x) => [a[0]+x.s, a[1]+x.d], [0,0]);
+    return `<div class="kz-ders"><div class="kz-bas"><b>${DERS_AD[k] || k}</b><span>${top[1]}/${top[0]} doğru</span></div>` +
+      liste.map(x => `<div class="kz-satir"><span class="kz-ad">${kacis(x.ad)}</span>
+        <span class="kz-bar" title="${x.d} doğru, ${x.y} yanlış, ${x.b} boş"><i style="width:${x.d/x.s*100}%;background:var(--yesil)"></i><i style="width:${x.y/x.s*100}%;background:var(--kirmizi)"></i></span>
+        <span class="kz-sayi">${x.d}/${x.s}</span></div>`).join('') + '</div>';
+  }).join('');
+}
+const karneLink = d => `sonuc-karne.php?t=${encodeURIComponent(OTURUM)}&s=${encodeURIComponent(d.id)}`;
 
 /* ---------- GRAFİK ---------- */
 let grafikAnimasyonu = true;

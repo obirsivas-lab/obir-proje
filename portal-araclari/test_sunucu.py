@@ -10,7 +10,8 @@ Gerçek öğrenci adları/T.C. KULLANILMAZ: portal.json'daki sınav bilgileri ve
 import json, os, http.server, urllib.parse
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-veri = json.load(open(os.path.join(KOK, 'portal-veri', 'portal.json'), encoding='utf-8'))
+VERI_KLASOR = os.path.join(KOK, 'portal-veri', 'obir-veri')
+veri = json.load(open(os.path.join(VERI_KLASOR, 'portal.json'), encoding='utf-8'))
 kayitlar = sorted(veri['ogrenciler'].values(), key=lambda o: -len(o['sonuclar']))
 tek = next(o for o in kayitlar if len(o['sonuclar']) == 1)
 TEST = {
@@ -22,6 +23,21 @@ TEST = {
 class Isleyici(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **k):
         super().__init__(*a, directory=os.path.join(KOK, 'web-sitesi'), **k)
+    def do_GET(self):
+        if self.path.startswith('/sonuc-karne.php'):
+            q = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+            ogr = {'testA': ('10000000146', '14.03.2015'), 'testB': ('10000000078', '01.01.2014')}.get(q.get('t', [''])[0])
+            o = TEST.get(ogr) if ogr else None
+            kayit = next((x for x in (o or {}).get('sonuclar', []) if x['s'] == q.get('s', [''])[0]), None)
+            if not kayit or not kayit.get('karne'):
+                self.send_error(404); return
+            b = open(os.path.join(VERI_KLASOR, 'karneler', kayit['karne'] + '.pdf'), 'rb').read()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/pdf')
+            self.send_header('Content-Disposition', 'attachment; filename="karne.pdf"')
+            self.send_header('Content-Length', str(len(b)))
+            self.end_headers(); self.wfile.write(b); return
+        return super().do_GET()
     def do_POST(self):
         if not self.path.startswith('/sonuc-api.php'):
             self.send_error(404); return
@@ -41,7 +57,8 @@ class Isleyici(http.server.SimpleHTTPRequestHandler):
         if not o:
             c, kod = {'ok': False, 'mesaj': 'Bu bilgilerle kayıtlı öğrenci bulunamadı. T.C. kimlik numarasını ve doğum tarihini kontrol edin. (4 deneme hakkınız kaldı.)'}, 404
         else:
-            c = {'ok': True, 'ogrenci': {'ad': o['ad'], 'sube': o['sube']}, 'sonuclar': o['sonuclar'],
+            sonuclar = [dict(x, karne=bool(x.get('karne'))) for x in o['sonuclar']]
+            c = {'ok': True, 'ogrenci': {'ad': o['ad'], 'sube': o['sube']}, 'sonuclar': sonuclar, 'oturum': 'test' + o['ad'][-1],
                  'sinavlar': {s['s']: veri['sinavlar'][s['s']] for s in o['sonuclar']}, 'guncelleme': veri['olusturma']}
             kod = 200
         b = json.dumps(c, ensure_ascii=False).encode()

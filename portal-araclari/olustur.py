@@ -192,65 +192,242 @@ def liste_oku():
             ogr.setdefault(anahtar_ad(ad), {'ad': ad, 'tc': tc, 'dg': dg, 'seviye': seviye, 'sube': sube})
     return os.path.basename(yol), ogr
 
+
+# ---------------------------------------------------------------- isim eşleştirme
+def mesafe(a, b):
+    """Levenshtein uzaklığı; '?' (Türkçe harf) her harfle eşleşir."""
+    onceki = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        simdi = [i]
+        for j, cb in enumerate(b, 1):
+            ayni = ca == cb or ca == '?' or cb == '?'
+            simdi.append(min(onceki[j] + 1, simdi[j - 1] + 1, onceki[j - 1] + (0 if ayni else 1)))
+        onceki = simdi
+    return onceki[-1]
+
+
+def duzeltmeler_oku():
+    """portal-veri/eslesme-duzeltme.txt: her satır  PDF'TEKİ AD -> LİSTEDEKİ AD  ya da  PDF'TEKİ AD -> YOK"""
+    yol = os.path.join(CIKTI, 'eslesme-duzeltme.txt')
+    d = {}
+    if os.path.exists(yol):
+        for satir in open(yol, encoding='utf-8'):
+            if '->' in satir and not satir.lstrip().startswith('#'):
+                a, b = satir.split('->', 1)
+                d[anahtar_ad(a)] = None if b.strip().upper() in ('YOK', '-') else anahtar_ad(b)
+    return d
+
+DUZELTME = {}
+KULLANILAN_DUZELTME = set()
+
+def eslestir(k, seviye, liste):
+    """PDF adını listedeki öğrenciyle eşleştir. Dönüş: (liste anahtarı, yöntem) ya da (None, None)."""
+    if k in DUZELTME:
+        KULLANILAN_DUZELTME.add(k)
+        hedef = DUZELTME[k]
+        return (hedef, 'elle') if hedef in liste else (None, None)
+    if k in liste:
+        return k, 'birebir'
+    p = k.split()
+    if not p:
+        return None, None
+    ayni_sinif = [lk for lk, lo in liste.items() if lo['seviye'] == str(seviye)]
+    # yakın sınıflar: 4. sınıf denemesine 5. sınıflar da girmiş olabilir
+    yakin = [lk for lk, lo in liste.items() if lo['seviye'] in (str(seviye), str(seviye + 1))]
+
+    def tek(adaylar):
+        return adaylar[0] if len(adaylar) == 1 else None
+
+    # 0) kısaltılmış ilk ad: "M ENES KAÇMAZ" / "ZNAZ REŞBER" -> "MUHAMMED ENES KAÇMAZ" / "ZEYNEP NAZ REŞBER"
+    def kisaltmalar(lk):
+        w = lk.split()
+        if len(w) < 3:
+            return []
+        return [' '.join([w[0][0]] + w[1:]), ' '.join([w[0][0] + w[1]] + w[2:]), ' '.join([w[0][0] + '.'] + w[1:])]
+    esit = lambda x, y: len(x.split()) == len(y.split()) and all(kelime_uyar(m, n) for m, n in zip(x.split(), y.split()))
+    a = tek([lk for lk in yakin if any(esit(k, v) for v in kisaltmalar(lk))])
+    if a:
+        return a, 'kısaltılmış ad'
+    # 1) kelimeler sırayla var (ikinci ad eksik / fazla)
+    a = tek([lk for lk in ayni_sinif if ad_uyar(k, lk) or ad_uyar(lk, k)])
+    if a:
+        return a, 'ikinci ad farkı'
+    # 2) soyadı aynı + ilk ad en fazla 1 harf farklı, AYNI sınıf (kardeşler karışmasın)
+    a = tek([lk for lk in ayni_sinif if mesafe(lk.split()[-1], p[-1]) == 0 and mesafe(lk.split()[0], p[0]) <= 1])
+    if a:
+        return a, 'ilk ad yazım farkı'
+    # 3) ilk ad aynı + soyadı en fazla 2 harf farklı
+    a = tek([lk for lk in yakin if mesafe(lk.split()[0], p[0]) == 0 and mesafe(lk.split()[-1], p[-1]) <= 2])
+    if a:
+        return a, 'soyadı yazım farkı'
+    # 4) soyadı sınıfta tek + ilk adın baş harfi aynı
+    a = tek([lk for lk in ayni_sinif if mesafe(lk.split()[-1], p[-1]) <= 1])
+    if a and (a[0] == p[0][0] or '?' in (a[0], p[0][0])):
+        return a, 'soyadı (sınıfta tek)'
+    # 5) ilk ad sınıfta tek + soyadının ilk 3 harfi tutuyor
+    a = tek([lk for lk in ayni_sinif if mesafe(lk.split()[0], p[0]) == 0])
+    if a and mesafe(a.split()[-1][:3], p[-1][:3]) == 0:
+        return a, 'ilk ad (sınıfta tek)'
+    return None, None
+
+
+# ---------------------------------------------------------------- ana akış
 def main():
+    import shutil, sys, zipfile
+    import pypdf
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import karne
+
     liste_ad, liste = liste_oku()
+    DUZELTME.update(duzeltmeler_oku())
     tuz = secrets.token_hex(16)
+    yukle = os.path.join(CIKTI, 'obir-veri')
+    if os.path.isdir(yukle):
+        shutil.rmtree(yukle)
+    os.makedirs(os.path.join(yukle, 'karneler'))
+
     sinavlar, sonuc = [], {}
     eslesmeyen, esnek = [], []
+    kazanim_sayisi = 0
     for yol in sorted(glob.glob(os.path.join(PDF_KLASOR, '*.pdf'))):
-        sinav, satirlar = pdf_oku(yol)
+        sinav, _ = pdf_oku(yol)          # yalnızca sınav bilgisi (ad, yayın, tarih) için
         sinavlar.append(sinav)
-        for o in satirlar:
-            k = anahtar_ad(o['ad_pdf'])
-            if k not in liste:
-                aday = [lk for lk, lo in liste.items()
-                        if lo['seviye'] == str(sinav['sinifSeviye']) and ad_uyar(k, lk)]
-                if len(aday) == 1:
-                    k = aday[0]
-                    if liste[k]['ad'] != o['ad_pdf']:
-                        esnek.append((os.path.basename(yol), o['ad_pdf'], liste[k]['ad']))
-                else:
-                    eslesmeyen.append((os.path.basename(yol), o['ad_pdf']))
-                    continue
-            sonuc.setdefault(k, []).append({'s': sinav['id'], 'dy': o['dy'], 'puan': o['puan'],
-                                             'kd': o['kd'], 'gd': o['gd']})
+        dosya = os.path.basename(yol)
+        okuyucu = pypdf.PdfReader(yol)
+        # tüm sonuçlar öğrencilerin kendi karne sayfalarından okunur (özet sayfası eksik olabiliyor)
+        karneler, gorulen = [], set()
+        for no in range(2, len(okuyucu.pages) + 1):
+            r = karne.karne_sonuc(yol, no)
+            if not r or not r['ad']:
+                continue
+            ka = anahtar_ad(r['ad'])
+            if ka in gorulen:
+                continue
+            gorulen.add(ka)
+            r['sayfa'] = no
+            karneler.append(r)
+        if karneler:
+            ilk = karneler[0]
+            sinav['dersler'] = [{'k': d[0], 'ad': next(a for _, _, k, a in DERS_TANIM if k == d[0]), 'soru': d[1]}
+                                for d in ilk['dersler']]
+            sinav['ko'] = [d[5] for d in ilk['dersler']]
+            sinav['go'] = [d[6] for d in ilk['dersler']]
+            sinav['kk'] = max(ilk['katilim'][1], len(karneler))
+            sinav['gk'] = ilk['katilim'][4]
+            sinav['genelPuan'] = ilk['genelPuan']
+            sinav['kurumPuan'] = round(sum(r['puan'] for r in karneler) / len(karneler), 3)
+            sinav['sinifSeviye'] = int(Counter(re.match(r'\d+', r['sube']).group(0) for r in karneler).most_common(1)[0][0])
+        kodlar = [d['k'] for d in sinav['dersler']]
+        kz_dizin, kz_liste = {}, []
+        # önce elle ve birebir eşleşmeler, sonra yaklaşık eşleşmeler (boşta kalan öğrencilere)
+        for r in karneler:
+            r['_k'], r['_y'] = eslestir(anahtar_ad(r['ad']), sinav['sinifSeviye'], liste)
+        oncelik = {'elle': 0, 'birebir': 1}
+        karneler.sort(key=lambda r: oncelik.get(r['_y'], 2))
+        alinan = set()
+        for r in karneler:
+            k, yontem = r['_k'], r['_y']
+            if k in alinan and yontem not in oncelik:
+                k = None
+            if k:
+                alinan.add(k)
+            if not k:
+                eslesmeyen.append((dosya, r['ad']))
+                continue
+            if yontem != 'birebir':
+                esnek.append((dosya, r['ad'], liste[k]['ad'], yontem))
+            dmap = {d[0]: d for d in r['dersler']}
+            kayit = {'s': sinav['id'],
+                     'dy': [[dmap[c][2], dmap[c][3]] if c in dmap else [0, 0] for c in kodlar],
+                     'puan': r['puan'], 'kd': r['kd'], 'gd': r['gd']}
+            ad_dosya = secrets.token_hex(12)
+            w = pypdf.PdfWriter()
+            w.add_page(okuyucu.pages[r['sayfa'] - 1])
+            with open(os.path.join(yukle, 'karneler', ad_dosya + '.pdf'), 'wb') as fh:
+                w.write(fh)
+            kayit['karne'] = ad_dosya
+            kz = []
+            for ders, kad, s_, d_, y_ in karne.karne_oku(yol, r['sayfa']):
+                anah = (ders, kad)
+                if anah not in kz_dizin:
+                    kz_dizin[anah] = len(kz_liste)
+                    kz_liste.append([ders, kad])
+                kz.append([kz_dizin[anah], s_, d_, y_])
+            if kz:
+                kayit['kz'] = kz
+                kazanim_sayisi += 1
+            if any(x['s'] == sinav['id'] for x in sonuc.get(k, [])):
+                esnek.append((dosya, r['ad'], liste[k]['ad'], 'UYARI: aynı denemede ikinci kez eşleşti, atlandı'))
+                continue
+            sonuc.setdefault(k, []).append(kayit)
+        sinav['kazanimlar'] = kz_liste
+
     tarih = {s['id']: s['tarih'] for s in sinavlar}
     kayitlar, eksik_kimlik, sonucsuz = {}, [], []
     for k, o in liste.items():
         if not re.fullmatch(r'[1-9]\d{10}', o['tc']) or not re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', o['dg']):
-            eksik_kimlik.append(o['ad']); continue
+            eksik_kimlik.append(o['ad'])
+            continue
         if k not in sonuc:
             sonucsuz.append(o['ad'])
         anahtar = hashlib.sha256(f"{tuz}|{o['tc']}|{o['dg']}".encode()).hexdigest()
         # listedeki şube alanı grup adı içeriyor ("5/4A MAT"); veliye yalnızca sınıf seviyesi gösterilir
         kayitlar[anahtar] = {'ad': o['ad'], 'sube': o['seviye'],
                              'sonuclar': sorted(sonuc.get(k, []), key=lambda x: tarih[x['s']])}
-    veri = {'surum': 1, 'olusturma': datetime.datetime.now().isoformat(timespec='seconds'),
+    kullanilan = {s.get('karne') for v in kayitlar.values() for s in v['sonuclar']}
+    for f in os.listdir(os.path.join(yukle, 'karneler')):
+        if f[:-4] not in kullanilan:
+            os.remove(os.path.join(yukle, 'karneler', f))
+
+    veri = {'surum': 2, 'olusturma': datetime.datetime.now().isoformat(timespec='seconds'),
             'tuz': tuz, 'sinavlar': {s['id']: s for s in sinavlar}, 'ogrenciler': kayitlar}
-    os.makedirs(CIKTI, exist_ok=True)
-    with open(os.path.join(CIKTI, 'portal.json'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(yukle, 'portal.json'), 'w', encoding='utf-8') as f:
         json.dump(veri, f, ensure_ascii=False, separators=(',', ':'))
+    paket = os.path.join(CIKTI, 'obir-veri-yukle.zip')
+    with zipfile.ZipFile(paket, 'w', zipfile.ZIP_DEFLATED) as z:
+        for kok, _, dosyalar in os.walk(yukle):
+            for d in dosyalar:
+                tam = os.path.join(kok, d)
+                z.write(tam, os.path.relpath(tam, CIKTI))
+    eski = os.path.join(CIKTI, 'portal.json')
+    if os.path.exists(eski):
+        os.remove(eski)
+
     with open(os.path.join(CIKTI, 'eslesme-raporu.txt'), 'w', encoding='utf-8') as f:
         f.write(f'Liste: {liste_ad}\nOluşturma: {veri["olusturma"]}\n\nSINAVLAR\n')
         for s in sorted(sinavlar, key=lambda s: s['tarih']):
             f.write(f"  {s['tarih']}  {s['ad']} ({s['yayin']}) · {s['sinifSeviye']}. sınıf · kurumda {s['kk']} kişi\n")
-        f.write(f'\nYAKLAŞIK eşleştirilenler ({len(esnek)}) — kontrol edin (PDF adı -> listedeki ad):\n')
-        f.write(''.join(f'  {d[:40]:40}  {a}  ->  {b}\n' for d, a, b in esnek))
-        f.write(f"\nPDF'te olup listede BULUNAMAYANLAR ({len(eslesmeyen)}) — dışarıdan katılanlar ya da yazım farkı:\n")
+        f.write(f'\nYAKLAŞIK eşleştirilenler ({len(esnek)}) — lütfen kontrol edin (PDF adı -> listedeki ad · yöntem):\n')
+        f.write(''.join(f'  {d[:40]:40}  {a}  ->  {b}   [{y}]\n' for d, a, b, y in esnek))
+        f.write(f"\nPDF'te olup listede BULUNAMAYANLAR ({len(eslesmeyen)}) — büyük olasılıkla dışarıdan katılanlar:\n")
         f.write(''.join(f'  {d[:40]:40}  {a}\n' for d, a in eslesmeyen))
+        bos = [a for a in DUZELTME if a not in KULLANILAN_DUZELTME]
+        f.write(f"\nDüzeltme dosyasında olup PDF'lerde BULUNAMAYAN adlar ({len(bos)}) — yazımı kontrol edin:\n")
+        f.write(''.join(f'  {a}\n' for a in bos))
+        hedefsiz = [f'{a} -> {b}' for a, b in DUZELTME.items() if b and b not in liste]
+        f.write(f'\nDüzeltme dosyasında hedefi listede BULUNAMAYANLAR ({len(hedefsiz)}):\n')
+        f.write(''.join(f'  {a}\n' for a in hedefsiz))
         f.write(f'\nT.C. ya da doğum tarihi eksik olduğu için portala eklenemeyenler ({len(eksik_kimlik)}):\n')
         f.write(''.join(f'  {a}\n' for a in eksik_kimlik))
         f.write(f'\nListede olup henüz hiç sonucu olmayanlar ({len(sonucsuz)}):\n')
         f.write(''.join(f'  {a}\n' for a in sonucsuz))
     # ekrana yalnızca sayılar (isim yok)
-    print(f'sınav: {len(sinavlar)} | portal öğrencisi: {len(kayitlar)} | sonucu olan: '
-          f'{sum(1 for v in kayitlar.values() if v["sonuclar"])} | yaklaşık eşleşme: {len(esnek)} | '
-          f'eşleşmeyen PDF satırı: {len(eslesmeyen)} | kimliği eksik: {len(eksik_kimlik)}')
-    for s in sorted(sinavlar, key=lambda s: s['tarih']):
-        print(f"  {s['tarih']} {s['ad']:27} {s['sinifSeviye']}.sınıf kurum {s['kk']:>3} genel {s['gk']:>6} "
-              f"{[d['k'] + '/' + str(d['soru']) for d in s['dersler']]} genelOrt:{'var' if s['go'] else 'YOK'}")
-    sayac = Counter(d for d, _ in eslesmeyen)
-    print('eşleşmeyenlerin dağılımı:', {k[:28]: v for k, v in sayac.items()})
+    satirlar = [
+        f'sınav: {len(sinavlar)} | portal öğrencisi: {len(kayitlar)} | sonucu olan: '
+        f'{sum(1 for v in kayitlar.values() if v["sonuclar"])} | yaklaşık eşleşme: {len(esnek)} | '
+        f'eşleşmeyen PDF satırı: {len(eslesmeyen)} | kimliği eksik: {len(eksik_kimlik)}',
+        f'karne dosyası: {len(os.listdir(os.path.join(yukle, "karneler")))} | kazanım analizi olan sonuç: '
+        f'{kazanim_sayisi} | paket: {os.path.getsize(paket) // 1024} KB',
+        'yaklaşık eşleşme yöntemleri: ' + str(dict(Counter(y for *_, y in esnek))),
+        'eşleşmeyenlerin dağılımı: ' + str({k[:28]: v for k, v in Counter(d for d, _ in eslesmeyen).items()}),
+        'karnesi bulunamayan sonuç: ' + str(sum(1 for v in kayitlar.values() for s in v['sonuclar'] if 'karne' not in s)),
+        f'elle düzeltme: {len(DUZELTME)} kayıt | PDF\'te bulunamayan: {len(set(DUZELTME) - KULLANILAN_DUZELTME)}'
+        f' | hedefi listede olmayan: {sum(1 for b in DUZELTME.values() if b and b not in liste)}',
+        'kazanım sayısı/sınav: ' + str({s['tarih'] + '-' + str(s['sinifSeviye']): len(s['kazanimlar']) for s in sinavlar}),
+    ]
+    with open(os.path.join(CIKTI, 'ozet.txt'), 'w', encoding='utf-8') as f:
+        f.write('\n'.join(satirlar))
+
 
 if __name__ == '__main__':
     main()

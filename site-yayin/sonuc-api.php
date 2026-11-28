@@ -80,13 +80,21 @@ if (!isset($veri['ogrenciler'][$anahtar])) {
 
 $ogr = $veri['ogrenciler'][$anahtar];
 $sinavlar = [];
+$sonuclar = [];
 foreach ($ogr['sonuclar'] as $s) {
     if (isset($veri['sinavlar'][$s['s']])) $sinavlar[$s['s']] = $veri['sinavlar'][$s['s']];
+    // karne dosya adı istemciye verilmez; yalnızca var/yok bilgisi
+    $s['karne'] = !empty($s['karne']);
+    $sonuclar[] = $s;
 }
+// karne indirme için 2 saat geçerli oturum anahtarı (imzalı; T.C. içermez)
+$bitis = time() + 7200;
+$oturum = $anahtar . '.' . $bitis . '.' . hash_hmac('sha256', $anahtar . '|' . $bitis, $veri['tuz'] . '|karne');
 cevap([
     'ok'        => true,
     'ogrenci'   => ['ad' => $ogr['ad'], 'sube' => $ogr['sube']],
-    'sonuclar'  => $ogr['sonuclar'],
+    'sonuclar'  => $sonuclar,
     'sinavlar'  => $sinavlar,
+    'oturum'    => $oturum,
     'guncelleme'=> $veri['olusturma'] ?? null,
 ]);
