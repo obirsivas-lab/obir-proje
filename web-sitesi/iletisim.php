@@ -1,13 +1,12 @@
 <?php
 // Obir Kurs Merkezi - bilgi formu.
-// Gelen başvuruyu e-posta olarak iletir; sunucuda hiçbir kişisel veri SAKLANMAZ.
+// Gelen başvuruyu kurumun Google E-Tablosuna iletir (Google bildirim e-postası da gönderir);
+// sitenin sunucusunda hiçbir kişisel veri SAKLANMAZ.
 // (Yalnızca kötüye kullanımı önlemek için IP'nin tek yönlü özeti 1 saat geçici tutulur.)
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Robots-Tag: noindex');
 
-const ALICI    = 'obirsivas@gmail.com';
-const GONDEREN = 'site@obirkurs.com.tr';
 
 function cevap($ok, $mesaj, $kod = 200) {
     http_response_code($kod);
@@ -63,34 +62,75 @@ $wa = $telRakam;
 if (strlen($wa) === 10) $wa = '90' . $wa;
 elseif (strlen($wa) === 11 && $wa[0] === '0') $wa = '9' . $wa;
 
-$tarih = (new DateTime('now', new DateTimeZone('Europe/Istanbul')))->format('d.m.Y H:i');
+// ---- Google E-Tablo'ya ilet ----
+// Apps Script adresi koda yazılmaz (site kodu herkese açık): public_html'in yanındaki obir-veri/form-adresi.txt
+function form_adresi() {
+    $adaylar = [];
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) $adaylar[] = dirname(rtrim($_SERVER['DOCUMENT_ROOT'], '/')) . '/obir-veri/form-adresi.txt';
+    $adaylar[] = dirname(__DIR__) . '/obir-veri/form-adresi.txt';
+    foreach ($adaylar as $a) {
+        if (is_file($a)) {
+            $u = trim((string)file_get_contents($a));
+            if (preg_match('#^https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec$#', $u)) return $u;
+        }
+    }
+    return null;
+}
 
-$govde  = "Web sitesinden yeni bilgi talebi\n";
-$govde .= "--------------------------------\n";
-$govde .= "Veli      : $ad\n";
-$govde .= "Telefon   : $tel\n";
-$govde .= "WhatsApp  : https://wa.me/$wa\n";
-$govde .= "Program   : {$programlar[$prog]}\n";
-$govde .= "Sınıf     : " . ($sinif === '-' ? 'belirtilmedi' : "$sinif. sınıf") . "\n";
-$govde .= "Mesaj     : " . ($mesaj !== '' ? $mesaj : '-') . "\n";
-$govde .= "Tarih     : $tarih\n";
-if ($kaynak !== '') $govde .= "Sayfa     : $kaynak\n";
-$govde .= "\nKVKK aydınlatma metni veli tarafından onaylandı.\n";
-$govde .= "Bu e-posta obirkurs.com.tr bilgi formundan otomatik gönderilmiştir.\n";
+function istek($url, $govde = null) {
+    // POST (govde verilirse) ya da GET; yönlendirmeyi izlemez. [kod, Location, gövde] döner.
+    if (function_exists('curl_init')) {
+        $c = curl_init($url);
+        curl_setopt_array($c, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HEADER => true, CURLOPT_TIMEOUT => 15,
+                               CURLOPT_FOLLOWLOCATION => false, CURLOPT_SSL_VERIFYPEER => true]);
+        if ($govde !== null) { curl_setopt($c, CURLOPT_POST, true); curl_setopt($c, CURLOPT_POSTFIELDS, $govde); }
+        $yanit = curl_exec($c);
+        if ($yanit === false) { curl_close($c); return [0, null, '']; }
+        $bs = curl_getinfo($c, CURLINFO_HEADER_SIZE);
+        $kod = curl_getinfo($c, CURLINFO_HTTP_CODE);
+        curl_close($c);
+        $bas = substr($yanit, 0, $bs);
+        $yer = preg_match('/^Location:\s*(\S+)/mi', $bas, $m) ? $m[1] : null;
+        return [$kod, $yer, substr($yanit, $bs)];
+    }
+    $baglam = stream_context_create(['http' => [
+        'method' => $govde !== null ? 'POST' : 'GET', 'timeout' => 15, 'follow_location' => 0, 'ignore_errors' => true,
+        'header' => $govde !== null ? "Content-Type: application/x-www-form-urlencoded\r\n" : '',
+        'content' => $govde ?? '']]);
+    $icerik = @file_get_contents($url, false, $baglam);
+    $kod = 0; $yer = null;
+    foreach ($http_response_header ?? [] as $h) {
+        if (preg_match('#^HTTP/\S+\s+(\d+)#', $h, $m)) $kod = (int)$m[1];
+        if (preg_match('/^Location:\s*(\S+)/i', $h, $m)) $yer = $m[1];
+    }
+    return [$kod, $yer, (string)$icerik];
+}
 
-$konu = '=?UTF-8?B?' . base64_encode("Bilgi talebi: $ad · {$programlar[$prog]}" . ($sinif !== '-' ? " · $sinif. sınıf" : '')) . '?=';
-$basliklar  = "From: =?UTF-8?B?" . base64_encode('Obir Web Sitesi') . "?= <" . GONDEREN . ">\r\n";
-$basliklar .= "MIME-Version: 1.0\r\n";
-$basliklar .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$basliklar .= "Content-Transfer-Encoding: 8bit\r\n";
-
-$gitti = false;
 $neden = '';
-try {
-    if (!function_exists('mail')) { $neden = 'mail-yok'; }
-    else { $gitti = @mail(ALICI, $konu, $govde, $basliklar, '-f' . GONDEREN); if (!$gitti) $neden = 'mail-false'; }
-} catch (Throwable $h) { $neden = 'hata:' . get_class($h); }
+$gitti = false;
+$adres = form_adresi();
+if (!$adres) {
+    $neden = 'adres-yok';
+} else {
+    $veri = http_build_query([
+        'ad' => $ad, 'tel' => $tel, 'program' => $programlar[$prog],
+        'sinif' => $sinif === '-' ? '' : $sinif, 'mesaj' => $mesaj, 'kaynak' => $kaynak ?: 'site',
+    ]);
+    [$kod, $yer, $icerik] = istek($adres, $veri);
+    if ($kod === 302 && $yer) {
+        // Apps Script kaydı yaptı; yanıtı yönlendirilen adresten oku
+        [$kod2, , $icerik2] = istek($yer);
+        $j = json_decode($icerik2, true);
+        $gitti = is_array($j) ? !empty($j['ok']) : true;
+        if (!$gitti) $neden = 'script:' . ($j['neden'] ?? 'bilinmiyor');
+    } elseif ($kod === 200) {
+        $j = json_decode($icerik, true);
+        $gitti = !empty($j['ok']);
+        if (!$gitti) $neden = 'script-200';
+    } else {
+        $neden = 'http-' . $kod;
+    }
+}
 if (!$gitti) header('X-Obir-Neden: ' . $neden);
-
 if (!$gitti) cevap(false, 'Şu an gönderilemedi. Lütfen bizi arayın ya da WhatsApp\'tan yazın: 0533 229 80 58', 500);
 cevap(true, 'Teşekkürler! En kısa sürede sizi arayacağız.');
