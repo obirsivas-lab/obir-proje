@@ -456,6 +456,7 @@ $('#adim2').addEventListener('submit', async e => {
     const r = await fetch('burs-basvuru.php', {method: 'POST', body: veri});
     const j = await r.json();
     if (j.ok) no = j.no; else mesaj = j.mesaj || '';
+    if (j.dolu) { btn.disabled = false; btn.textContent = 'Başvuruyu tamamla'; kontenjanDoldu(); return; }
   } catch (_) {}
   btn.disabled = false; btn.textContent = 'Başvuruyu tamamla';
   if (!no) {
@@ -508,6 +509,28 @@ ctaGozlem.observe($('#form'));
 /* kaydırınca belirme */
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('gorundu'); io.unobserve(e.target); } }), {threshold:.15});
 $$('.gor').forEach((el,i) => { el.style.transitionDelay = (i%3)*0.1 + 's'; io.observe(el); });
+
+/* ---------- kontenjan (150) ---------- */
+function kontenjanDoldu(){
+  const k = $('#form'), y = k.querySelector('.yakinda');
+  y.querySelector('h2').textContent = 'Kontenjan doldu';
+  y.querySelector('p').textContent = 'Bu yılki Bursluluk Sınavımızın kontenjanı doldu. Yer açılırsa haber verebilmemiz için yedek listeye yazılabilirsiniz.';
+  const wa = y.querySelector('.btn-wa');
+  wa.href = 'https://wa.me/905332298058?text=' + encodeURIComponent('Merhaba, Bursluluk Sınavı yedek listesine yazılmak istiyorum.');
+  wa.lastChild.textContent = 'Yedek listeye yazılın';
+  y.hidden = false; k.classList.add('yakinda-mod');
+  const et = document.querySelector('.etiket'); if (et) et.lastChild.textContent = 'Kontenjan doldu';
+  const cta = document.querySelector('#mobilCta a'); if (cta) cta.textContent = 'Kontenjan doldu · Yedek liste';
+  k.scrollIntoView({behavior:'smooth', block:'start'});
+}
+fetch('burs-durum.php', {cache:'no-store'}).then(r => r.json()).then(d => {
+  if (!d || !d.ok) return;
+  if (d.dolu) { kontenjanDoldu(); return; }
+  if (d.kalan <= 30) {
+    const alt = $('#adim1 .alt');
+    if (alt) alt.innerHTML = `1 dakikanızı alır. <b style="color:#c0392b">Son ${d.kalan} kontenjan!</b>`;
+  }
+}).catch(() => {});
 </script>
 </body>
 </html>

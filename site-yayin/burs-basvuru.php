@@ -55,6 +55,10 @@ $no = 'BS27-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
     'tur' => 'burs', 'no' => $no, 'seans' => $seans, 'ogrenci' => $ogrenci, 'sinif' => $sinif, 'okul' => $okul,
     'veli' => $veli, 'tel' => $tel, 'program' => $program, 'bulusma' => $bulusma, 'ticari' => $ticari,
 ], 'burs-adresi.txt');   // bursluluk ayrı tabloda: obir-veri/burs-adresi.txt
+if (!$gitti && $neden === 'script:dolu') {
+    @unlink(sys_get_temp_dir() . '/obir_burs_durum.json');   // kontenjan önbelleğini tazele
+    cevap(false, 'Üzgünüz, bursluluk sınavı kontenjanı doldu. Yedek listeye yazılmak için bize WhatsApp\'tan ulaşabilirsiniz.', 409, ['dolu' => true]);
+}
 if (!$gitti) {
     header('X-Obir-Neden: ' . $neden);
     cevap(false, 'Başvuru şu an iletilemedi.', 500);

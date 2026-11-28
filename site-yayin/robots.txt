@@ -2,6 +2,7 @@ User-agent: *
 Disallow: /sonuc.html
 Disallow: /iletisim.php
 Disallow: /burs-basvuru.php
+Disallow: /burs-durum.php
 Disallow: /_form-ortak.php
 Disallow: /sonuc-api.php
 Disallow: /sonuc-karne.php
