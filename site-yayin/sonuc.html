@@ -209,7 +209,7 @@ footer{text-align:center;color:var(--soluk);font-size:12.5px;font-weight:700;pad
 </style>
 </head>
 <body>
-<div class="taslak-bant" id="ornekBant" style="display:none">ÖRNEK EKRAN · Aşağıdaki veriler örnektir, gerçek bir öğrenciye ait değildir</div>
+<div class="taslak-bant" id="ornekBant" style="display:none">ÖRNEK EKRAN · Veriler örnektir · Obir velileri çocuklarının tüm deneme sonuçlarını burada görür · <a href="index.html#iletisim" style="text-decoration:underline;font-weight:900">Bilgi alın</a></div>
 
 <!-- ============ GİRİŞ ============ -->
 <section id="giris">
@@ -691,6 +691,9 @@ function gozlemle(){
 }
 
 function pdfIndir(e){ e.preventDefault(); alert('Örnek ekran: gerçek portalda bu buton öğrencinin bu denemeye ait karnesini (PDF) indirir.'); return false; }
+
+// ?ornek ile gelindiyse (reklam / ana sayfa bağlantısı) örnek ekranı doğrudan aç
+if(new URLSearchParams(location.search).has('ornek')) $('ornekGiris').click();
 </script>
 </body>
 </html>
