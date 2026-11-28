@@ -424,6 +424,56 @@ footer a:hover{color:var(--sari)}
 .wa-sabit::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:halka 2.2s infinite}
 
 /* ---------- animasyon yardımcıları ---------- */
+/* ---------- GALERİ ---------- */
+#galeri{background:#efece4}
+.etk-blok{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:40px;align-items:center;background:var(--kart);border:1px solid var(--cizgi);border-radius:28px;padding:28px;margin-bottom:44px}
+.etk-afis{border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(29,29,32,.45);transform:rotate(-2deg);transition:transform .4s}
+.etk-afis:hover{transform:rotate(0) scale(1.02)}
+.etk-afis img{width:100%;height:auto}
+.etk-metin h3{font-size:clamp(24px,3vw,34px);font-weight:900;line-height:1.1;letter-spacing:-.5px}
+.etk-metin>p{color:var(--soluk);font-weight:600;font-size:17px;margin:12px 0 22px}
+.etk-aylar{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.etk-aylar li{background:var(--bg);border-radius:16px;padding:14px 16px;border:1px solid var(--cizgi)}
+.etk-aylar b{display:block;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#8a7a00}
+.etk-aylar span{display:block;font-weight:800;font-size:16px;margin-top:2px}
+.gl-filtre{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.gl-filtre button{font-weight:800;font-size:15px;padding:10px 18px;border-radius:999px;background:var(--kart);border:1px solid var(--cizgi);transition:background .2s,color .2s,transform .2s}
+.gl-filtre button:hover{transform:translateY(-2px)}
+.gl-filtre button.aktif{background:var(--ink);color:var(--sari);border-color:var(--ink)}
+.gl-izgara{columns:4 230px;column-gap:14px}
+.gl-oge{break-inside:avoid;margin:0 0 14px;position:relative;border-radius:18px;overflow:hidden;background:#ddd9cf}
+.gl-oge.gizli{display:none}
+.gl-oge button{display:block;width:100%;padding:0;cursor:zoom-in}
+.gl-oge img{width:100%;height:auto;transition:transform .5s}
+.gl-oge:hover img{transform:scale(1.05)}
+.gl-oge figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-weight:800;font-size:14px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65));pointer-events:none}
+.gl-alt{text-align:center;margin-top:18px}
+.gl-daha{background:var(--kart);border:2px solid var(--ink);color:var(--ink)}
+.isik{position:fixed;inset:0;z-index:200;background:rgba(17,17,19,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:56px 16px 20px}
+.isik.acik{display:flex}
+.isik img{max-width:min(1100px,100%);max-height:calc(100vh - 130px);width:auto;height:auto;border-radius:12px;object-fit:contain}
+.isik p{color:var(--krem);font-weight:800;margin-top:14px;text-align:center}
+.isik button{position:absolute;color:#fff;background:rgba(255,255,255,.12);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:26px;line-height:1;transition:background .2s}
+.isik button:hover{background:var(--sari);color:var(--ink)}
+.isik .is-kapat{top:14px;right:14px}
+.isik .is-onceki{left:14px;top:50%;transform:translateY(-50%)}
+.isik .is-sonraki{right:14px;top:50%;transform:translateY(-50%)}
+@media (max-width:900px){
+  .etk-blok{grid-template-columns:1fr;gap:26px;padding:20px}
+  .etk-afis{max-width:320px;margin:0 auto}
+}
+@media (max-width:560px){
+  .gl-izgara{columns:2;column-gap:10px}
+  .gl-oge{margin-bottom:10px;border-radius:14px}
+  .gl-oge figcaption{font-size:12px;padding:22px 10px 8px}
+  .gl-filtre{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px 20px;padding:0 20px 4px;scrollbar-width:none}
+  .gl-filtre button{flex:none;font-size:14px;padding:9px 15px}
+  .etk-aylar{grid-template-columns:1fr 1fr;gap:8px}
+  .etk-aylar li{padding:10px 12px}
+  .etk-aylar span{font-size:14px}
+  .isik .is-onceki,.isik .is-sonraki{top:auto;bottom:16px;transform:none}
+}
+
 .gor{opacity:0;transform:translateY(34px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
 .gor.gorundu{opacity:1;transform:none}
 .gor.g2{transition-delay:.1s}.gor.g3{transition-delay:.2s}.gor.g4{transition-delay:.3s}
@@ -526,7 +576,7 @@ footer a:hover{color:var(--sari)}
     <a href="#hakkimizda" class="logo"><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"></a>
     <ul class="menu">
       <li><a href="#hakkimizda">Hakkımızda</a>
-        <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a></div></li>
+        <div class="alt-menu"><a href="#hakkimizda">Biz Kimiz</a><a href="#kadro">Kadromuz</a><a href="#galeri">Galeri</a></div></li>
       <li><a href="#programlar">Eğitim Paketlerimiz</a></li>
       <li><a href="#maarif">Maarif Modeli</a></li>
       <li><a href="#surec">Sınavlar</a>
@@ -542,7 +592,7 @@ footer a:hover{color:var(--sari)}
     </div>
   </div>
   <nav class="mobil-menu" id="mobilMenu">
-    <a href="#hakkimizda">Hakkımızda</a><a class="alt" href="#kadro">Kadromuz</a>
+    <a href="#hakkimizda">Hakkımızda</a><a class="alt" href="#kadro">Kadromuz</a><a class="alt" href="#galeri">Galeri</a>
     <a href="#programlar">Eğitim Paketlerimiz</a>
     <a href="#maarif">Maarif Modeli</a>
     <a href="#surec">Sınavlar</a><a class="alt" href="#denemeler">Denemeler ve Kaynaklar</a><a class="alt" href="bursluluk.html">Bursluluk Başvurusu</a><a class="alt" href="#bursluluk">Bursluluk Sonuçları</a>
@@ -815,13 +865,13 @@ footer a:hover{color:var(--sari)}
     </div>
     <h3 class="alt-baslik gor">Yönetim</h3>
     <div class="yon-grid">
-      <div class="yon-kart mudur gor"><div class="yon-foto"><span class="bas-harf">EÖ</span></div><div><b>Elif ÖZTÜRK</b><span>Kurum Müdürü</span></div></div>
-      <div class="yon-kart gor g2"><div class="yon-foto"><span class="bas-harf">FÖ</span></div><div><b>Fırat Kemal ÖZTÜRK</b><span>Müdür Yardımcısı</span></div></div>
+      <div class="yon-kart mudur gor"><div class="yon-foto"><img src="assets/kadro/elif-ozturk.jpg" alt="Elif ÖZTÜRK" loading="lazy"></div><div><b>Elif ÖZTÜRK</b><span>Kurum Müdürü</span></div></div>
+      <div class="yon-kart gor g2"><div class="yon-foto"><img src="assets/kadro/firat-kemal-ozturk.jpg" alt="Fırat Kemal ÖZTÜRK" loading="lazy"></div><div><b>Fırat Kemal ÖZTÜRK</b><span>Müdür Yardımcısı</span></div></div>
       <div class="yon-kart gor g3"><div class="yon-foto"><img src="assets/kadro/mujgan-kantar.jpg" alt="Müjgan KANTAR" loading="lazy"></div><div><b>Müjgan KANTAR</b><span>Müdür Yardımcısı</span></div></div>
     </div>
     <h3 class="alt-baslik gor">Öğretmenlerimiz</h3>
     <div class="kadro-grid">
-      <div class="ogr-kart gor"><div class="ogr-foto"><span class="bas-harf">EÖ</span></div><div class="ogr-bilgi"><b>Elif ÖZTÜRK</b><span>Türkçe</span></div></div>
+      <div class="ogr-kart gor"><div class="ogr-foto"><img src="assets/kadro/elif-ozturk.jpg" alt="Elif ÖZTÜRK" loading="lazy"></div><div class="ogr-bilgi"><b>Elif ÖZTÜRK</b><span>Türkçe</span></div></div>
       <div class="ogr-kart gor g2"><div class="ogr-foto"><img src="assets/kadro/yasemin-gulsafak.jpg" alt="Yasemin GÜLŞAFAK" loading="lazy"></div><div class="ogr-bilgi"><b>Yasemin GÜLŞAFAK</b><span>Türkçe</span></div></div>
       <div class="ogr-kart gor g3"><div class="ogr-foto"><img src="assets/kadro/ceyda-tuna.jpg" alt="Ceyda TUNA" loading="lazy"></div><div class="ogr-bilgi"><b>Ceyda TUNA</b><span>Matematik</span></div></div>
       <div class="ogr-kart gor g4"><div class="ogr-foto"><img src="assets/kadro/esma-cansu.jpg" alt="Esma CANSU" loading="lazy"></div><div class="ogr-bilgi"><b>Esma CANSU</b><span>Matematik</span></div></div>
@@ -833,6 +883,85 @@ footer a:hover{color:var(--sari)}
     </div>
   </div>
 </section>
+
+<!-- ============ GALERİ ============ -->
+<section class="b" id="galeri">
+  <div class="kap">
+    <div class="b-bas gor">
+      <span class="kucuk-baslik">Galeri</span>
+      <h2 class="bb">Ders çalışırken de, gezerken de birlikteyiz</h2>
+      <p>Deneme günlerinden yaz kampına, bowling turnuvasından su roketi deneyine: Obir'de bir yıl böyle geçiyor.</p>
+    </div>
+    <div class="etk-blok gor">
+      <div class="etk-afis"><img src="assets/galeri/etkinlik-afis.jpg" width="900" height="1260" alt="Obir'de etkinlikler afişi: Ekim, Kasım, Aralık ve Ocak etkinlikleri" loading="lazy"></div>
+      <div class="etk-metin">
+        <span class="kucuk-baslik">Her ay bir etkinlik</span>
+        <h3>Bu yıl da birlikte öğreniyor, birlikte eğleniyoruz.</h3>
+        <p>İlk dönem boyunca her ay öğrencilerimizle farklı bir etkinlikte buluşuyoruz.</p>
+        <ul class="etk-aylar">
+          <li><b>Ekim</b><span>Dream Waffle günü</span></li>
+          <li><b>Kasım</b><span>Olleys: laser tag ve bowling</span></li>
+          <li><b>Aralık</b><span>Çiğ köfte eğlence partisi</span></li>
+          <li><b>Ocak</b><span>Yıldızdağ kayak gezisi</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gl-filtre gor" role="group" aria-label="Galeri filtresi">
+      <button type="button" class="aktif" data-f="hepsi">Tümü</button>
+      <button type="button" data-f="etkinlik">Etkinlikler</button>
+      <button type="button" data-f="sinav">Sınavlar ve Sınıf</button>
+      <button type="button" data-f="kamp">Yaz Kampı</button>
+      <button type="button" data-f="ekip">Ekibimiz</button>
+    </div>
+    <div class="gl-izgara" id="glIzgara">
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g11.jpg" aria-label="Bowling günü fotoğrafını büyüt"><img src="assets/galeri/g11-k.jpg" width="560" height="420" alt="Bowling günü" loading="lazy"></button><figcaption>Bowling günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="ekip"><button type="button" data-tam="assets/galeri/g01.jpg" aria-label="Obir ailesi fotoğrafını büyüt"><img src="assets/galeri/g01-k.jpg" width="420" height="560" alt="Obir ailesi" loading="lazy"></button><figcaption>Obir ailesi</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g27.jpg" aria-label="Su roketi deneyi fotoğrafını büyüt"><img src="assets/galeri/g27-k.jpg" width="315" height="560" alt="Su roketi deneyi" loading="lazy"></button><figcaption>Su roketi deneyi</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g04.jpg" aria-label="Kurumsal deneme sınavı fotoğrafını büyüt"><img src="assets/galeri/g04-k.jpg" width="560" height="420" alt="Kurumsal deneme sınavı" loading="lazy"></button><figcaption>Kurumsal deneme sınavı</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g31.jpg" aria-label="Obir yaz kampı fotoğrafını büyüt"><img src="assets/galeri/g31-k.jpg" width="420" height="560" alt="Obir yaz kampı" loading="lazy"></button><figcaption>Obir yaz kampı</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g12.jpg" aria-label="Laser tag fotoğrafını büyüt"><img src="assets/galeri/g12-k.jpg" width="560" height="420" alt="Laser tag" loading="lazy"></button><figcaption>Laser tag</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g10.jpg" aria-label="LGS veda kutlaması fotoğrafını büyüt"><img src="assets/galeri/g10-k.jpg" width="560" height="315" alt="LGS veda kutlaması" loading="lazy"></button><figcaption>LGS veda kutlaması</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g24.jpg" aria-label="Açık hava bilim oyunları fotoğrafını büyüt"><img src="assets/galeri/g24-k.jpg" width="312" height="560" alt="Açık hava bilim oyunları" loading="lazy"></button><figcaption>Açık hava bilim oyunları</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g34.jpg" aria-label="Çadırda ders fotoğrafını büyüt"><img src="assets/galeri/g34-k.jpg" width="560" height="420" alt="Çadırda ders" loading="lazy"></button><figcaption>Çadırda ders</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g08.jpg" aria-label="Bursluluk sınavı kayıt masası fotoğrafını büyüt"><img src="assets/galeri/g08-k.jpg" width="560" height="420" alt="Bursluluk sınavı kayıt masası" loading="lazy"></button><figcaption>Bursluluk sınavı kayıt masası</figcaption></figure>
+      <figure class="gl-oge" data-kat="ekip"><button type="button" data-tam="assets/galeri/g03.jpg" aria-label="Öğrencilerimizle fotoğrafını büyüt"><img src="assets/galeri/g03-k.jpg" width="560" height="420" alt="Öğrencilerimizle" loading="lazy"></button><figcaption>Öğrencilerimizle</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g16.jpg" aria-label="Dream Waffle günü fotoğrafını büyüt"><img src="assets/galeri/g16-k.jpg" width="560" height="420" alt="Dream Waffle günü" loading="lazy"></button><figcaption>Dream Waffle günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="ekip"><button type="button" data-tam="assets/galeri/g02.jpg" aria-label="Ekip yemeğimiz fotoğrafını büyüt"><img src="assets/galeri/g02-k.jpg" width="560" height="420" alt="Ekip yemeğimiz" loading="lazy"></button><figcaption>Ekip yemeğimiz</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g13.jpg" aria-label="Bowling günü fotoğrafını büyüt"><img src="assets/galeri/g13-k.jpg" width="315" height="560" alt="Bowling günü" loading="lazy"></button><figcaption>Bowling günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g28.jpg" aria-label="Su roketi deneyi fotoğrafını büyüt"><img src="assets/galeri/g28-k.jpg" width="315" height="560" alt="Su roketi deneyi" loading="lazy"></button><figcaption>Su roketi deneyi</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g05.jpg" aria-label="Deneme günü fotoğrafını büyüt"><img src="assets/galeri/g05-k.jpg" width="560" height="420" alt="Deneme günü" loading="lazy"></button><figcaption>Deneme günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g35.jpg" aria-label="Açık havada öğreniyoruz fotoğrafını büyüt"><img src="assets/galeri/g35-k.jpg" width="560" height="420" alt="Açık havada öğreniyoruz" loading="lazy"></button><figcaption>Açık havada öğreniyoruz</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g18.jpg" aria-label="Pasta atölyesi fotoğrafını büyüt"><img src="assets/galeri/g18-k.jpg" width="315" height="560" alt="Pasta atölyesi" loading="lazy"></button><figcaption>Pasta atölyesi</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g22.jpg" aria-label="Güvenlik güçleri tanıtım günü fotoğrafını büyüt"><img src="assets/galeri/g22-k.jpg" width="420" height="560" alt="Güvenlik güçleri tanıtım günü" loading="lazy"></button><figcaption>Güvenlik güçleri tanıtım günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g14.jpg" aria-label="Etkinlik sonrası yemek fotoğrafını büyüt"><img src="assets/galeri/g14-k.jpg" width="420" height="560" alt="Etkinlik sonrası yemek" loading="lazy"></button><figcaption>Etkinlik sonrası yemek</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g33.jpg" aria-label="Kampta oyun fotoğrafını büyüt"><img src="assets/galeri/g33-k.jpg" width="420" height="560" alt="Kampta oyun" loading="lazy"></button><figcaption>Kampta oyun</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g09.jpg" aria-label="Bursluluk tanıtım standı fotoğrafını büyüt"><img src="assets/galeri/g09-k.jpg" width="315" height="560" alt="Bursluluk tanıtım standı" loading="lazy"></button><figcaption>Bursluluk tanıtım standı</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g25.jpg" aria-label="Açık hava bilim oyunları fotoğrafını büyüt"><img src="assets/galeri/g25-k.jpg" width="312" height="560" alt="Açık hava bilim oyunları" loading="lazy"></button><figcaption>Açık hava bilim oyunları</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g06.jpg" aria-label="Deneme günü fotoğrafını büyüt"><img src="assets/galeri/g06-k.jpg" width="560" height="420" alt="Deneme günü" loading="lazy"></button><figcaption>Deneme günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="sinav"><button type="button" data-tam="assets/galeri/g07.jpg" aria-label="Etüt salonu fotoğrafını büyüt"><img src="assets/galeri/g07-k.jpg" width="560" height="420" alt="Etüt salonu" loading="lazy"></button><figcaption>Etüt salonu</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g15.jpg" aria-label="Etkinlik sonrası yemek fotoğrafını büyüt"><img src="assets/galeri/g15-k.jpg" width="420" height="560" alt="Etkinlik sonrası yemek" loading="lazy"></button><figcaption>Etkinlik sonrası yemek</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g17.jpg" aria-label="Dream Waffle günü fotoğrafını büyüt"><img src="assets/galeri/g17-k.jpg" width="560" height="420" alt="Dream Waffle günü" loading="lazy"></button><figcaption>Dream Waffle günü</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g19.jpg" aria-label="Hediye paketlerimiz fotoğrafını büyüt"><img src="assets/galeri/g19-k.jpg" width="420" height="560" alt="Hediye paketlerimiz" loading="lazy"></button><figcaption>Hediye paketlerimiz</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g20.jpg" aria-label="Hep birlikte yemek fotoğrafını büyüt"><img src="assets/galeri/g20-k.jpg" width="560" height="420" alt="Hep birlikte yemek" loading="lazy"></button><figcaption>Hep birlikte yemek</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g21.jpg" aria-label="Hep birlikte yemek fotoğrafını büyüt"><img src="assets/galeri/g21-k.jpg" width="560" height="420" alt="Hep birlikte yemek" loading="lazy"></button><figcaption>Hep birlikte yemek</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g23.jpg" aria-label="Askerî araç gezisi fotoğrafını büyüt"><img src="assets/galeri/g23-k.jpg" width="420" height="560" alt="Askerî araç gezisi" loading="lazy"></button><figcaption>Askerî araç gezisi</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g26.jpg" aria-label="Açık hava bilim oyunları fotoğrafını büyüt"><img src="assets/galeri/g26-k.jpg" width="312" height="560" alt="Açık hava bilim oyunları" loading="lazy"></button><figcaption>Açık hava bilim oyunları</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g29.jpg" aria-label="Meyve şöleni fotoğrafını büyüt"><img src="assets/galeri/g29-k.jpg" width="315" height="560" alt="Meyve şöleni" loading="lazy"></button><figcaption>Meyve şöleni</figcaption></figure>
+      <figure class="gl-oge" data-kat="etkinlik"><button type="button" data-tam="assets/galeri/g30.jpg" aria-label="Meyve şöleni fotoğrafını büyüt"><img src="assets/galeri/g30-k.jpg" width="315" height="560" alt="Meyve şöleni" loading="lazy"></button><figcaption>Meyve şöleni</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g32.jpg" aria-label="Kamp kahvaltısı fotoğrafını büyüt"><img src="assets/galeri/g32-k.jpg" width="420" height="560" alt="Kamp kahvaltısı" loading="lazy"></button><figcaption>Kamp kahvaltısı</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g36.jpg" aria-label="Açık hava kahvaltısı fotoğrafını büyüt"><img src="assets/galeri/g36-k.jpg" width="560" height="420" alt="Açık hava kahvaltısı" loading="lazy"></button><figcaption>Açık hava kahvaltısı</figcaption></figure>
+      <figure class="gl-oge" data-kat="kamp"><button type="button" data-tam="assets/galeri/g37.jpg" aria-label="Kamp ikramları fotoğrafını büyüt"><img src="assets/galeri/g37-k.jpg" width="420" height="560" alt="Kamp ikramları" loading="lazy"></button><figcaption>Kamp ikramları</figcaption></figure>
+    </div>
+    <div class="gl-alt"><button type="button" class="btn gl-daha" id="glDaha">Daha fazla fotoğraf göster</button></div>
+  </div>
+</section>
+<div class="isik" id="isik" role="dialog" aria-modal="true" aria-label="Fotoğraf görüntüleyici">
+  <button type="button" class="is-kapat" aria-label="Kapat">&times;</button>
+  <button type="button" class="is-onceki" aria-label="Önceki fotoğraf">&#8249;</button>
+  <img alt="">
+  <p></p>
+  <button type="button" class="is-sonraki" aria-label="Sonraki fotoğraf">&#8250;</button>
+</div>
 
 <!-- ============ İLETİŞİM ============ -->
 <section class="b koyu" id="iletisim">
@@ -895,7 +1024,7 @@ footer a:hover{color:var(--sari)}
   <div class="kap">
     <div class="f-grid">
       <div><img src="assets/logo-obir.png" alt="Obir Kurs Merkezi"><p style="font-weight:600;font-size:14.5px;max-width:300px">Sivas'ta 8-10 kişilik butik sınıflarda LGS hazırlık ve 5, 6, 7. sınıf eğitimi.</p></div>
-      <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#maarif">Maarif Modeli</a></div>
+      <div><h4>Kurum</h4><a href="#hakkimizda">Hakkımızda</a><a href="#kadro">Kadromuz</a><a href="#galeri">Galeri</a><a href="#maarif">Maarif Modeli</a></div>
       <div><h4>Eğitim</h4><a href="#programlar">Eğitim Paketlerimiz</a><a href="#surec">Sınavlar</a><a href="bursluluk.html">Bursluluk</a><a href="sonuc.html">Deneme Sonuçları</a></div>
       <div><h4>Bize ulaşın</h4><a href="#iletisim">İletişim Formu</a><a href="https://wa.me/905332298058?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/obir_kurs_merkezi/" target="_blank" rel="noopener">Instagram</a><a href="tel:+905332298058">0533 229 80 58</a></div>
     </div>
@@ -1136,6 +1265,57 @@ $('#bilgiForm').addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Gönder';
   }
 });
+
+/* ---------- galeri ---------- */
+(() => {
+  const ogeler = $$('.gl-oge'), daha = $('#glDaha'), ADIM = 12;
+  let filtre = 'hepsi', limit = ADIM;
+  const uyan = () => ogeler.filter(o => filtre === 'hepsi' || o.dataset.kat === filtre);
+  const ciz = () => {
+    const u = uyan();
+    ogeler.forEach(o => o.classList.add('gizli'));
+    u.slice(0, limit).forEach(o => o.classList.remove('gizli'));
+    daha.style.display = u.length > limit ? '' : 'none';
+  };
+  $$('.gl-filtre button').forEach(b => b.addEventListener('click', () => {
+    $$('.gl-filtre button').forEach(x => x.classList.toggle('aktif', x === b));
+    filtre = b.dataset.f; limit = ADIM; ciz();
+  }));
+  daha.addEventListener('click', () => { limit += ADIM; ciz(); });
+  ciz();
+
+  const isik = $('#isik'), isImg = isik.querySelector('img'), isYazi = isik.querySelector('p');
+  let liste = [], sira = 0;
+  const goster = i => {
+    sira = (i + liste.length) % liste.length;
+    const o = liste[sira], b = o.querySelector('button');
+    isImg.src = b.dataset.tam; isImg.alt = o.querySelector('img').alt;
+    isYazi.textContent = o.querySelector('figcaption').textContent;
+  };
+  const kapat = () => { isik.classList.remove('acik'); document.body.style.overflow = ''; };
+  ogeler.forEach(o => o.querySelector('button').addEventListener('click', () => {
+    liste = ogeler.filter(x => !x.classList.contains('gizli'));
+    goster(liste.indexOf(o));
+    isik.classList.add('acik'); document.body.style.overflow = 'hidden';
+  }));
+  isik.querySelector('.is-kapat').addEventListener('click', kapat);
+  isik.querySelector('.is-onceki').addEventListener('click', () => goster(sira - 1));
+  isik.querySelector('.is-sonraki').addEventListener('click', () => goster(sira + 1));
+  isik.addEventListener('click', e => { if (e.target === isik) kapat(); });
+  document.addEventListener('keydown', e => {
+    if (!isik.classList.contains('acik')) return;
+    if (e.key === 'Escape') kapat();
+    else if (e.key === 'ArrowLeft') goster(sira - 1);
+    else if (e.key === 'ArrowRight') goster(sira + 1);
+  });
+  let x0 = null;
+  isik.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  isik.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) goster(sira + (dx < 0 ? 1 : -1));
+  });
+})();
 </script>
 </body>
 </html>
