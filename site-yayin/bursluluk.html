@@ -291,6 +291,7 @@ footer img{height:36px;margin:0 auto 12px;display:block}
           </div>
         </div>
         <button class="btn btn-sari" type="submit" style="margin-top:16px">Başvuruyu tamamla</button>
+        <p class="form-hata" id="bursHata" style="color:#c0392b;font-weight:700;margin-top:12px"></p>
         <button class="geri-link" type="button" id="geri">Geri dön</button>
       </form>
 
@@ -302,7 +303,7 @@ footer img{height:36px;margin:0 auto 12px;display:block}
         <div class="zaman-cizelge">
           <div class="zc ok"><i>✓</i><div><b>Başvuru tamamlandı</b><span id="tBugun">Bugün</span></div></div>
           <div class="zc sira"><i>2</i><div><b>Giriş belgesi WhatsApp'tan gelecek</b><span id="tTel">Sınavdan birkaç gün önce</span></div></div>
-          <div class="zc"><i>3</i><div><b>Sınav günü · 7 Şubat 2027</b><span>Siz de veli buluşmamıza davetlisiniz</span></div></div>
+          <div class="zc"><i>3</i><div><b>Sınav günü · Şubat 2027</b><span>Siz de veli buluşmamıza davetlisiniz</span></div></div>
           <div class="zc"><i>4</i><div><b>Sonuçlar sitemizde</b><span>Size özel sayfada açıklanır</span></div></div>
         </div>
         <div class="kaydet">
@@ -403,7 +404,7 @@ $('#adim1').addEventListener('submit', e => {
   ok = alanHata('vTel', /^05\d{9}$/.test($('#vTel').value.replace(/\D/g,''))) && ok;
   const kvkk = $('#kvkk').checked; $('#kvkkOnay').classList.toggle('hata', !kvkk); ok = kvkk && ok;
   if(!ok){ const k = $('#form'); k.classList.remove('salla'); void k.offsetWidth; k.classList.add('salla'); return; }
-  Object.assign(durum, {sinif:+sinif.value, oAd:$('#oAd').value.trim(), vTel:$('#vTel').value});
+  Object.assign(durum, {sinif:+sinif.value, oAd:$('#oAd').value.trim(), okul:$('#okul').value.trim(), vAd:$('#vAd').value.trim(), vTel:$('#vTel').value, ticari:$('#ticari').checked});
   // adım 2'yi hazırla
   const g = durum.sinif + 1;
   $('#gelecekN').textContent = g + '.';
@@ -428,11 +429,33 @@ $('#progSec').addEventListener('change', e => {
   else if(e.target.checked) $('#progSec input[value=karar]').checked = false;
 });
 
-/* adım 2 → teşekkür */
-$('#adim2').addEventListener('submit', e => {
+/* adım 2 → sunucuya gönder → teşekkür */
+const BASLANGIC = Date.now();
+$('#adim2').addEventListener('submit', async e => {
   e.preventDefault();
+  const btn = $('#adim2 button[type=submit]'), hata = $('#bursHata');
   const secilen = $$('#progSec input:checked').map(i => i.value);
-  const no = 'BS27-' + String(Math.floor(1000 + Math.random()*9000));
+  const bulusma = (document.querySelector('input[name=bulusma]:checked') || {}).value || 'evet';
+  hata.textContent = ''; btn.disabled = true; btn.textContent = 'Gönderiliyor…';
+  const veri = new FormData();
+  Object.entries({ogrenci: durum.oAd, okul: durum.okul, veli: durum.vAd, tel: durum.vTel, sinif: durum.sinif,
+    program: secilen.join(','), bulusma, kvkk: '1', ticari: durum.ticari ? '1' : '', t: BASLANGIC}).forEach(([k, v]) => veri.append(k, v));
+  let no = null, mesaj = '';
+  try {
+    const r = await fetch('burs-basvuru.php', {method: 'POST', body: veri});
+    const j = await r.json();
+    if (j.ok) no = j.no; else mesaj = j.mesaj || '';
+  } catch (_) {}
+  btn.disabled = false; btn.textContent = 'Başvuruyu tamamla';
+  if (!no) {
+    const metin = ['Merhaba, Bursluluk Sınavı için başvurmak istiyorum.', 'Öğrenci: ' + durum.oAd, 'Sınıf: ' + durum.sinif + '. sınıf',
+      'Okul: ' + durum.okul, 'Veli: ' + durum.vAd, 'Telefon: ' + durum.vTel].join(String.fromCharCode(10));
+    hata.textContent = (mesaj && !/iletilemedi/.test(mesaj) ? mesaj + ' ' : 'Başvuru şu an iletilemedi. ') + 'Bilgileriniz hazır, WhatsApp’tan tek dokunuşla gönderebilirsiniz:';
+    const a = document.createElement('a'); a.className = 'btn btn-wa'; a.target = '_blank'; a.rel = 'noopener';
+    a.style.marginTop = '10px'; a.href = 'https://wa.me/905332298058?text=' + encodeURIComponent(metin); a.textContent = 'WhatsApp ile gönder';
+    hata.appendChild(document.createElement('br')); hata.appendChild(a);
+    return;
+  }
   $('#bNo').textContent = no;
   const ilkAd = durum.oAd.split(' ')[0];
   $('#tTitle').textContent = `${ilkAd} için başvurunuz alındı!`;
@@ -446,10 +469,9 @@ $('#adim2').addEventListener('submit', e => {
   $('#kBaslik').textContent = `${ilkAd}'i ${g}. sınıfta neler bekliyor?`;
   $('#kGrid').innerHTML = programlar(durum.sinif).map(k => `<div class="kp ${secilen.includes(k)?'secti':''}">${secilen.includes(k)?'<span class="sec-rozet">Seçtiğiniz program</span>':''}<span class="top">${PROG[k].top}</span><h3>${PROG[k].ad}</h3><p>${PROG[k].aciklama}</p>${gunlerHtml(PROG[k].gun)}</div>`).join('');
   if(programlar(durum.sinif).length === 1) $('#kGrid').style.gridTemplateColumns = 'minmax(0,420px)', $('#kGrid').style.justifyContent = 'center';
-  $('#kisisel').classList.add('acik');
+  $('#kisisel').hidden = false; $('#kisisel').classList.add('acik');
   ctaGozlem.disconnect(); $('#mobilCta').style.display = 'none';
   $('#form').scrollIntoView({behavior:'smooth', block:'start'});
-  // Gerçek sitede: bilgiler sunucuya kaydedilir, size e-posta/tablo olarak düşer.
 });
 
 /* rehbere kaydet (.vcf, logolu) */
@@ -462,7 +484,7 @@ $('#vcf').addEventListener('click', async () => {
     const w = 330, h = w * img.height / img.width; x.drawImage(img, (400-w)/2, (400-h)/2, w, h);
     foto = 'PHOTO;ENCODING=b;TYPE=JPEG:' + c.toDataURL('image/jpeg', .85).split(',')[1] + '\r\n';
   }catch(_){}
-  const vcf = 'BEGIN:VCARD\r\nVERSION:3.0\r\nN:;Obir Kurs Merkezi;;;\r\nFN:Obir Kurs Merkezi\r\nORG:Obir Kurs Merkezi\r\nTEL;TYPE=CELL:+905000000000\r\nURL:https://obirkurs.com\r\n' + foto + 'END:VCARD\r\n';
+  const vcf = 'BEGIN:VCARD\r\nVERSION:3.0\r\nN:;Obir Kurs Merkezi;;;\r\nFN:Obir Kurs Merkezi\r\nORG:Obir Kurs Merkezi\r\nTEL;TYPE=CELL:+905332298058\r\nURL:https://obirkurs.com.tr\r\n' + foto + 'END:VCARD\r\n';
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([vcf], {type:'text/vcard'})); a.download = 'Obir-Kurs-Merkezi.vcf'; a.click();
 });
