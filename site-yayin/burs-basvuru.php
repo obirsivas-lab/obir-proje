@@ -37,6 +37,8 @@ $ticari  = !empty($_POST['ticari']) ? 'evet' : 'hayır';
 $bulusma = al('bulusma', 5) === 'hayir' ? 'hayır' : 'evet';
 
 if (!in_array($sinif, ['4', '5', '6', '7'], true)) cevap(false, 'Lütfen sınıf seçin.', 422);
+$seans = al('seans', 5);
+if (!in_array($seans, ['10:00', '13:30', '16:30'], true)) cevap(false, 'Lütfen bir sınav oturumu seçin.', 422);
 if (mb_strlen($ogrenci, 'UTF-8') < 3) cevap(false, 'Lütfen öğrencinin adını soyadını yazın.', 422);
 if (mb_strlen($okul, 'UTF-8') < 2) cevap(false, 'Lütfen okulu yazın.', 422);
 if (mb_strlen($veli, 'UTF-8') < 3) cevap(false, 'Lütfen veli adını soyadını yazın.', 422);
@@ -50,7 +52,7 @@ $program = implode(', ', array_map(function ($k) use ($programAd) { return $prog
 $no = 'BS27-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
 
 [$gitti, $neden] = tabloya_gonder([
-    'tur' => 'burs', 'no' => $no, 'ogrenci' => $ogrenci, 'sinif' => $sinif, 'okul' => $okul,
+    'tur' => 'burs', 'no' => $no, 'seans' => $seans, 'ogrenci' => $ogrenci, 'sinif' => $sinif, 'okul' => $okul,
     'veli' => $veli, 'tel' => $tel, 'program' => $program, 'bulusma' => $bulusma, 'ticari' => $ticari,
 ], 'burs-adresi.txt');   // bursluluk ayrı tabloda: obir-veri/burs-adresi.txt
 if (!$gitti) {

@@ -6,7 +6,7 @@
 <link rel="canonical" href="https://obirkurs.com.tr/bursluluk.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2027 Bursluluk Sınavı – Obir Kurs Merkezi</title>
-<meta name="description" content="4, 5, 6 ve 7. sınıf öğrencileri için ücretsiz Bursluluk Sınavı. Başarısına göre gelecek yıl için burs fırsatı. Ocak 2027, Sivas.">
+<meta name="description" content="4, 5, 6 ve 7. sınıf öğrencileri için ücretsiz Bursluluk Sınavı. Başarısına göre gelecek yıl için burs fırsatı. 7 Şubat 2027 Pazar, Sivas.">
 <meta property="og:title" content="2027 Bursluluk Sınavı · Obir Kurs Merkezi">
 <meta property="og:description" content="4-7. sınıflar için ücretsiz sınav, başarısına göre burs. Hemen başvurun.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -224,7 +224,8 @@ footer img{height:36px;margin:0 auto 12px;display:block}
       <h1>2027 Bursluluk Sınavı <span>4, 5, 6 ve 7. sınıflar için.</span></h1>
       <p class="giris">4, 5, 6 ve 7. sınıf öğrencileri seviyesini ücretsiz görsün, başarısına göre gelecek eğitim yılı için burs kazansın.</p>
       <div class="bilgi-satir">
-        <div class="bk"><small>Sınav dönemi</small><b>Şubat 2027</b></div>
+        <div class="bk"><small>Sınav tarihi</small><b>7 Şubat 2027 Pazar</b></div>
+        <div class="bk"><small>Oturumlar</small><b style="white-space:nowrap">10:00 · 13:30 · 16:30</b></div>
         <div class="bk"><small>Sınıflar</small><div class="siniflar"><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
         <div class="bk gen"><small>Ücret</small><b>Ücretsiz</b></div>
       </div>
@@ -262,6 +263,14 @@ footer img{height:36px;margin:0 auto 12px;display:block}
             <label><input type="radio" name="sinif" value="7"><span>7. sınıf</span></label>
           </div>
           <div class="hata-yazi">Lütfen sınıf seçin.</div>
+        </div>
+        <div class="f-alan"><span class="f-etiket">Sınav oturumu · 7 Şubat 2027 Pazar</span>
+          <div class="secenek" id="seansSec">
+            <label><input type="radio" name="seans" value="10:00"><span>10:00</span></label>
+            <label><input type="radio" name="seans" value="13:30"><span>13:30</span></label>
+            <label><input type="radio" name="seans" value="16:30"><span>16:30</span></label>
+          </div>
+          <div class="hata-yazi">Lütfen bir oturum seçin.</div>
         </div>
         <div class="f-satir">
           <div class="f-alan"><label for="oAd">Öğrenci adı soyadı</label><input type="text" id="oAd" autocomplete="off"><div class="hata-yazi">Bu alan gerekli.</div></div>
@@ -303,7 +312,7 @@ footer img{height:36px;margin:0 auto 12px;display:block}
         <div class="zaman-cizelge">
           <div class="zc ok"><i>✓</i><div><b>Başvuru tamamlandı</b><span id="tBugun">Bugün</span></div></div>
           <div class="zc sira"><i>2</i><div><b>Giriş belgesi WhatsApp'tan gelecek</b><span id="tTel">Sınavdan birkaç gün önce</span></div></div>
-          <div class="zc"><i>3</i><div><b>Sınav günü · Şubat 2027</b><span>Siz de veli buluşmamıza davetlisiniz</span></div></div>
+          <div class="zc"><i>3</i><div><b id="tSinav">Sınav günü · 7 Şubat 2027</b><span>Siz de veli buluşmamıza davetlisiniz</span></div></div>
           <div class="zc"><i>4</i><div><b>Sonuçlar sitemizde</b><span>Size özel sayfada açıklanır</span></div></div>
         </div>
         <div class="kaydet">
@@ -398,13 +407,15 @@ $('#adim1').addEventListener('submit', e => {
   const sinif = document.querySelector('input[name=sinif]:checked');
   let ok = true;
   $('#sinifSec').closest('.f-alan').classList.toggle('hata', !sinif); ok = !!sinif && ok;
+  const seans = document.querySelector('input[name=seans]:checked');
+  $('#seansSec').closest('.f-alan').classList.toggle('hata', !seans); ok = !!seans && ok;
   ok = alanHata('oAd', $('#oAd').value.trim().length >= 3) && ok;
   ok = alanHata('okul', $('#okul').value.trim().length >= 2) && ok;
   ok = alanHata('vAd', $('#vAd').value.trim().length >= 3) && ok;
   ok = alanHata('vTel', /^05\d{9}$/.test($('#vTel').value.replace(/\D/g,''))) && ok;
   const kvkk = $('#kvkk').checked; $('#kvkkOnay').classList.toggle('hata', !kvkk); ok = kvkk && ok;
   if(!ok){ const k = $('#form'); k.classList.remove('salla'); void k.offsetWidth; k.classList.add('salla'); return; }
-  Object.assign(durum, {sinif:+sinif.value, oAd:$('#oAd').value.trim(), okul:$('#okul').value.trim(), vAd:$('#vAd').value.trim(), vTel:$('#vTel').value, ticari:$('#ticari').checked});
+  Object.assign(durum, {seans:seans.value, sinif:+sinif.value, oAd:$('#oAd').value.trim(), okul:$('#okul').value.trim(), vAd:$('#vAd').value.trim(), vTel:$('#vTel').value, ticari:$('#ticari').checked});
   // adım 2'yi hazırla
   const g = durum.sinif + 1;
   $('#gelecekN').textContent = g + '.';
@@ -438,7 +449,7 @@ $('#adim2').addEventListener('submit', async e => {
   const bulusma = (document.querySelector('input[name=bulusma]:checked') || {}).value || 'evet';
   hata.textContent = ''; btn.disabled = true; btn.textContent = 'Gönderiliyor…';
   const veri = new FormData();
-  Object.entries({ogrenci: durum.oAd, okul: durum.okul, veli: durum.vAd, tel: durum.vTel, sinif: durum.sinif,
+  Object.entries({seans: durum.seans, ogrenci: durum.oAd, okul: durum.okul, veli: durum.vAd, tel: durum.vTel, sinif: durum.sinif,
     program: secilen.join(','), bulusma, kvkk: '1', ticari: durum.ticari ? '1' : '', t: BASLANGIC}).forEach(([k, v]) => veri.append(k, v));
   let no = null, mesaj = '';
   try {
@@ -448,7 +459,7 @@ $('#adim2').addEventListener('submit', async e => {
   } catch (_) {}
   btn.disabled = false; btn.textContent = 'Başvuruyu tamamla';
   if (!no) {
-    const metin = ['Merhaba, Bursluluk Sınavı için başvurmak istiyorum.', 'Öğrenci: ' + durum.oAd, 'Sınıf: ' + durum.sinif + '. sınıf',
+    const metin = ['Merhaba, Bursluluk Sınavı için başvurmak istiyorum.', 'Öğrenci: ' + durum.oAd, 'Sınıf: ' + durum.sinif + '. sınıf', 'Oturum: 7 Şubat ' + durum.seans,
       'Okul: ' + durum.okul, 'Veli: ' + durum.vAd, 'Telefon: ' + durum.vTel].join(String.fromCharCode(10));
     hata.textContent = (mesaj && !/iletilemedi/.test(mesaj) ? mesaj + ' ' : 'Başvuru şu an iletilemedi. ') + 'Bilgileriniz hazır, WhatsApp’tan tek dokunuşla gönderebilirsiniz:';
     const a = document.createElement('a'); a.className = 'btn btn-wa'; a.target = '_blank'; a.rel = 'noopener';
@@ -461,6 +472,7 @@ $('#adim2').addEventListener('submit', async e => {
   $('#tTitle').textContent = `${ilkAd} için başvurunuz alındı!`;
   $('#tBugun').textContent = new Date().toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
   $('#tTel').textContent = `Sınavdan birkaç gün önce ${durum.vTel} numarasına`;
+  $('#tSinav').textContent = `Sınav günü · 7 Şubat 2027 · saat ${durum.seans}`;
   $('#adim2').classList.remove('acik'); $('#adimlar').style.display = 'none';
   $('#tesekkur').classList.add('acik');
   // kişisel bölüm
